@@ -1,0 +1,15 @@
+man-roxygen/
+^\.travis\.yml$
+^\.DS_Store$
+^.*\.Rproj$
+^\.Rproj\.user$
+^README\.Rmd$
+^CODE_OF_CONDUCT\.md$
+^cran-comments\.md$
+Makefile
+^revdep$
+docs
+.github
+inst/vign
+^\.httr-oauth$
+^codemeta\.json$

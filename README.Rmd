@@ -1,0 +1,48 @@
+handlr
+======
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE
+)
+```
+
+[![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Build Status](https://travis-ci.org/ropensci/handlr.svg?branch=master)](https://travis-ci.org/ropensci/handlr)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
+
+a tool for converting among citation formats.
+
+## Installation
+
+```{r eval=FALSE}
+devtools::install_github("ropensci/handlr")
+```
+
+```{r}
+library("handlr")
+```
+
+## the client
+
+```{r}
+z <- system.file('extdata/citeproc.json', package = "handlr")
+(x <- HandlrClient$new(x = z, from ="citeproc"))
+x$path
+x$read()
+x$parsed
+x$write("bibtex")
+```
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropensci/handlr/issues).
+* License: MIT
+* Get citation information for `handlr` in R doing `citation(package = 'handlr')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.
+
+[![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)

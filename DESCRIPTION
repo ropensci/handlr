@@ -1,0 +1,25 @@
+Package: handlr
+Title: Convert Among Citation Formats
+Description: Converter for many citation formats.
+Version: 0.0.1.9100
+License: MIT + file LICENSE
+Authors@R: c(
+    person("Scott", "Chamberlain", role = c("aut", "cre"),
+    email = "myrmecocystus@gmail.com",
+    comment = c(ORCID = "0000-0003-1444-9135"))
+    )
+URL: https://github.com/ropensci/handlr
+BugReports: https://github.com/ropensci/handlr/issues
+Roxygen: list(markdown = TRUE)
+Encoding: UTF-8
+Language: en-US
+Imports:
+    jsonlite,
+    xml2,
+    RefManageR
+Suggests:
+    testthat
+X-schema.org-applicationCategory: Metadata
+X-schema.org-keywords: doi, metadata, citation, bibtex
+X-schema.org-isPartOf: https://ropensci.org
+RoxygenNote: 6.1.0

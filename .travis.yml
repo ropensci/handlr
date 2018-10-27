@@ -5,6 +5,8 @@ dist: trusty
 
 r_check_args: "--as-cran --run-dontrun"
 
+warnings_are_errors: false
+
 notifications:
   email:
     on_success: change

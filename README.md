@@ -4,9 +4,7 @@ handlr
 
 
 [![Project Status: Active - The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
-[![Build Status](https://travis-ci.org/ropensci/handlr.svg?branch=master)](https://travis-ci.org/ropensci/handlr)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
-[![cran version](https://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
+[![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
 
 a tool for converting among citation formats.
 

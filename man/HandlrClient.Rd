@@ -46,6 +46,13 @@ x$read()
 x$parsed
 x$write("ris")
 cat(x$write("ris"))
+
+# handle strings instead of files
+z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
+(x <- HandlrClient$new(x = readLines(z)))
+x$read("citeproc")
+x$parsed
+cat(x$write("bibtex"), sep = "\\n")
 }
 }
 \keyword{datasets}

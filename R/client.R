@@ -41,11 +41,20 @@
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
+#' 
+#' # handle strings instead of files
+#' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
+#' (x <- HandlrClient$new(x = readLines(z)))
+#' x$read("citeproc")
+#' x$parsed
+#' cat(x$write("bibtex"), sep = "\n")
 #' }
 HandlrClient <- R6::R6Class(
   'HandlrClient',
   public = list(
     path = NULL,
+    string = NULL,
+    substring = NULL,
     parsed = NULL,
     ext = NULL,
 
@@ -53,13 +62,18 @@ HandlrClient <- R6::R6Class(
       cat("<handlr> ", sep = "\n")
       # cat(paste0("  format: ", self$format), sep = "\n")
       cat(paste0("  ext: ", self$ext), sep = "\n")
-      cat(paste0("  path: ", self$path), sep = "\n")
+      cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
+      cat(paste0("  string (abbrev.): ", self$substring %||% "none"), sep = "\n")
       invisible(self)
     },
 
     initialize = function(x) {
       # if (!missing(x)) self$path <- x
-      self$path <- x
+      if (is_file(x)) self$path <- x
+      if (!is_file(x)) {
+        self$string <- x
+        self$substring <- substring(x, 1, 80)
+      }
       self$ext <- find_ext(x)
     },
 
@@ -67,8 +81,8 @@ HandlrClient <- R6::R6Class(
       # if (!is.null(format)) self$format <- format
       self$parsed <- switch(
         format,
-        citeproc = citeproc_reader(self$path),
-        ris = ris_reader(self$path),
+        citeproc = citeproc_reader(self$path %||% self$string),
+        ris = ris_reader(self$path %||% self$string),
         stop("format must be one of 'citeproc' or 'ris'")
       )
     },
@@ -86,7 +100,10 @@ HandlrClient <- R6::R6Class(
   )
 )
 
+is_file <- function(x) file.exists(x)
+
 find_ext <- function(x) {
+  if (!file.exists(x)) return(NULL)
   tmp <- strsplit(basename(x), "\\.")[[1]]
   tmp[length(tmp)]
 }

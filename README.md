@@ -25,100 +25,24 @@ library("handlr")
 
 ```r
 z <- system.file('extdata/citeproc.json', package = "handlr")
-(x <- HandlrClient$new(x = z, from ="citeproc"))
+x <- HandlrClient$new(x = z)
+x
 #> <handlr> 
+#>   ext: json
 #>   path: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/handlr/extdata/citeproc.json
-x$path
-#> [1] "/Library/Frameworks/R.framework/Versions/3.5/Resources/library/handlr/extdata/citeproc.json"
-x$read()
-#> $id
-#> [1] "https://doi.org/10.5438/4k3m-nyvg"
-#> 
-#> $type
-#> [1] "BlogPosting"
-#> 
-#> $additional_type
-#> NULL
-#> 
-#> $citeproc_type
-#> [1] "post-weblog"
-#> 
-#> $ris_type
-#> [1] "GEN"
-#> 
-#> $doi
-#> [1] "10.5438/4k3m-nyvg"
-#> 
-#> $title
-#> [1] "Eating your own Dog Food"
-#> 
-#> $author
-#> $author[[1]]
-#> $author[[1]]$`@type`
-#> [1] "Person"
-#> 
-#> $author[[1]]$name
-#> [1] "Martin Fenner"
-#> 
-#> $author[[1]]$givenName
-#> [1] "Martin"
-#> 
-#> $author[[1]]$familyName
-#> [1] "Fenner"
-#> 
-#> 
-#> 
-#> $container_title
-#> [1] "DataCite Blog"
-#> 
-#> $publisher
-#> [1] "DataCite"
-#> 
-#> $is_part_of
-#> $is_part_of$type
-#> [1] "Periodical"
-#> 
-#> $is_part_of$title
-#> [1] "DataCite Blog"
-#> 
-#> 
-#> $date_published
-#> [1] "2016-12-20"
-#> 
-#> $volume
-#> NULL
-#> 
-#> $description
-#> [1] "Eating your own dog food is a slang term to describe that an organization should itself use the products and services it provides. For DataCite this means that we should use DOIs with appropriate metadata and strategies for long-term preservation for..."
-#> 
-#> $b_version
-#> NULL
-#> 
-#> $keywords
-#> $keywords[[1]]
-#> [1] "Phylogeny"
-#> 
-#> $keywords[[2]]
-#> [1] "Malaria"
-#> 
-#> $keywords[[3]]
-#> [1] "Parasites"
-#> 
-#> $keywords[[4]]
-#> [1] "Taxonomy"
-#> 
-#> $keywords[[5]]
-#> [1] "Mitochondrial genome"
-#> 
-#> $keywords[[6]]
-#> [1] "Africa"
-#> 
-#> $keywords[[7]]
-#> [1] "Plasmodium"
-#> 
-#> 
-#> $state
-#> [1] "findable"
+```
+
+read the file
+
+
+```r
+x$read(format = "citeproc")
+```
+
+the parsed content
+
+
+```r
 x$parsed
 #> $id
 #> [1] "https://doi.org/10.5438/4k3m-nyvg"
@@ -132,85 +56,32 @@ x$parsed
 #> $citeproc_type
 #> [1] "post-weblog"
 #> 
+#> $bibtex_type
+#> [1] "article"
+#> 
 #> $ris_type
 #> [1] "GEN"
 #> 
 #> $doi
 #> [1] "10.5438/4k3m-nyvg"
-#> 
-#> $title
-#> [1] "Eating your own Dog Food"
-#> 
-#> $author
-#> $author[[1]]
-#> $author[[1]]$`@type`
-#> [1] "Person"
-#> 
-#> $author[[1]]$name
-#> [1] "Martin Fenner"
-#> 
-#> $author[[1]]$givenName
-#> [1] "Martin"
-#> 
-#> $author[[1]]$familyName
-#> [1] "Fenner"
-#> 
-#> 
-#> 
-#> $container_title
-#> [1] "DataCite Blog"
-#> 
-#> $publisher
-#> [1] "DataCite"
-#> 
-#> $is_part_of
-#> $is_part_of$type
-#> [1] "Periodical"
-#> 
-#> $is_part_of$title
-#> [1] "DataCite Blog"
-#> 
-#> 
-#> $date_published
-#> [1] "2016-12-20"
-#> 
-#> $volume
-#> NULL
-#> 
-#> $description
-#> [1] "Eating your own dog food is a slang term to describe that an organization should itself use the products and services it provides. For DataCite this means that we should use DOIs with appropriate metadata and strategies for long-term preservation for..."
-#> 
-#> $b_version
-#> NULL
-#> 
-#> $keywords
-#> $keywords[[1]]
-#> [1] "Phylogeny"
-#> 
-#> $keywords[[2]]
-#> [1] "Malaria"
-#> 
-#> $keywords[[3]]
-#> [1] "Parasites"
-#> 
-#> $keywords[[4]]
-#> [1] "Taxonomy"
-#> 
-#> $keywords[[5]]
-#> [1] "Mitochondrial genome"
-#> 
-#> $keywords[[6]]
-#> [1] "Africa"
-#> 
-#> $keywords[[7]]
-#> [1] "Plasmodium"
-#> 
-#> 
-#> $state
-#> [1] "findable"
-x$write("bibtex")
-#> [1] FennerMartin. _Eating your own Dog Food_. DOI:
-#> 10.5438/4k3m-nyvg.
+...
+```
+
+write out bibtex
+
+
+```r
+cat(x$write("bibtex"), sep = "\n")
+#> @article{,
+#>   key = {https://doi.org/10.5438/4k3m-nyvg},
+#>   doi = {10.5438/4k3m-nyvg},
+#>   author = {Martin Fenner},
+#>   title = {Eating your own Dog Food},
+#>   journal = {DataCite Blog},
+#>   pages = {},
+#>   publisher = {DataCite},
+#>   year = {2016},
+#> }
 ```
 
 ## Meta

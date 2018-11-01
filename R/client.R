@@ -71,7 +71,6 @@ HandlrClient <- R6::R6Class(
         ris = ris_reader(self$path),
         stop("format must be one of 'citeproc' or 'ris'")
       )
-      return(self$parsed)
     },
 
     write = function(format = NULL, file = NULL) {

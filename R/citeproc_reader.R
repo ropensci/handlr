@@ -3,6 +3,8 @@
 #' @export
 #' @param file (character) a file path
 #' @return xxx
+#' @family readers
+#' @family citeproc
 #' @examples
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
 #' citeproc_reader(file = z)
@@ -30,14 +32,14 @@ citeproc_reader <- function(file) {
     NULL
   }
   # FIXME: id = normalize_id(meta.fetch("id", nil))
-  id = meta$id %||% NULL
-  state = if (!is.null(id)) "findable" else "not_found"
+  id <- meta$id %||% NULL
+  state <- if (!is.null(id)) "findable" else "not_found"
   list(
     id = id,
     type = type,
     additional_type = meta$additionalType %||% NULL,
     citeproc_type = citeproc_type,
-    # "bibtex_type" = Bolognese::Utils::SO_TO_BIB_TRANSLATIONS[type] || "misc",
+    bibtex_type = SO_TO_BIB_TRANSLATIONS[[type]] %||% "misc",
     ris_type = CP_TO_RIS_TRANSLATIONS[[type]] %||% "GEN",
     # "resource_type_general" = Bolognese::Utils::SO_TO_DC_TRANSLATIONS[type],
     # "doi" = doi_from_url(doi),
@@ -83,16 +85,18 @@ CP_TO_RIS_TRANSLATIONS <- list(
 get_date_from_date_parts <- function(x) {
   date_parts = x$`date-parts`[[1]]
   year = date_parts[[1]]
-  month = date_parts[[2]]
-  day = date_parts[[3]]
+  month = tryCatch(date_parts[[2]], error = function(e) e)
+  if (inherits(month, "error")) month <- NULL
+  day = tryCatch(date_parts[[3]], error = function(e) e)
+  if (inherits(day, "error")) day <- NULL
   get_date_from_parts(year, month, day)
 }
 
 get_date_from_parts <- function(year, month = NULL, day = NULL) {  
   paste0(Filter(function(z) z != "00", list(
-    sprintf("%4.2d", year),
-    sprintf("%2.2d", month),
-    sprintf("%2.2d", day)
+    sprintf("%4.2d", as.numeric(year)),
+    sprintf("%2.2d", as.numeric(month)),
+    sprintf("%2.2d", as.numeric(day))
   )), collapse = "-")
 }
 

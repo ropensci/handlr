@@ -119,7 +119,7 @@ get_authors <- function(authors) Map(get_one_author, authors)
 authors_as_string <- function(authors) {
   tmp <- lapply(authors, function(z) {
     if (!is.null(z$familyName)) {
-      paste0(z$familyName, z$givenName, collapse = ", ")
+      paste(z$givenName, z$familyName)
     } else if (z$`@type` == "Person") {
       z$name
     } else if (!is.null(z$name)) {

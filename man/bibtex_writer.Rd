@@ -2,21 +2,26 @@
 % Please edit documentation in R/bibtex_writer.R
 \name{bibtex_writer}
 \alias{bibtex_writer}
-\title{citeproc reader}
+\title{bibtex writer}
 \usage{
 bibtex_writer(z)
 }
 \arguments{
-\item{file}{(character) a file path}
+\item{z}{a \code{handlr} internal format object}
 }
 \value{
-xxx
+an object of class \code{BibEntry}
 }
 \description{
-citeproc reader
+bibtex writer
 }
 \examples{
-z <- system.file('extdata/citeproc.json', package = "handlr")
-tmp <- citeproc_reader(file = z)
-bibtex_writer(tmp)
+(z <- system.file('extdata/citeproc.json', package = "handlr"))
+(tmp <- citeproc_reader(file = z))
+bibtex_writer(z = tmp)
 }
+\seealso{
+Other writers: \code{\link{ris_writer}}
+}
+\concept{bibtex}
+\concept{writers}

@@ -1,0 +1,23 @@
+TY  - JOUR
+T1  - Thy1 transgenic mice expressing the red fluorescent calcium indicator jRGECO1a for neuronal population imaging in vivo
+A1  - Dana, Hod
+A1  - Novak, Ondrej
+A1  - Guardado-Montesino, Michael
+A1  - Fransen, James W.
+A1  - Hu, Amy
+A1  - Borghuis, Bart G.
+A1  - Guo, Caiying
+A1  - Kim, Douglas S.
+A1  - Svoboda, Karel
+Y1  - 2018/10/11
+N2  - Calcium imaging is commonly used to measure the neural activity of large groups of neurons in mice. Genetically encoded calcium indicators (GECIs) can be delivered for this purpose using non-invasive genetic methods. Compared to viral gene transfer, transgenic targeting of GECIs provides stable long-term expression and obviates the need for invasive viral injections. Transgenic mice expressing the green GECI GCaMP6 are already widely used. Here we present the generation and characterization of transgenic mice expressing the sensitive red GECI jRGECO1a, driven by the Thy1 promoter. Four transgenic lines with different expression patterns showed sufficiently high expression for cellular in vivo imaging. We used two-photon microscopy to characterize visual responses of individual neurons in the visual cortex in vivo. The signal-to-noise ratio in transgenic mice was comparable to, or better than, mice transduced with adeno-associated virus. In addition, we show that Thy1-jRGECO1a transgenic mice are useful for transcranial population imaging and functional mapping using widefield fluorescence microscopy. We also demonstrate imaging of visual responses in retinal ganglion cells in vitro. Thy1-jRGECO1a transgenic mice are therefore a useful addition to the toolbox for imaging activity in intact neural networks.
+JF  - PLOS ONE
+JA  - PLOS ONE
+VL  - 13
+IS  - 10
+UR  - https://doi.org/10.1371/journal.pone.0205444
+SP  - e0205444
+EP  - 
+PB  - Public Library of Science
+M3  - doi:10.1371/journal.pone.0205444
+ER  - 

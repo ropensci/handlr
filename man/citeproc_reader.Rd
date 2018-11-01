@@ -19,3 +19,10 @@ citeproc reader
 z <- system.file('extdata/citeproc.json', package = "handlr")
 citeproc_reader(file = z)
 }
+\seealso{
+Other readers: \code{\link{ris_reader}}
+
+Other citeproc: \code{\link{ris_reader}}
+}
+\concept{citeproc}
+\concept{readers}

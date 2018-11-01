@@ -10,8 +10,10 @@ handlr client
 \details{
 \strong{Methods}
 \describe{
-\item{\code{parse()}}{
-parse input
+\item{\code{read(format = NULL)}}{
+read input
+format: optionally specify format, e.g., ris. We attempt to
+auto-detect this for you.
 }
 }
 }
@@ -19,16 +21,31 @@ parse input
 \dontrun{
 # crosscite
 z <- system.file('extdata/crosscite.json', package = "handlr")
-(x <- HandlrClient$new(x = z, from ="crosscite"))
+(x <- HandlrClient$new(x = z))
 x$x
 x$proc
 
 # read in citeproc, write out bibtex
 z <- system.file('extdata/citeproc.json', package = "handlr")
-(x <- HandlrClient$new(x = z, from ="citeproc"))
+(x <- HandlrClient$new(x = z))
 x$path
-x$read()
+x$ext
+x$read("citeproc")
+x$parsed
 x$write("bibtex")
+f <- tempfile(fileext = ".bib")
+x$write("bibtex", file = f)
+readLines(f)
+
+# read in ris, write out ris
+z <- system.file('extdata/peerj.ris', package = "handlr")
+(x <- HandlrClient$new(x = z))
+x$path
+x$format
+x$read()
+x$parsed
+x$write("ris")
+cat(x$write("ris"))
 }
 }
 \keyword{datasets}

@@ -22,8 +22,7 @@ auto-detect this for you.
 # crosscite
 z <- system.file('extdata/crosscite.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
-x$x
-x$proc
+x$path
 
 # read in citeproc, write out bibtex
 z <- system.file('extdata/citeproc.json', package = "handlr")
@@ -36,13 +35,14 @@ x$write("bibtex")
 f <- tempfile(fileext = ".bib")
 x$write("bibtex", file = f)
 readLines(f)
+unlink(f)
 
 # read in ris, write out ris
 z <- system.file('extdata/peerj.ris', package = "handlr")
 (x <- HandlrClient$new(x = z))
 x$path
 x$format
-x$read()
+x$read("ris")
 x$parsed
 x$write("ris")
 cat(x$write("ris"))

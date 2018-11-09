@@ -17,8 +17,7 @@
 #' # crosscite
 #' z <- system.file('extdata/crosscite.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
-#' x$x
-#' x$proc
+#' x$path
 #' 
 #' # read in citeproc, write out bibtex
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
@@ -31,13 +30,14 @@
 #' f <- tempfile(fileext = ".bib")
 #' x$write("bibtex", file = f)
 #' readLines(f)
+#' unlink(f)
 #' 
 #' # read in ris, write out ris
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
 #' x$path
 #' x$format
-#' x$read()
+#' x$read("ris")
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
@@ -77,7 +77,7 @@ HandlrClient <- R6::R6Class(
       self$ext <- find_ext(x)
     },
 
-    read = function(format = NULL) {
+    read = function(format) {
       # if (!is.null(format)) self$format <- format
       self$parsed <- switch(
         format,
@@ -87,7 +87,7 @@ HandlrClient <- R6::R6Class(
       )
     },
 
-    write = function(format = NULL, file = NULL) {
+    write = function(format, file = NULL) {
       out <- switch(
         format,
         bibtex = bibtex_writer(self$parsed),

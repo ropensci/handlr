@@ -7,7 +7,7 @@
 bibtex_reader(x)
 }
 \arguments{
-\item{z}{a \code{handlr} internal format object}
+\item{x}{a \code{handlr} internal format object}
 }
 \value{
 an object of class \code{BibEntry}

@@ -4,13 +4,21 @@
 \alias{citeproc_writer}
 \title{citeproc writer}
 \usage{
-citeproc_writer(z)
+citeproc_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 }
 \arguments{
 \item{z}{a \code{handlr} internal format object}
+
+\item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
+vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+
+\item{pretty}{(logical) adds indentation whitespace to JSON output
+(default: \code{TRUE}), passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+
+\item{...}{further params passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
 }
 \value{
-xxx
+citeproc as JSON
 }
 \description{
 citeproc writer
@@ -19,6 +27,7 @@ citeproc writer
 z <- system.file('extdata/citeproc.json', package = "handlr")
 (tmp <- citeproc_reader(file = z))
 citeproc_writer(z = tmp)
+citeproc_writer(z = tmp, pretty = TRUE)
 cat(ris_writer(z = tmp))
 }
 \seealso{

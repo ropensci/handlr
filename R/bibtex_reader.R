@@ -1,7 +1,7 @@
 #' bibtex reader
 #' 
 #' @export
-#' @param z a `handlr` internal format object
+#' @param x a `handlr` internal format object
 #' @return an object of class `BibEntry`
 #' @family readers
 #' @family bibtex

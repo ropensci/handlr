@@ -30,6 +30,7 @@ x
 #> <handlr> 
 #>   ext: json
 #>   path: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/handlr/extdata/citeproc.json
+#>   string (abbrev.): none
 ```
 
 read the file

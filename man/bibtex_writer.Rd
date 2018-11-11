@@ -21,7 +21,10 @@ bibtex writer
 bibtex_writer(z = tmp)
 }
 \seealso{
-Other writers: \code{\link{ris_writer}}
+Other writers: \code{\link{citeproc_writer}},
+  \code{\link{ris_writer}}
+
+Other bibtex: \code{\link{bibtex_reader}}
 }
 \concept{bibtex}
 \concept{writers}

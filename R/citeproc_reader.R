@@ -82,36 +82,3 @@ CP_TO_RIS_TRANSLATIONS <- list(
   "webpage" = "ELEC"
 )
 
-get_date_from_date_parts <- function(x) {
-  date_parts = x$`date-parts`[[1]]
-  year = date_parts[[1]]
-  month = tryCatch(date_parts[[2]], error = function(e) e)
-  if (inherits(month, "error")) month <- NULL
-  day = tryCatch(date_parts[[3]], error = function(e) e)
-  if (inherits(day, "error")) day <- NULL
-  get_date_from_parts(year, month, day)
-}
-
-get_date_from_parts <- function(year, month = NULL, day = NULL) {  
-  paste0(Filter(function(z) z != "00", list(
-    sprintf("%4.2d", as.numeric(year)),
-    sprintf("%2.2d", as.numeric(month)),
-    sprintf("%2.2d", as.numeric(day))
-  )), collapse = "-")
-}
-
-from_citeproc <- function(element) {
-  if (is.null(element)) return(NULL)
-  lapply(element, function(w) {
-    if (!is.null(w$literal)) {
-      w$`@type` <- "Organization"
-      w$name <- w$literal
-    } else {
-      w$`@type` <- "Person"
-      w$name <- paste(w$given, w$family)
-    }
-    w$givenName <- w$given
-    w$familyName <- w$family
-    except(w, c("given", "family", "literal"))
-  })
-}

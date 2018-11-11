@@ -1,13 +1,18 @@
 #' handlr client
 #'
 #' @export
+#' @param x (character) a file path
 #' @details
 #' **Methods**
 #'   \describe{
-#'     \item{`read(format = NULL)`}{
+#'     \item{`read(format)`}{
 #'       read input
-#'       format: optionally specify format, e.g., ris. We attempt to 
-#'       auto-detect this for you.
+#'       format: one of citeproc, ris, bibtex
+#'     }
+#'     \item{`write(format, file = NULL)`}{
+#'       write
+#'       format: one of citeproc, ris, bibtex
+#'       file: a file path, if NULL to stdout
 #'     }
 #'   }
 #'
@@ -38,6 +43,16 @@
 #' x$path
 #' x$format
 #' x$read("ris")
+#' x$parsed
+#' x$write("ris")
+#' cat(x$write("ris"))
+#' 
+#' # read in bibtex, write out ris
+#' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
+#' (x <- HandlrClient$new(x = z))
+#' x$path
+#' x$format
+#' x$read("bibtex")
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
@@ -83,6 +98,7 @@ HandlrClient <- R6::R6Class(
         format,
         citeproc = citeproc_reader(self$path %||% self$string),
         ris = ris_reader(self$path %||% self$string),
+        bibtex = bibtex_reader(self$path %||% self$string),
         stop("format must be one of 'citeproc' or 'ris'")
       )
     },
@@ -90,8 +106,9 @@ HandlrClient <- R6::R6Class(
     write = function(format, file = NULL) {
       out <- switch(
         format,
-        bibtex = bibtex_writer(self$parsed),
+        citeproc = citeproc_writer(self$parsed),
         ris = ris_writer(self$parsed),
+        bibtex = bibtex_writer(self$parsed),
         stop("format must be one of 'bibtex' or 'ris'")
       )
       if (is.null(file)) return(out)

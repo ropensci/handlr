@@ -29,9 +29,11 @@ ris_reader(file = z)
 RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 }
 \seealso{
-Other readers: \code{\link{citeproc_reader}}
+Other readers: \code{\link{bibtex_reader}},
+  \code{\link{citeproc_reader}}
 
-Other citeproc: \code{\link{citeproc_reader}}
+Other citeproc: \code{\link{citeproc_reader}},
+  \code{\link{citeproc_writer}}
 }
 \concept{citeproc}
 \concept{readers}

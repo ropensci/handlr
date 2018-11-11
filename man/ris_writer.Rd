@@ -44,7 +44,8 @@ cat(ris_writer(z = res))
 RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 }
 \seealso{
-Other writers: \code{\link{bibtex_writer}}
+Other writers: \code{\link{bibtex_writer}},
+  \code{\link{citeproc_writer}}
 }
 \concept{ris}
 \concept{writers}

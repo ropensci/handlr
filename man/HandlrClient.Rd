@@ -4,16 +4,23 @@
 \name{HandlrClient}
 \alias{HandlrClient}
 \title{handlr client}
+\arguments{
+\item{x}{(character) a file path}
+}
 \description{
 handlr client
 }
 \details{
 \strong{Methods}
 \describe{
-\item{\code{read(format = NULL)}}{
+\item{\code{read(format)}}{
 read input
-format: optionally specify format, e.g., ris. We attempt to
-auto-detect this for you.
+format: one of citeproc, ris, bibtex
+}
+\item{\code{write(format, file = NULL)}}{
+write
+format: one of citeproc, ris, bibtex
+file: a file path, if NULL to stdout
 }
 }
 }
@@ -43,6 +50,16 @@ z <- system.file('extdata/peerj.ris', package = "handlr")
 x$path
 x$format
 x$read("ris")
+x$parsed
+x$write("ris")
+cat(x$write("ris"))
+
+# read in bibtex, write out ris
+(z <- system.file('extdata/bibtex.bib', package = "handlr"))
+(x <- HandlrClient$new(x = z))
+x$path
+x$format
+x$read("bibtex")
 x$parsed
 x$write("ris")
 cat(x$write("ris"))

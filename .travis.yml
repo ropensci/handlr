@@ -3,6 +3,11 @@ sudo: false
 cache: packages
 dist: trusty
 
+addons:
+  apt:
+    packages:
+      - libv8-dev
+
 r_check_args: "--as-cran --run-dontrun"
 
 warnings_are_errors: false

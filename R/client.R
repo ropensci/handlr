@@ -11,7 +11,7 @@
 #'     }
 #'     \item{`write(format, file = NULL)`}{
 #'       write
-#'       format: one of citeproc, ris, bibtex
+#'       format: one of citeproc, ris, bibtex, rdfxml
 #'       file: a file path, if NULL to stdout
 #'     }
 #'   }
@@ -57,6 +57,16 @@
 #' x$write("ris")
 #' cat(x$write("ris"))
 #' 
+#' # read in bibtex, write out RDF XML
+#' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
+#' (x <- HandlrClient$new(x = z))
+#' x$path
+#' x$format
+#' x$read("bibtex")
+#' x$parsed
+#' x$write("rdfxml")
+#' cat(x$write("rdfxml"))
+#' 
 #' # handle strings instead of files
 #' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
 #' (x <- HandlrClient$new(x = readLines(z)))
@@ -99,7 +109,7 @@ HandlrClient <- R6::R6Class(
         citeproc = citeproc_reader(self$path %||% self$string),
         ris = ris_reader(self$path %||% self$string),
         bibtex = bibtex_reader(self$path %||% self$string),
-        stop("format must be one of 'citeproc' or 'ris'")
+        stop("format must be one of 'citeproc', 'ris', 'bibtex'")
       )
     },
 
@@ -109,7 +119,8 @@ HandlrClient <- R6::R6Class(
         citeproc = citeproc_writer(self$parsed),
         ris = ris_writer(self$parsed),
         bibtex = bibtex_writer(self$parsed),
-        stop("format must be one of 'bibtex' or 'ris'")
+        rdfxml = rdf_xml_writer(self$parsed),
+        stop("format must be one of 'citeproc', 'ris', 'bibtex', 'rdfxml'")
       )
       if (is.null(file)) return(out)
       cat(out, "\n", file = file)

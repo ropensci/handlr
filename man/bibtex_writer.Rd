@@ -22,7 +22,7 @@ bibtex_writer(z = tmp)
 }
 \seealso{
 Other writers: \code{\link{citeproc_writer}},
-  \code{\link{ris_writer}}
+  \code{\link{rdf_xml_writer}}, \code{\link{ris_writer}}
 
 Other bibtex: \code{\link{bibtex_reader}}
 }

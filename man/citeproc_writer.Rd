@@ -32,7 +32,7 @@ cat(ris_writer(z = tmp))
 }
 \seealso{
 Other writers: \code{\link{bibtex_writer}},
-  \code{\link{ris_writer}}
+  \code{\link{rdf_xml_writer}}, \code{\link{ris_writer}}
 
 Other citeproc: \code{\link{citeproc_reader}},
   \code{\link{ris_reader}}

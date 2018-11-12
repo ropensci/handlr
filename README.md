@@ -8,6 +8,21 @@ handlr
 
 a tool for converting among citation formats.
 
+heavily influenced by, and code ported from <https://github.com/datacite/bolognese>
+
+supported readers:
+
+- citeproc
+- ris
+- bibtex
+
+supported writers:
+
+- citeproc
+- ris
+- bibtex
+- rdfxml
+
 ## Installation
 
 

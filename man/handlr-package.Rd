@@ -6,8 +6,28 @@
 \alias{handlr}
 \title{\strong{Citation format converter}}
 \description{
-\strong{Citation format converter}
+A tool for converting among citation formats
 }
+\section{supported readers}{
+
+\itemize{
+\item citeproc
+\item ris
+\item bibtex
+}
+}
+
+\section{supported writers}{
+
+\itemize{
+\item citeproc
+\item ris
+\item bibtex
+\item schema.org
+\item rdfxml (requires suggested package \code{jsonld})
+}
+}
+
 \author{
 Scott Chamberlain \email{sckott@protonmail.com}
 }

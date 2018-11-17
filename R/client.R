@@ -1,3 +1,6 @@
+handlr_readers <- c('citeproc', 'ris', 'bibtex')
+handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org', 'rdfxml')
+
 #' handlr client
 #'
 #' @export
@@ -111,7 +114,8 @@ HandlrClient <- R6::R6Class(
         citeproc = citeproc_reader(self$path %||% self$string, ...),
         ris = ris_reader(self$path %||% self$string, ...),
         bibtex = bibtex_reader(self$path %||% self$string, ...),
-        stop("format must be one of 'citeproc', 'ris', 'bibtex'")
+        stop("format must be one of ", 
+          paste(handlr_readers, collapse = ", "))
       )
     },
 
@@ -121,8 +125,10 @@ HandlrClient <- R6::R6Class(
         citeproc = citeproc_writer(self$parsed, ...),
         ris = ris_writer(self$parsed, ...),
         bibtex = bibtex_writer(self$parsed, ...),
+        schema_org = schema_org_writer(self$parsed, ...),
         rdfxml = rdf_xml_writer(self$parsed, ...),
-        stop("format must be one of 'citeproc', 'ris', 'bibtex', 'rdfxml'")
+        stop("format must be one of ",
+          paste(handlr_writers, collapse = ", "))
       )
       if (is.null(file)) return(out)
       cat(out, "\n", file = file)

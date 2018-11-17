@@ -1,4 +1,20 @@
 #' **Citation format converter**
+#' 
+#' A tool for converting among citation formats
+#' 
+#' @section supported readers:
+#' 
+#' - citeproc
+#' - ris
+#' - bibtex
+#' 
+#' @section supported writers:
+#' 
+#' - citeproc
+#' - ris
+#' - bibtex
+#' - schema.org
+#' - rdfxml (requires suggested package `jsonld`)
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom xml2 read_xml

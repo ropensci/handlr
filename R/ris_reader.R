@@ -4,7 +4,7 @@
 #' @param file (character) a file path
 #' @return xxx
 #' @family readers
-#' @family citeproc
+#' @family ris
 #' @references RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 #' @examples
 #' z <- system.file('extdata/crossref.ris', package = "handlr")

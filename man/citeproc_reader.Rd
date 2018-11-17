@@ -23,8 +23,7 @@ citeproc_reader(file = z)
 Other readers: \code{\link{bibtex_reader}},
   \code{\link{ris_reader}}
 
-Other citeproc: \code{\link{citeproc_writer}},
-  \code{\link{ris_reader}}
+Other citeproc: \code{\link{citeproc_writer}}
 }
 \concept{citeproc}
 \concept{readers}

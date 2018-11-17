@@ -1,20 +1,24 @@
 #' Schema org writer
 #' 
-#' @name schema_org
+#' @export
 #' @param x input
 #' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
 #' @param pretty (logical) adds indentation whitespace to JSON output 
 #' (default: `TRUE`), passed to [jsonlite::toJSON()]
 #' @param ... further params passed to [jsonlite::toJSON()]
+#' @return an object of class `json`
+#' @family writers
+#' @family schema_org
 #' @examples
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' (tmp <- bibtex_reader(z))
-#' schema_hsh(tmp)
-#' schema_org(tmp)
+#' schema_org_writer(tmp)
+#' schema_org_writer(tmp, pretty = FALSE)
+schema_org_writer <- function(x, auto_unbox = TRUE, pretty = TRUE, ...) {
+  jsonlite::toJSON(schema_hsh(x), auto_unbox = auto_unbox, pretty = pretty, ...)
+}
 
-#' @export
-#' @rdname schema_org
 schema_hsh <- function(x) {
   ccp(list(
     "@context" = if (!is.null(x$id)) "http://schema.org" else NULL,
@@ -54,13 +58,6 @@ schema_hsh <- function(x) {
     "provider" = if (!is.null(x$service_provider)) list("@type" = "Organization", "name" = x$service_provider) else NULL
   ))
 }
-
-#' @export
-#' @rdname schema_org
-schema_org <- function(x, auto_unbox = TRUE, pretty = TRUE, ...) {
-  jsonlite::toJSON(schema_hsh(x), auto_unbox = auto_unbox, pretty = pretty, ...)
-}
-
 
 # utils
 to_schema_org <- function(element) {

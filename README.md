@@ -21,6 +21,7 @@ supported writers:
 - citeproc
 - ris
 - bibtex
+- schema.org
 - rdfxml (requires suggested package [jsonld][])
 
 ## Installation

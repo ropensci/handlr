@@ -32,8 +32,7 @@ RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 Other readers: \code{\link{bibtex_reader}},
   \code{\link{citeproc_reader}}
 
-Other citeproc: \code{\link{citeproc_reader}},
-  \code{\link{citeproc_writer}}
+Other ris: \code{\link{ris_writer}}
 }
-\concept{citeproc}
 \concept{readers}
+\concept{ris}

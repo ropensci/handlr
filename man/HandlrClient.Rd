@@ -13,14 +13,16 @@ handlr client
 \details{
 \strong{Methods}
 \describe{
-\item{\code{read(format)}}{
+\item{\code{read(format, ...)}}{
 read input
 format: one of citeproc, ris, bibtex
+...: further args to the writer fxn, if any
 }
-\item{\code{write(format, file = NULL)}}{
+\item{\code{write(format, file = NULL, ...)}}{
 write
 format: one of citeproc, ris, bibtex, rdfxml
 file: a file path, if NULL to stdout
+...: further args to the writer fxn, if any
 }
 }
 }

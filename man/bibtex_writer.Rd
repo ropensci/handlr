@@ -4,10 +4,15 @@
 \alias{bibtex_writer}
 \title{bibtex writer}
 \usage{
-bibtex_writer(z)
+bibtex_writer(z, key = NULL)
 }
 \arguments{
 \item{z}{a \code{handlr} internal format object}
+
+\item{key}{(character) optional bibtex key to use. if \code{NULL} we
+attempt try the following fields in order: \code{key}, \code{identifier},
+\code{id}, \code{doi}. if you pass in ouput from \code{\link[=bibtex_reader]{bibtex_reader()}} you're
+likely to have a \code{key} field, but otherwise probably not}
 }
 \value{
 an object of class \code{BibEntry}
@@ -19,6 +24,15 @@ bibtex writer
 (z <- system.file('extdata/citeproc.json', package = "handlr"))
 (tmp <- citeproc_reader(file = z))
 bibtex_writer(z = tmp)
+cat(bibtex_writer(z = tmp), sep = "\\n")
+
+(z <- system.file('extdata/bibtex2.bib', package = "handlr"))
+z <- bibtex_reader(z)
+bibtex_writer(z)
+cat(bibtex_writer(z), sep = "\\n")
+
+# give a bibtex key
+cat(bibtex_writer(z, "foobar89"), sep = "\\n")
 }
 \seealso{
 Other writers: \code{\link{citeproc_writer}},

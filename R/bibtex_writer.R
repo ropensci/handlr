@@ -2,6 +2,10 @@
 #' 
 #' @export
 #' @param z a `handlr` internal format object
+#' @param key (character) optional bibtex key to use. if `NULL` we 
+#' attempt try the following fields in order: `key`, `identifier`, 
+#' `id`, `doi`. if you pass in ouput from [bibtex_reader()] you're
+#' likely to have a `key` field, but otherwise probably not
 #' @return an object of class `BibEntry`
 #' @family writers
 #' @family bibtex
@@ -9,11 +13,20 @@
 #' (z <- system.file('extdata/citeproc.json', package = "handlr"))
 #' (tmp <- citeproc_reader(file = z))
 #' bibtex_writer(z = tmp)
-bibtex_writer <- function(z) {
-  # return nil unless valid?
+#' cat(bibtex_writer(z = tmp), sep = "\n")
+#' 
+#' (z <- system.file('extdata/bibtex2.bib', package = "handlr"))
+#' z <- bibtex_reader(z)
+#' bibtex_writer(z)
+#' cat(bibtex_writer(z), sep = "\n")
+#' 
+#' # give a bibtex key
+#' cat(bibtex_writer(z, "foobar89"), sep = "\n")
+bibtex_writer <- function(z, key = NULL) {
+  if (is.null(key)) key <- z$key %||% z$identifier %||% z$id %||% z$doi
   bib = ccp(list(
     bibtype = z$bibtex_type %||% "misc",
-    key = z$identifier %||% z$id %||% z$doi,
+    key = key,
     doi = z$doi,
     url = z$b_url,
     # author = authors_as_string(z$author),
@@ -25,15 +38,10 @@ bibtex_writer <- function(z) {
     journal = z$container_title,
     volume = z$volume,
     issue = z$issue,
-    pages = paste(z$first_page, z$last_page, collapse = "-"),
+    pages = paste(z$first_page, z$last_page, sep = "--"),
     publisher = z$publisher,
     year = if (!is.null(z$date_published)) substring(z$date_published, 1, 4) else NULL,
     date = z$date_published
   ))
-  # bib
-  # RefManageR::as.BibEntry(bib)
   convert_to_bibtex(bib)
 }
-
-# as_bib <- function(x) { 
-# }

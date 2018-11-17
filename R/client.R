@@ -5,14 +5,16 @@
 #' @details
 #' **Methods**
 #'   \describe{
-#'     \item{`read(format)`}{
+#'     \item{`read(format, ...)`}{
 #'       read input
 #'       format: one of citeproc, ris, bibtex
+#'       ...: further args to the writer fxn, if any
 #'     }
-#'     \item{`write(format, file = NULL)`}{
+#'     \item{`write(format, file = NULL, ...)`}{
 #'       write
 #'       format: one of citeproc, ris, bibtex, rdfxml
 #'       file: a file path, if NULL to stdout
+#'       ...: further args to the writer fxn, if any
 #'     }
 #'   }
 #'
@@ -102,24 +104,24 @@ HandlrClient <- R6::R6Class(
       self$ext <- find_ext(x)
     },
 
-    read = function(format) {
+    read = function(format, ...) {
       # if (!is.null(format)) self$format <- format
       self$parsed <- switch(
         format,
-        citeproc = citeproc_reader(self$path %||% self$string),
-        ris = ris_reader(self$path %||% self$string),
-        bibtex = bibtex_reader(self$path %||% self$string),
+        citeproc = citeproc_reader(self$path %||% self$string, ...),
+        ris = ris_reader(self$path %||% self$string, ...),
+        bibtex = bibtex_reader(self$path %||% self$string, ...),
         stop("format must be one of 'citeproc', 'ris', 'bibtex'")
       )
     },
 
-    write = function(format, file = NULL) {
+    write = function(format, file = NULL, ...) {
       out <- switch(
         format,
-        citeproc = citeproc_writer(self$parsed),
-        ris = ris_writer(self$parsed),
-        bibtex = bibtex_writer(self$parsed),
-        rdfxml = rdf_xml_writer(self$parsed),
+        citeproc = citeproc_writer(self$parsed, ...),
+        ris = ris_writer(self$parsed, ...),
+        bibtex = bibtex_writer(self$parsed, ...),
+        rdfxml = rdf_xml_writer(self$parsed, ...),
         stop("format must be one of 'citeproc', 'ris', 'bibtex', 'rdfxml'")
       )
       if (is.null(file)) return(out)

@@ -114,7 +114,7 @@
 #   name_detector.name_exists?(name)
 # }
 
-get_authors <- function(authors) Map(get_one_author, authors)
+# get_authors <- function(authors) Map(get_one_author, authors)
 
 authors_as_string <- function(authors) {
   tmp <- lapply(authors, function(z) {

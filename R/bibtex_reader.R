@@ -36,17 +36,18 @@ bibtex_reader <- function(x) {
     NULL
   }
 
-  page_first <- page_last <- NULL
+  first_page <- last_page <- NULL
   if (!is.null(meta$pages)) {
     pp <- strsplit(meta$pages, "--")[[1]]
-    page_first <- as.numeric(pp[1])
-    page_last <- as.numeric(pp[2])
+    first_page <- as.numeric(pp[1])
+    last_page <- as.numeric(pp[2])
   }
   
   state <- if (!is.null(doi)) "findable" else "not_found"
   # state = doi.present? ? "findable" : "not_found"
 
   list(
+    "key" = attr(meta, "key"),
     "id" = normalize_doi(doi),
     "type" = type,
     "bibtex_type" = type,
@@ -62,8 +63,8 @@ bibtex_reader <- function(x) {
     "is_part_of" = is_part_of,
     "date_published" = meta$date %||% NULL,
     "volume" = meta$volume %||% NULL,
-    "page_first" = page_first,
-    "page_last" = page_last,
+    "first_page" = first_page,
+    "last_page" = last_page,
     # "description" = list(text = meta$abstract %||% NULL && sanitize(meta$abstract)),
     "description" = list(text = meta$abstract %||% NULL),
     "license" = list(id = meta$copyright %||% NULL),

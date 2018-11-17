@@ -17,7 +17,7 @@ convert_to_bibtex <- function(object) {
   if ("location" %in% obj_names  && is.null(object$address))
     object$address <- object$location
 
-  object <- ConvertDate(object)
+  # object <- ConvertDate(object)
   
   if ("institution" %in% obj_names && bibtype == 'thesis' &&
       is.null(object$school)){
@@ -49,7 +49,9 @@ convert_to_bibtex <- function(object) {
 
   bibtype <- ConvertBibtype(bibtype)
   
-  rval <- paste0("@", bibtype, "{", attr(object, "key"), ",")
+  rval <- paste0("@", bibtype, "{", object$key, ",")
+  # drop key
+  object$key <- NULL
   rval <- c(rval, vapply(names(object)[names(object) %in% .Bibtex_fields],
                          function(n) paste0("  ", n, " = {", object[[n]],
                                             "},"), ""), "}", "")
@@ -57,24 +59,28 @@ convert_to_bibtex <- function(object) {
 }
 
 # from RefManageR
-ConvertDate <- function(obj){
-  dat <- attr(obj, 'dateobj')
-  if (!is.null(dat) && is.null(obj$year)){
-    if (is.interval(dat)){
-      obj$year <- tolower(year(int_start(dat)))
-    }else{
-      obj$year <- tolower(year(dat))
-    }
-  }
-  if (!is.null(dat) && attr(dat, "day.mon") > 0 && is.null(obj$month)){
-    if (is.interval(dat)){
-      obj$month <- tolower(month(int_start(dat), TRUE, TRUE))
-    }else{
-      obj$month <- tolower(month(dat, TRUE, TRUE))
-    }
-  }
-  obj
-}
+# is.interval <- function(x) grepl("-|/", x)
+# ConvertDate <- function(obj) {
+#   dat <- obj$date
+#   if (!is.null(dat) && is.null(obj$year)) {
+#     if (is.interval(dat)) {
+#       obj$year <- tolower(year(int_start(dat)))
+#     } else {
+#       obj$year <- tolower(year(dat))
+#     }
+#   }
+#   if (!is.null(dat) && is.null(obj$month)) { 
+#     if (is.interval(dat)) {
+#       datsp <- strsplit(dat, "-|/")[[1]]
+#     }
+#     # if (is.interval(dat)) {
+#     #   obj$month <- tolower(month(int_start(dat), TRUE, TRUE))
+#     # } else {
+#     #   obj$month <- tolower(month(dat, TRUE, TRUE))
+#     # }
+#   }
+#   obj
+# }
 
 # from RefManageR
 ConvertBibtype <- function(bibtype){

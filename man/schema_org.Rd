@@ -11,6 +11,14 @@ schema_org(x, auto_unbox = TRUE, pretty = TRUE, ...)
 }
 \arguments{
 \item{x}{input}
+
+\item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
+vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+
+\item{pretty}{(logical) adds indentation whitespace to JSON output
+(default: \code{TRUE}), passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+
+\item{...}{further params passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
 }
 \description{
 Schema org writer

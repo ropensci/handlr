@@ -1,7 +1,7 @@
 Package: handlr
 Title: Convert Among Citation Formats
 Description: Converter for many citation formats.
-Version: 0.0.2.9221
+Version: 0.0.2.9321
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -17,10 +17,10 @@ Imports:
     jsonlite,
     xml2,
     RefManageR,
-    urltools,
-    jsonld
+    urltools
 Suggests:
-    testthat
+    testthat,
+    jsonld
 X-schema.org-applicationCategory: Metadata
 X-schema.org-keywords: doi, metadata, citation, bibtex
 X-schema.org-isPartOf: https://ropensci.org

@@ -2,6 +2,11 @@
 #' 
 #' @name schema_org
 #' @param x input
+#' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
+#' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
+#' @param pretty (logical) adds indentation whitespace to JSON output 
+#' (default: `TRUE`), passed to [jsonlite::toJSON()]
+#' @param ... further params passed to [jsonlite::toJSON()]
 #' @examples
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' (tmp <- bibtex_reader(z))
@@ -53,7 +58,7 @@ schema_hsh <- function(x) {
 #' @export
 #' @rdname schema_org
 schema_org <- function(x, auto_unbox = TRUE, pretty = TRUE, ...) {
-  jsonlite::toJSON(schema_hsh(x), auto_unbox = auto_unbox, pretty = pretty)
+  jsonlite::toJSON(schema_hsh(x), auto_unbox = auto_unbox, pretty = pretty, ...)
 }
 
 
@@ -89,13 +94,13 @@ to_schema_org_identifier <- function(element, options = list()) {
   if (is.null(options$alternate_identifier)) return(ident)
   if (!is.null(options$alternate_identifier)) {
     c(ident, lapply(options$alternate_identifier, function(w) {
-      if (tolower(ai$type) == "url") {
-        ai$name
+      if (tolower(w$type) == "url") {
+        w$name
       } else {
         list(
           "@type" = "PropertyValue",
-          propertyID = ai$type,
-          value = ai$name
+          propertyID = w$type,
+          value = w$name
         )
       }
     }))

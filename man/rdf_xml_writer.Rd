@@ -17,14 +17,20 @@ RDF XML
 \description{
 RDF XML writer
 }
+\details{
+package \code{jsonld} required for this writer
+}
 \examples{
-z <- system.file('extdata/citeproc.json', package = "handlr")
-(tmp <- citeproc_reader(file = z))
+if (requireNamespace("jsonld")) {
+  library("jsonld")
+  z <- system.file('extdata/citeproc.json', package = "handlr")
+  (tmp <- citeproc_reader(file = z))
 
-(z <- system.file('extdata/bibtex.bib', package = "handlr"))
-(tmp <- bibtex_reader(z))
-rdf_xml_writer(z = tmp)
-cat(rdf_xml_writer(z = tmp))
+  (z <- system.file('extdata/bibtex.bib', package = "handlr"))
+  (tmp <- bibtex_reader(z))
+  rdf_xml_writer(z = tmp)
+  cat(rdf_xml_writer(z = tmp))
+}
 }
 \seealso{
 Other writers: \code{\link{bibtex_writer}},

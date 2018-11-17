@@ -2,7 +2,7 @@
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom xml2 read_xml
-#' @importFrom RefManageR as.BibEntry
+#' @importFrom RefManageR ReadBib
 #' @importFrom urltools url_encode url_parse
 #' @name handlr-package
 #' @aliases handlr

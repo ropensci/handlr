@@ -20,6 +20,6 @@
 #' }
 rdf_xml_writer <- function(z, ...) {
   check_for_package("jsonld")
-  res <- schema_org(z, pretty = FALSE)
+  res <- schema_org_writer(z, pretty = FALSE)
   jsonld::jsonld_to_rdf(res, ...)
 }

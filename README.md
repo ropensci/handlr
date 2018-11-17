@@ -21,7 +21,7 @@ supported writers:
 - citeproc
 - ris
 - bibtex
-- rdfxml
+- rdfxml (requires suggested package [jsonld][])
 
 ## Installation
 
@@ -88,8 +88,7 @@ write out bibtex
 
 ```r
 cat(x$write("bibtex"), sep = "\n")
-#> @article{,
-#>   key = {https://doi.org/10.5438/4k3m-nyvg},
+#> @article{https://doi.org/10.5438/4k3m-nyvg,
 #>   doi = {10.5438/4k3m-nyvg},
 #>   author = {Martin Fenner},
 #>   title = {Eating your own Dog Food},
@@ -109,3 +108,6 @@ cat(x$write("bibtex"), sep = "\n")
 By participating in this project you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
+
+
+[jsonld]: https://github.com/ropensci/jsonld/

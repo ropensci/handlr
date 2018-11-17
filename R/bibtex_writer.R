@@ -23,7 +23,7 @@
 #' # give a bibtex key
 #' cat(bibtex_writer(z, "foobar89"), sep = "\n")
 bibtex_writer <- function(z, key = NULL) {
-  if (is.null(key)) key <- z$key %||% z$identifier %||% z$id %||% z$doi
+  if (is.null(key)) key <- z[["key"]] %||% z$identifier %||% z$id %||% z[["doi"]]
   bib = ccp(list(
     bibtype = z$bibtex_type %||% "misc",
     key = key,

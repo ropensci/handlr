@@ -23,7 +23,7 @@ bibtex_reader(x = z)
 }
 \seealso{
 Other readers: \code{\link{citeproc_reader}},
-  \code{\link{ris_reader}}
+  \code{\link{codemeta_reader}}, \code{\link{ris_reader}}
 
 Other bibtex: \code{\link{bibtex_writer}}
 }

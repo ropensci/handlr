@@ -76,6 +76,16 @@ x$parsed
 x$write("rdfxml")
 cat(x$write("rdfxml"))
 
+# codemeta
+(z <- system.file('extdata/codemeta.json', package = "handlr"))
+(x <- HandlrClient$new(x = z))
+x$path
+x$format
+x$read("codemeta")
+x$parsed
+x$write("codemeta")
+readlines()
+
 # handle strings instead of files
 z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
 (x <- HandlrClient$new(x = readLines(z)))

@@ -36,6 +36,7 @@ cat(bibtex_writer(z, "foobar89"), sep = "\\n")
 }
 \seealso{
 Other writers: \code{\link{citeproc_writer}},
+  \code{\link{codemeta_writer}},
   \code{\link{rdf_xml_writer}}, \code{\link{ris_writer}},
   \code{\link{schema_org_writer}}
 

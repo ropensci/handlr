@@ -15,6 +15,7 @@ supported readers:
 - citeproc
 - ris
 - bibtex
+- codemeta
 
 supported writers:
 
@@ -23,6 +24,7 @@ supported writers:
 - bibtex
 - schema.org
 - rdfxml (requires suggested package [jsonld][])
+- codemeta
 
 ## Installation
 

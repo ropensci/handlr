@@ -46,6 +46,7 @@ RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 \seealso{
 Other writers: \code{\link{bibtex_writer}},
   \code{\link{citeproc_writer}},
+  \code{\link{codemeta_writer}},
   \code{\link{rdf_xml_writer}},
   \code{\link{schema_org_writer}}
 

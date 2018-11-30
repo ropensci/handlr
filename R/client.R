@@ -1,5 +1,6 @@
-handlr_readers <- c('citeproc', 'ris', 'bibtex')
-handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org', 'rdfxml')
+handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta')
+handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org', 
+  'rdfxml', 'codemeta')
 
 #' handlr client
 #'
@@ -72,6 +73,16 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org', 'rdfxml')
 #' x$write("rdfxml")
 #' cat(x$write("rdfxml"))
 #' 
+#' # codemeta
+#' (z <- system.file('extdata/codemeta.json', package = "handlr"))
+#' (x <- HandlrClient$new(x = z))
+#' x$path
+#' x$format
+#' x$read("codemeta")
+#' x$parsed
+#' x$write("codemeta")
+#' readlines()
+#' 
 #' # handle strings instead of files
 #' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
 #' (x <- HandlrClient$new(x = readLines(z)))
@@ -114,6 +125,7 @@ HandlrClient <- R6::R6Class(
         citeproc = citeproc_reader(self$path %||% self$string, ...),
         ris = ris_reader(self$path %||% self$string, ...),
         bibtex = bibtex_reader(self$path %||% self$string, ...),
+        codemeta = codemeta_reader(self$path %||% self$string, ...),
         stop("format must be one of ", 
           paste(handlr_readers, collapse = ", "))
       )
@@ -127,6 +139,7 @@ HandlrClient <- R6::R6Class(
         bibtex = bibtex_writer(self$parsed, ...),
         schema_org = schema_org_writer(self$parsed, ...),
         rdfxml = rdf_xml_writer(self$parsed, ...),
+        codemeta = codemeta_writer(self$parsed, ...),
         stop("format must be one of ",
           paste(handlr_writers, collapse = ", "))
       )

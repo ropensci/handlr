@@ -21,7 +21,7 @@ citeproc_reader(file = z)
 }
 \seealso{
 Other readers: \code{\link{bibtex_reader}},
-  \code{\link{ris_reader}}
+  \code{\link{codemeta_reader}}, \code{\link{ris_reader}}
 
 Other citeproc: \code{\link{citeproc_writer}}
 }

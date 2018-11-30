@@ -3,10 +3,14 @@ doi_pattern <- "\\b(10[.][0-9]{4,}(?:[.][0-9]+)*/(?:(?![\"&\'<>])\\S)+)\\b"
 doi_prefix_pattern <- "\\b(10[.][0-9]{4,5})\\b"
 doi_resolver <- "https://doi.org"
 
-# validate_doi(doi = "10.1371/journal.pone.0025995")
-# validate_doi(doi = "10/journal.pone.0025995")
+# validate_doi: should extract DOI if it's in a URL
+# validate_doi(doi = "10.1371/journal.pone.0025995") # valid
+# validate_doi(doi = "10/journal.pone.0025995") # invalid
+# validate_doi(doi = "http://dx.doi.org/10.5063/F1M61H5X") # valid url
+# validate_doi(doi = "http://dx.doi.org/30.5063/F1M61H5X") # invalid url
 validate_doi <- function(doi) {
-  doi <- grep(doi_pattern, doi, perl = TRUE, value = TRUE)
+  # doi <- grep(doi_pattern, doi, perl = TRUE, value = TRUE)
+  doi <- regmatches(doi, regexpr(doi_pattern, doi, perl=TRUE))
   if (length(doi) > 0) tolower(sub("\u200B|doi:", "", doi)) else NULL
 }
 
@@ -56,3 +60,24 @@ doi_as_url <- function(doi) {
 #
 #   result.body.fetch("data", {}).fetch('attributes', {}).fetch('registration-agency', nil)
 # end
+
+normalize_id <- function(id = NULL) {
+  if (is.null(id)) return(NULL)
+
+  # check for valid DOI
+  doi <- normalize_doi(id)
+  if (!is.null(doi)) return(doi)
+
+  # check for valid HTTP uri
+  uri <- urltools::url_parse(id)
+  if (is.null(uri$domain) && !any(c("http", "https") %in% uri$scheme)) {
+    return(NULL)
+  }
+
+  # clean up URL
+  # FIXME - clean the url
+  res <- tryCatch(urltools::url_encode(id), error = function(e) e)
+  if (inherits(res, "error")) stop("invalid URL") else res
+  # PostRank::URI.clean(id)
+  #   rescue Addressable::URI::InvalidURIError
+}

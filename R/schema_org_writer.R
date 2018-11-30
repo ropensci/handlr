@@ -76,6 +76,11 @@ map_hash_keys <- function(element = NULL, mapping = NULL) {
   })
 }
 
+from_schema_org <- function(element) {
+  mapping <- list("@type" = "type", "@id" = "id")
+  map_hash_keys(element = element, mapping = mapping)
+}
+
 wrap_list <- function(m) {
   if (!is.list(m)) return(m)
   if (!is.null(names(m))) list(m) else m

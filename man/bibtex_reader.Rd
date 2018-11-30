@@ -7,7 +7,7 @@
 bibtex_reader(x)
 }
 \arguments{
-\item{x}{a \code{handlr} internal format object}
+\item{x}{(character) a file path or a bibtex string}
 }
 \value{
 an object of class \code{BibEntry}

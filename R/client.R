@@ -83,7 +83,6 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read("codemeta")
 #' x$parsed
 #' x$write("codemeta")
-#' readlines()
 #' 
 #' # handle strings instead of files
 #' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")

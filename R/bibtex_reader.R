@@ -11,7 +11,6 @@
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' bibtex_reader(x = z)
 bibtex_reader <- function(x) {
-  # meta = string.present? ? BibTeX.parse(string).first %||% list()
   meta <- unclass(RefManageR::ReadBib(x))[[1]]
 
   type <- tolower(attr(meta, "bibtype") %||% NULL)
@@ -44,7 +43,6 @@ bibtex_reader <- function(x) {
   }
   
   state <- if (!is.null(doi)) "findable" else "not_found"
-  # state = doi.present? ? "findable" : "not_found"
 
   list(
     "key" = attr(meta, "key"),

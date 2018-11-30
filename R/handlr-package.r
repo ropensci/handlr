@@ -7,6 +7,7 @@
 #' - citeproc
 #' - ris
 #' - bibtex
+#' - codemeta 
 #' 
 #' @section supported writers:
 #' 
@@ -15,6 +16,16 @@
 #' - bibtex
 #' - schema.org
 #' - rdfxml (requires suggested package `jsonld`)
+#' - codemeta
+#' 
+#' @section links for citation formats:
+#' 
+#' - citeproc: <https://en.wikipedia.org/wiki/CiteProc>
+#' - codemeta: <https://codemeta.github.io/>
+#' - ris: <https://en.wikipedia.org/wiki/RIS_(file_format)>
+#' - bibtex: <http://www.bibtex.org/>
+#' - schema.org: <https://schema.org/>
+#' - rdfxml: <https://en.wikipedia.org/wiki/RDF/XML>
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom xml2 read_xml

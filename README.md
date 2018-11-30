@@ -12,19 +12,19 @@ heavily influenced by, and code ported from <https://github.com/datacite/bologne
 
 supported readers:
 
-- citeproc
-- ris
-- bibtex
-- codemeta
+- [citeproc][]
+- [ris][]
+- [bibtex][]
+- [codemeta][]
 
 supported writers:
 
-- citeproc
-- ris
-- bibtex
-- schema.org
-- rdfxml (requires suggested package [jsonld][])
-- codemeta
+- [citeproc][]
+- [ris][]
+- [bibtex][]
+- [schema.org][]
+- [rdfxml][] (requires suggested package [jsonld][])
+- [codemeta][]
 
 ## Installation
 
@@ -38,7 +38,9 @@ devtools::install_github("ropensci/handlr")
 library("handlr")
 ```
 
-## the client
+## All in one
+
+There's a single R6 interface to all readers and writers
 
 
 ```r
@@ -102,6 +104,18 @@ cat(x$write("bibtex"), sep = "\n")
 #> }
 ```
 
+## Choose your own adventure
+
+Instead of using the `HandlrClient`, you can use the regular functions for each 
+reader or writer. They are:
+
+- `citeproc_reader()` / `citeproc_writer()`
+- `ris_reader()` / `ris_writer()`
+- `bibtex_reader()` / `bibtex_writer()`
+- `codemeta_reader()` / `codemeta_writer()`
+- `schema_org_writer()`
+- `rdf_xml_writer()`
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/handlr/issues).
@@ -114,3 +128,9 @@ By participating in this project you agree to abide by its terms.
 
 
 [jsonld]: https://github.com/ropensci/jsonld/
+[codemeta]: https://codemeta.github.io/
+[citeproc]: https://en.wikipedia.org/wiki/CiteProc
+[ris]: https://en.wikipedia.org/wiki/RIS_(file_format)
+[bibtex]: http://www.bibtex.org/
+[schema.org]: https://schema.org/
+[rdfxml]: https://en.wikipedia.org/wiki/RDF/XML

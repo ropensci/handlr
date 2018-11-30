@@ -5,7 +5,8 @@
 \alias{HandlrClient}
 \title{handlr client}
 \arguments{
-\item{x}{(character) a file path}
+\item{x}{(character) a file path (the file must exist) or a string
+containing contents of the citation}
 }
 \description{
 handlr client

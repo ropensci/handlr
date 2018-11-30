@@ -5,7 +5,9 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' handlr client
 #'
 #' @export
-#' @param x (character) a file path
+#' @param x (character) a file path (the file must exist) or a string 
+#' containing contents of the citation
+#' 
 #' @details
 #' **Methods**
 #'   \describe{
@@ -110,6 +112,7 @@ HandlrClient <- R6::R6Class(
 
     initialize = function(x) {
       # if (!missing(x)) self$path <- x
+      assert(x, "character")
       if (is_file(x)) self$path <- x
       if (!is_file(x)) {
         self$string <- x

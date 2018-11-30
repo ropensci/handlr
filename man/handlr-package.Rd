@@ -14,6 +14,7 @@ A tool for converting among citation formats
 \item citeproc
 \item ris
 \item bibtex
+\item codemeta
 }
 }
 
@@ -25,6 +26,19 @@ A tool for converting among citation formats
 \item bibtex
 \item schema.org
 \item rdfxml (requires suggested package \code{jsonld})
+\item codemeta
+}
+}
+
+\section{links for citation formats}{
+
+\itemize{
+\item citeproc: \url{https://en.wikipedia.org/wiki/CiteProc}
+\item codemeta: \url{https://codemeta.github.io/}
+\item ris: \url{https://en.wikipedia.org/wiki/RIS_(file_format)}
+\item bibtex: \url{http://www.bibtex.org/}
+\item schema.org: \url{https://schema.org/}
+\item rdfxml: \url{https://en.wikipedia.org/wiki/RDF/XML}
 }
 }
 

@@ -1,7 +1,7 @@
 #' bibtex reader
 #' 
 #' @export
-#' @param x a `handlr` internal format object
+#' @param x (character) a file path or a bibtex string
 #' @return an object of class `BibEntry`
 #' @family readers
 #' @family bibtex
@@ -11,7 +11,13 @@
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' bibtex_reader(x = z)
 bibtex_reader <- function(x) {
-  meta <- unclass(RefManageR::ReadBib(x))[[1]]
+  assert(x, "character")
+  # if not a file, write to a file
+  x <- paste0(x, collapse = "\n")
+  file <- tempfile(fileext = ".bib")
+  if (!is_file(x)) cat(x, sep = "\n", file = file)
+  if (is_file(x)) file <- x
+  meta <- unclass(RefManageR::ReadBib(file))[[1]]
 
   type <- tolower(attr(meta, "bibtype") %||% NULL)
   ttype <- BIB_TO_SO_TRANSLATIONS[[type]] %||% "ScholarlyArticle"

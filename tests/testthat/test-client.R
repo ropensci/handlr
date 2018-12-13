@@ -43,6 +43,11 @@ test_that("HandlrClient fails well", {
   # expect_error(HandlrClient$new("apple"), "invalid 'file' argument")
 })
 
+test_that("HandlrClient fails well: file does not exist", {
+  z <- system.file('extdata/codemeta.txt', package = "handlr")
+  expect_error(HandlrClient$new(z), "input is zero length string")
+})
+
 test_that("handlr_readers", {
   expect_is(handlr_readers, "character")
   expect_is(handlr_writers, "character")

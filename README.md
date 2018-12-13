@@ -49,6 +49,7 @@ x <- HandlrClient$new(x = z)
 x
 #> <handlr> 
 #>   ext: json
+#>   format (guessed): citeproc
 #>   path: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/handlr/extdata/citeproc.json
 #>   string (abbrev.): none
 ```

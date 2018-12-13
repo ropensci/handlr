@@ -39,3 +39,5 @@ check_for_package <- function(x) {
     invisible(TRUE)
   }
 }
+
+is_file = function(x) file.exists(x)

@@ -13,22 +13,40 @@ handlr client
 }
 \details{
 \strong{Methods}
-\describe{
-\item{\code{read(format, ...)}}{
-read input
-format: one of citeproc, ris, bibtex
-...: further args to the writer fxn, if any
+\itemize{
+\item \code{read(format = NULL, ...)} - read input
+\itemize{
+\item \code{format}: one of citeproc, ris, bibtex, codemeta, or \code{NULL}. If \code{NULL},
+we attempt to guess the format, and error if we can not guess
+\item \code{...}: further args to the writer fxn, if any
 }
-\item{\code{write(format, file = NULL, ...)}}{
-write
-format: one of citeproc, ris, bibtex, rdfxml
-file: a file path, if NULL to stdout
-...: further args to the writer fxn, if any
+\item \code{write(format, file = NULL, ...)} - write to std out or file
+\itemize{
+\item \code{format}: one of citeproc, ris, bibtex, rdfxml
+\item \code{file}: a file path, if NULL to stdout
+\item \code{...}: further args to the writer fxn, if any
+\item Note: If \code{$parsed} is \code{NULL} then it's likely \code{$read()} has not
+been run - in which case we attempt to run \code{$read()} to
+populate \code{$parsed}
 }
 }
 }
 \examples{
-\dontrun{
+# read() can be run with format specified or not
+# if format not given, we attempt to guess the format and then read
+z <- system.file('extdata/citeproc.json', package = "handlr")
+(x <- HandlrClient$new(x = z))
+x$read()
+x$read("citeproc")
+
+# you can run read() then write() 
+# or just run write(), and read() will be run for you if possible
+z <- system.file('extdata/citeproc.json', package = "handlr")
+(x <- HandlrClient$new(x = z))
+cat(x$write("ris"))
+
+
+# Example of specific formats
 # crosscite
 z <- system.file('extdata/crosscite.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
@@ -92,6 +110,5 @@ z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
 x$read("citeproc")
 x$parsed
 cat(x$write("bibtex"), sep = "\\n")
-}
 }
 \keyword{datasets}

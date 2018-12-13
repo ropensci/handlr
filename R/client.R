@@ -10,23 +10,38 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' 
 #' @details
 #' **Methods**
-#'   \describe{
-#'     \item{`read(format, ...)`}{
-#'       read input
-#'       format: one of citeproc, ris, bibtex
-#'       ...: further args to the writer fxn, if any
-#'     }
-#'     \item{`write(format, file = NULL, ...)`}{
-#'       write
-#'       format: one of citeproc, ris, bibtex, rdfxml
-#'       file: a file path, if NULL to stdout
-#'       ...: further args to the writer fxn, if any
-#'     }
-#'   }
+#' 
+#' * `read(format = NULL, ...)` - read input
+#'     * `format`: one of citeproc, ris, bibtex, codemeta, or `NULL`. If `NULL`,
+#'       we attempt to guess the format, and error if we can not guess
+#'     * `...`: further args to the writer fxn, if any
+#' 
+#' * `write(format, file = NULL, ...)` - write to std out or file
+#'     * `format`: one of citeproc, ris, bibtex, rdfxml
+#'     * `file`: a file path, if NULL to stdout
+#'     * `...`: further args to the writer fxn, if any
+#'     * Note: If `$parsed` is `NULL` then it's likely `$read()` has not 
+#'       been run - in which case we attempt to run `$read()` to 
+#'       populate `$parsed`
 #'
 #' @format NULL
 #' @usage NULL
-#' @examples \dontrun{
+#' @examples
+#' # read() can be run with format specified or not
+#' # if format not given, we attempt to guess the format and then read
+#' z <- system.file('extdata/citeproc.json', package = "handlr")
+#' (x <- HandlrClient$new(x = z))
+#' x$read()
+#' x$read("citeproc")
+#' 
+#' # you can run read() then write() 
+#' # or just run write(), and read() will be run for you if possible
+#' z <- system.file('extdata/citeproc.json', package = "handlr")
+#' (x <- HandlrClient$new(x = z))
+#' cat(x$write("ris"))
+#' 
+#' 
+#' # Example of specific formats
 #' # crosscite
 #' z <- system.file('extdata/crosscite.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
@@ -90,7 +105,6 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read("citeproc")
 #' x$parsed
 #' cat(x$write("bibtex"), sep = "\n")
-#' }
 HandlrClient <- R6::R6Class(
   'HandlrClient',
   public = list(
@@ -98,12 +112,14 @@ HandlrClient <- R6::R6Class(
     string = NULL,
     substring = NULL,
     parsed = NULL,
+    file = FALSE,
     ext = NULL,
+    format_guessed = NULL,
 
     print = function(x, ...) {
       cat("<handlr> ", sep = "\n")
-      # cat(paste0("  format: ", self$format), sep = "\n")
       cat(paste0("  ext: ", self$ext), sep = "\n")
+      cat(paste0("  format (guessed): ", self$format_guessed), sep = "\n")
       cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
       cat(paste0("  string (abbrev.): ", self$substring %||% "none"), sep = "\n")
       invisible(self)
@@ -112,16 +128,21 @@ HandlrClient <- R6::R6Class(
     initialize = function(x) {
       # if (!missing(x)) self$path <- x
       assert(x, "character")
-      if (is_file(x)) self$path <- x
+      if (is_file(x)) {
+        self$file <- TRUE
+        self$path <- x
+      }
       if (!is_file(x)) {
+        if (!nzchar(x)) stop("input is zero length string")
         self$string <- x
         self$substring <- substring(x, 1, 80)
       }
-      self$ext <- find_ext(x)
+      self$ext <- private$find_ext(x)
+      self$format_guessed <- private$guess_format(x)
     },
 
-    read = function(format, ...) {
-      # if (!is.null(format)) self$format <- format
+    read = function(format = NULL, ...) {
+      if (is.null(format)) format <- self$format_guessed
       self$parsed <- switch(
         format,
         citeproc = citeproc_reader(self$path %||% self$string, ...),
@@ -134,6 +155,7 @@ HandlrClient <- R6::R6Class(
     },
 
     write = function(format, file = NULL, ...) {
+      if (is.null(self$parsed)) self$read()
       out <- switch(
         format,
         citeproc = citeproc_writer(self$parsed, ...),
@@ -148,13 +170,49 @@ HandlrClient <- R6::R6Class(
       if (is.null(file)) return(out)
       cat(out, "\n", file = file)
     }
+  ),
+
+  private = list(
+    find_ext = function(x) {
+      if (!file.exists(x)) return(NULL)
+      tmp <- strsplit(basename(x), "\\.")[[1]]
+      tmp[length(tmp)]
+    },
+
+    guess_format = function(x) {
+      reader_funs <- paste0(handlr_readers, "_reader")
+      read_attempts <- vapply(reader_funs, function(fun) {
+        tmp <- tryCatch(suppressWarnings(eval(parse(text=fun))(x)), 
+          error = function(e) e)
+        !inherits(tmp, "error")
+      }, logical(1L))
+      if (!any(read_attempts) || length(which(read_attempts)) > 1) {
+        if (length(which(read_attempts)) > 1) {
+          if (json_val(x)) {
+            # json types
+            type <- "citeproc"
+            if (any(grepl("@context", readLines(x)))) type <- "codemeta"
+            return(type)
+          } else {
+            # check for bibtex type
+            ## if file does not have .bib extension then we'll fail 
+            if (
+              "bibtex_reader" %in% names(which(read_attempts)) && 
+              self$ext == "bib"
+            ) {
+              return("bibtex")
+            }
+          }
+        }
+        stop("could not guess format for string; specify format")
+      } else {
+        return(handlr_readers[read_attempts])
+      }
+    }
   )
 )
 
-is_file <- function(x) file.exists(x)
-
-find_ext <- function(x) {
-  if (!file.exists(x)) return(NULL)
-  tmp <- strsplit(basename(x), "\\.")[[1]]
-  tmp[length(tmp)]
+json_val <- function(x) {
+  b <- tryCatch(jsonlite::fromJSON(x), error = function(e) e)
+  !inherits(b, "error")
 }

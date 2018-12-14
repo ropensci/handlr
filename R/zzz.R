@@ -41,3 +41,34 @@ check_for_package <- function(x) {
 }
 
 is_file = function(x) file.exists(x)
+
+is_url <- function(x) {
+  grepl("https?://", x, ignore.case = TRUE) || 
+    grepl("localhost:[0-9]{4}", x, ignore.case = TRUE)
+}
+
+get_doi <- function(x, ...) {
+  base <- "https://api.crossref.org"
+  path <- file.path("works", x, "transform/application/vnd.citationstyles.csl+json")
+  con <- crul::HttpClient$new(
+    url = base,
+    headers = list(
+      `User-Agent` = handlr_ua(),
+      `X-USER-AGENT` = handlr_ua()
+    ),
+    opts = list(...)
+  )
+  tmp <- con$get(path = path)
+  tmp$raise_for_status()
+  tmp$parse("UTF-8")
+}
+
+handlr_ua <- function() {
+  versions <- c(paste0("r-curl/", utils::packageVersion("curl")),
+                paste0("crul/", utils::packageVersion("crul")),
+                sprintf("rOpenSci(handlr/%s)", 
+                        utils::packageVersion("handlr"))
+              )
+                # get_email())
+  paste0(versions, collapse = " ")
+}

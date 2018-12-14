@@ -14,8 +14,11 @@ validate_doi <- function(doi) {
   if (length(doi) > 0) tolower(sub("\u200B|doi:", "", doi)) else NULL
 }
 
-is_url_doi <- function(doi) {
-  grepl(doi_url_pattern, doi, perl = TRUE)
+is_url_doi <- function(x) {
+  grepl(doi_url_pattern, urltools::url_decode(x), perl = TRUE)
+}
+is_doi <- function(doi) {
+  grepl(doi_pattern, doi, perl = TRUE)
 }
 
 # validate_prefix(doi = "10.1371/journal.pone.0025995")

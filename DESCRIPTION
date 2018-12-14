@@ -1,7 +1,7 @@
 Package: handlr
 Title: Convert Among Citation Formats
 Description: Converter for many citation formats.
-Version: 0.0.3.9231
+Version: 0.0.4.9210
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -15,6 +15,7 @@ Encoding: UTF-8
 Language: en-US
 Imports:
     jsonlite,
+    crul,
     xml2,
     RefManageR,
     urltools

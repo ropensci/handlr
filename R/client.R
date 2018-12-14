@@ -5,8 +5,9 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' handlr client
 #'
 #' @export
-#' @param x (character) a file path (the file must exist) or a string 
-#' containing contents of the citation
+#' @param x (character) a file path (the file must exist), a string 
+#' containing contents of the citation, a DOI, or a DOI as a URL. 
+#' See Details.
 #' 
 #' @details
 #' **Methods**
@@ -26,6 +27,18 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'
 #' @format NULL
 #' @usage NULL
+#' 
+#' @details The various inputs to the `x` parameter are handled in different
+#' ways:
+#' 
+#' - file: contents read from file, we grab file extension, and we guess 
+#' format based on combination of contents and file extension because 
+#' file extensions may belie what's in the file
+#' - string: string read in, and we guess format based on contents of
+#' the string
+#' - DOI: we request citeproc-json format from the Crossref API
+#' - DOI url: we request citeproc-json format from the Crossref API
+#' 
 #' @examples
 #' # read() can be run with format specified or not
 #' # if format not given, we attempt to guess the format and then read
@@ -40,6 +53,17 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (x <- HandlrClient$new(x = z))
 #' cat(x$write("ris"))
 #' 
+#' # read from a url
+#' (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
+#' x$parsed
+#' x$read()
+#' x$write('bibtex')
+#' 
+#' # read from a DOI
+#' (x <- HandlrClient$new('10.7554/elife.01567'))
+#' x$parsed
+#' x$read()
+#' x$write('bibtex')
 #' 
 #' # Example of specific formats
 #' # crosscite
@@ -115,9 +139,11 @@ HandlrClient <- R6::R6Class(
     file = FALSE,
     ext = NULL,
     format_guessed = NULL,
+    doi = NULL,
 
     print = function(x, ...) {
       cat("<handlr> ", sep = "\n")
+      cat(paste0("  doi: ", self$doi), sep = "\n")
       cat(paste0("  ext: ", self$ext), sep = "\n")
       cat(paste0("  format (guessed): ", self$format_guessed), sep = "\n")
       cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
@@ -126,8 +152,11 @@ HandlrClient <- R6::R6Class(
     },
 
     initialize = function(x) {
-      # if (!missing(x)) self$path <- x
       assert(x, "character")
+      if (is_url_doi(x) || is_doi(x)) {
+        self$doi <- urltools::url_decode(doi_from_url(normalize_doi(x)))
+        x <- get_doi(self$doi)
+      }
       if (is_file(x)) {
         self$file <- TRUE
         self$path <- x

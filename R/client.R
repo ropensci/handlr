@@ -8,6 +8,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' @param x (character) a file path (the file must exist), a string 
 #' containing contents of the citation, a DOI, or a DOI as a URL. 
 #' See Details.
+#' @param ... curl options passed on to [crul::HttpClient]
 #' 
 #' @details
 #' **Methods**
@@ -53,7 +54,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (x <- HandlrClient$new(x = z))
 #' cat(x$write("ris"))
 #' 
-#' # read from a url
+#' # read from a DOI as a url
 #' (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
 #' x$parsed
 #' x$read()
@@ -151,11 +152,11 @@ HandlrClient <- R6::R6Class(
       invisible(self)
     },
 
-    initialize = function(x) {
+    initialize = function(x, ...) {
       assert(x, "character")
       if (is_url_doi(x) || is_doi(x)) {
         self$doi <- urltools::url_decode(doi_from_url(normalize_doi(x)))
-        x <- get_doi(self$doi)
+        x <- get_doi(self$doi, ...)
       }
       if (is_file(x)) {
         self$file <- TRUE

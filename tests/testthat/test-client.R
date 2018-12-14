@@ -52,3 +52,27 @@ test_that("handlr_readers", {
   expect_is(handlr_readers, "character")
   expect_is(handlr_writers, "character")
 })
+
+
+test_that("HandlrClient class: works with DOIs", {
+  a <- HandlrClient$new('https://doi.org/10.7554/elife.01567')
+  a$read()
+  a$parsed
+
+  # read from a DOI
+  b <- HandlrClient$new('10.7554/elife.01567')
+  b$read()
+  b$parsed
+
+  # result from DOI and DOI as url the same
+  expect_identical(a$parsed, b$parsed)
+
+  # can convert to bibtex
+  expect_true(any(grepl("\\@article", a$write('bibtex'))))
+
+  # fails as expected
+  expect_error(
+    HandlrClient$new('10.7554/elife.01567', timeout_ms = 100),
+    "Operation timed out"
+  )
+})

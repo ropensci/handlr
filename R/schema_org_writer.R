@@ -1,7 +1,7 @@
 #' Schema org writer
 #' 
 #' @export
-#' @param x input
+#' @param z an object of class `handl`; see [handl] for more
 #' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
 #' @param pretty (logical) adds indentation whitespace to JSON output 
@@ -15,8 +15,16 @@
 #' (tmp <- bibtex_reader(z))
 #' schema_org_writer(tmp)
 #' schema_org_writer(tmp, pretty = FALSE)
-schema_org_writer <- function(x, auto_unbox = TRUE, pretty = TRUE, ...) {
-  jsonlite::toJSON(schema_hsh(x), auto_unbox = auto_unbox, pretty = pretty, ...)
+#' 
+#' # many citeproc to schema 
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' w <- citeproc_reader(x = z)
+#' schema_org_writer(w)
+#' schema_org_writer(w, pretty = FALSE)
+schema_org_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
+  assert(z, "handl")
+  w <- if (attr(z, "many") %||% FALSE) lapply(z, schema_hsh) else schema_hsh(z)
+  jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
 }
 
 schema_hsh <- function(x) {

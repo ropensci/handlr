@@ -1,15 +1,29 @@
 #' citeproc reader
 #' 
 #' @export
-#' @param file (character) a file path
-#' @return xxx
+#' @param x (character) a file path or string
+#' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family citeproc
 #' @examples
+#' # single
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
-#' citeproc_reader(file = z)
-citeproc_reader <- function(file) {
-  meta <- jsonlite::fromJSON(file, FALSE)
+#' citeproc_reader(x = z)
+#' 
+#' # many
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' citeproc_reader(x = z)
+citeproc_reader <- function(x) {
+  meta <- jsonlite::fromJSON(x, FALSE)
+  if (!is.null(names(meta))) meta <- list(meta)
+  tmp <- lapply(meta, citeproc_read_one)
+  many <- length(meta) > 1
+  structure(if (many) tmp else tmp[[1]], 
+    class = "handl", from = "citeproc", 
+    file = x, many = many)
+}
+
+citeproc_read_one <- function(meta) {
   citeproc_type = meta$type %||% NULL
   type = CP_TO_SO_TRANSLATIONS[[citeproc_type]] %||% "CreativeWork"
   # FIXME: doi = normalize_doi(meta.fetch("DOI", nil))

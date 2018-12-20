@@ -1,17 +1,17 @@
 #' RDF XML writer
 #' 
 #' @export
-#' @param z a `handlr` internal format object
+#' @param z an object of class `handl`; see [handl] for more
 #' @param ... further params passed to [jsonld::jsonld_to_rdf()]
 #' @details package `jsonld` required for this writer
 #' @return RDF XML
 #' @family writers
 #' @family rdf-xml
 #' @examples
-#' if (requireNamespace("jsonld")) {
+#' if (requireNamespace("jsonld") && interactive()) {
 #'   library("jsonld")
 #'   z <- system.file('extdata/citeproc.json', package = "handlr")
-#'   (tmp <- citeproc_reader(file = z))
+#'   (tmp <- citeproc_reader(z))
 #' 
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #'   (tmp <- bibtex_reader(z))

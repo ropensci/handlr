@@ -5,7 +5,7 @@ test_that("bibtex_reader: works", {
   x <- bibtex_reader(z)
 
   expect_is(bibtex_reader, "function")
-  expect_is(x, "list")
+  expect_is(x, "handl")
   expect_named(x)
   expect_is(x$key, "character")
   expect_is(x$id, "character")

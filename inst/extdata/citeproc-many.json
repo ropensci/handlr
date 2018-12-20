@@ -1,0 +1,151 @@
+[
+  {
+    "type": "post-weblog",
+    "id": "https://doi.org/10.5438/4k3m-nyvg",
+    "DOI": "10.5438/4k3m-nyvg",
+    "URL": "https://blog.datacite.org/eating-your-own-dog-food",
+    "title": "Eating your own Dog Food",
+    "container-title": "DataCite Blog",
+    "publisher": "DataCite",
+    "abstract": "Eating your own dog food is a slang term to describe that an organization should itself use the products and services it provides. For DataCite this means that we should use DOIs with appropriate metadata and strategies for long-term preservation for...",
+    "categories": [
+        "Phylogeny",
+        "Malaria",
+        "Parasites",
+        "Taxonomy",
+        "Mitochondrial genome",
+        "Africa",
+        "Plasmodium"
+    ],
+    "issued": {
+        "date-parts": [
+            [
+                2016, 12, 20
+            ]
+        ]
+    },
+    "author": [{
+        "family": "Fenner",
+        "given": "Martin"
+    }]
+  },
+  {
+    "indexed": {
+      "date-parts": [
+        [
+          2018,
+          5,
+          8
+        ]
+      ],
+      "date-time": "2018-05-08T02:36:58Z",
+      "timestamp": 1525747018591
+    },
+    "reference-count": 0,
+    "publisher": "SciELO Comision Nacional de Investigacion Cientifica Y Tecnologica (CONICYT)",
+    "issue": "3",
+    "content-domain": {
+      "domain": [],
+      "crossmark-restriction": false
+    },
+    "DOI": "10.4067/s0718-48082015000300006",
+    "type": "article-journal",
+    "created": {
+      "date-parts": [
+        [
+          2016,
+          1,
+          28
+        ]
+      ],
+      "date-time": "2016-01-28T12:24:16Z",
+      "timestamp": 1453983856000
+    },
+    "page": "221-238",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": "Procesamiento semántico de palabras epistémicas y metafísicas en niños y adolescentes con Trastorno de Espectro Autista (TEA) y con Desarrollo Típico (DT)",
+    "prefix": "10.4067",
+    "volume": "33",
+    "author": [
+      {
+        "given": "Karen L",
+        "family": "Juillerat",
+        "sequence": "first",
+        "affiliation": []
+      },
+      {
+        "given": "Felipe A",
+        "family": "Cornejo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Ramón D",
+        "family": "Castillo",
+        "sequence": "additional",
+        "affiliation": []
+      },
+      {
+        "given": "Sergio E",
+        "family": "Chaigneau",
+        "sequence": "additional",
+        "affiliation": []
+      }
+    ],
+    "member": "2516",
+    "published-online": {
+      "date-parts": [
+        [
+          2015,
+          12
+        ]
+      ]
+    },
+    "container-title": "Terapia psicológica",
+    "original-title": [],
+    "language": "en",
+    "deposited": {
+      "date-parts": [
+        [
+          2016,
+          1,
+          28
+        ]
+      ],
+      "date-time": "2016-01-28T12:24:16Z",
+      "timestamp": 1453983856000
+    },
+    "score": 1,
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2015,
+          12
+        ]
+      ]
+    },
+    "references-count": 0,
+    "journal-issue": {
+      "published-online": {
+        "date-parts": [
+          [
+            2015
+          ]
+        ]
+      },
+      "issue": "3"
+    },
+    "alternative-id": [
+      "S0718-48082015000300006"
+    ],
+    "URL": "http://dx.doi.org/10.4067/s0718-48082015000300006",
+    "relation": {},
+    "ISSN": [
+      "0718-4808"
+    ],
+    "container-title-short": "Ter Psicol"
+  }
+]

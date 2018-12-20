@@ -4,10 +4,10 @@
 \alias{schema_org_writer}
 \title{Schema org writer}
 \usage{
-schema_org_writer(x, auto_unbox = TRUE, pretty = TRUE, ...)
+schema_org_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 }
 \arguments{
-\item{x}{input}
+\item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
 vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
@@ -28,6 +28,12 @@ Schema org writer
 (tmp <- bibtex_reader(z))
 schema_org_writer(tmp)
 schema_org_writer(tmp, pretty = FALSE)
+
+# many citeproc to schema 
+z <- system.file('extdata/citeproc-many.json', package = "handlr")
+w <- citeproc_reader(x = z)
+schema_org_writer(w)
+schema_org_writer(w, pretty = FALSE)
 }
 \seealso{
 Other writers: \code{\link{bibtex_writer}},

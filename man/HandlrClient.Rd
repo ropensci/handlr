@@ -8,6 +8,8 @@
 \item{x}{(character) a file path (the file must exist), a string
 containing contents of the citation, a DOI, or a DOI as a URL.
 See Details.}
+
+\item{...}{curl options passed on to \link[crul:HttpClient]{crul::HttpClient}}
 }
 \description{
 handlr client
@@ -24,7 +26,8 @@ we attempt to guess the format, and error if we can not guess
 \item \code{write(format, file = NULL, ...)} - write to std out or file
 \itemize{
 \item \code{format}: one of citeproc, ris, bibtex, rdfxml
-\item \code{file}: a file path, if NULL to stdout
+\item \code{file}: a file path, if NULL to stdout. for \code{format=ris}, number of
+files must equal number of ris citations
 \item \code{...}: further args to the writer fxn, if any
 \item Note: If \code{$parsed} is \code{NULL} then it's likely \code{$read()} has not
 been run - in which case we attempt to run \code{$read()} to
@@ -51,6 +54,7 @@ z <- system.file('extdata/citeproc.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
 x$read()
 x$read("citeproc")
+x$parsed
 
 # you can run read() then write() 
 # or just run write(), and read() will be run for you if possible
@@ -58,17 +62,21 @@ z <- system.file('extdata/citeproc.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
 cat(x$write("ris"))
 
-# read from a url
-(x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
-x$parsed
-x$read()
-x$write('bibtex')
+# read from a DOI as a url
+if (interactive()) {
+  (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
+  x$parsed
+  x$read()
+  x$write('bibtex')
+}
 
 # read from a DOI
-(x <- HandlrClient$new('10.7554/elife.01567'))
-x$parsed
-x$read()
-x$write('bibtex')
+if (interactive()) {
+  (x <- HandlrClient$new('10.7554/elife.01567'))
+  x$parsed
+  x$read()
+  x$write('bibtex')
+}
 
 # Example of specific formats
 # crosscite
@@ -110,14 +118,16 @@ x$write("ris")
 cat(x$write("ris"))
 
 # read in bibtex, write out RDF XML
-(z <- system.file('extdata/bibtex.bib', package = "handlr"))
-(x <- HandlrClient$new(x = z))
-x$path
-x$format
-x$read("bibtex")
-x$parsed
-x$write("rdfxml")
-cat(x$write("rdfxml"))
+if (interactive()) {
+  (z <- system.file('extdata/bibtex.bib', package = "handlr"))
+  (x <- HandlrClient$new(x = z))
+  x$path
+  x$format
+  x$read("bibtex")
+  x$parsed
+  x$write("rdfxml")
+  cat(x$write("rdfxml"))
+}
 
 # codemeta
 (z <- system.file('extdata/codemeta.json', package = "handlr"))
@@ -127,6 +137,28 @@ x$format
 x$read("codemeta")
 x$parsed
 x$write("codemeta")
+
+# > 1
+z <- system.file('extdata/citeproc-many.json', package = "handlr")
+(x <- HandlrClient$new(x = z))
+x$parsed
+x$read()
+x$parsed
+## schmea org
+x$write("schema_org")
+## bibtex 
+x$write("bibtex")
+## bibtex to file
+f <- tempfile(fileext=".bib")
+x$write("bibtex", f)
+readLines(f)
+unlink(f)
+## to RIS
+x$write("ris")
+### only one per file, so not combined
+files <- replicate(2, tempfile(fileext=".ris"))
+x$write("ris", files)
+lapply(files, readLines)
 
 # handle strings instead of files
 z <- system.file('extdata/citeproc-crossref.json', package = "handlr")

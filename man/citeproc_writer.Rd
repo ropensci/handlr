@@ -7,7 +7,7 @@
 citeproc_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 }
 \arguments{
-\item{z}{a \code{handlr} internal format object}
+\item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
 vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
@@ -25,10 +25,15 @@ citeproc writer
 }
 \examples{
 z <- system.file('extdata/citeproc.json', package = "handlr")
-(tmp <- citeproc_reader(file = z))
+(tmp <- citeproc_reader(z))
 citeproc_writer(z = tmp)
-citeproc_writer(z = tmp, pretty = TRUE)
+citeproc_writer(z = tmp, pretty = FALSE)
 cat(ris_writer(z = tmp))
+
+# many
+z <- system.file('extdata/citeproc-many.json', package = "handlr")
+w <- citeproc_reader(x = z)
+citeproc_writer(w)
 }
 \seealso{
 Other writers: \code{\link{bibtex_writer}},

@@ -1,22 +1,28 @@
 #' citeproc reader
 #' 
 #' @export
-#' @param file (character) a file path
-#' @return xxx
+#' @param x (character) a file path or string
+#' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family ris
 #' @references RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 #' @examples
 #' z <- system.file('extdata/crossref.ris', package = "handlr")
-#' ris_reader(file = z)
+#' ris_reader(z)
 #' 
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
-#' ris_reader(file = z)
+#' ris_reader(z)
 #' 
 #' z <- system.file('extdata/plos.ris', package = "handlr")
-#' ris_reader(file = z)
-ris_reader <- function(file) {
-  txt <- readLines(file)
+#' ris_reader(z)
+#' 
+#' # from a string
+#' z <- system.file('extdata/crossref.ris', package = "handlr")
+#' my_string <- ris_writer(ris_reader(z))
+#' class(my_string)
+#' ris_reader(my_string)
+ris_reader <- function(x) {
+  txt <- if (file.exists(x)) readLines(x) else strsplit(x, "\n")[[1]]
   meta <- ris_meta(txt)
   ris_type <- meta$TY %||% "GEN"
   type <- RIS_TO_SO_TRANSLATIONS[[ris_type]] %||% "CreativeWork"
@@ -39,7 +45,7 @@ ris_reader <- function(file) {
   }
   state <- if (!is.null(doi)) "findable" else "not_found"
   
-  list(
+  structure(list(
     id = normalize_doi(doi),
     type = type,
     citeproc_type = RIS_TO_CP_TRANSLATIONS[[type]] %||% "misc",
@@ -64,7 +70,7 @@ ris_reader <- function(file) {
     keywords = unname(unlist(meta[names(meta) == "KW"])) %||% NULL,
     language = meta$LA %||% NULL,
     state = state
-  )
+  ), class = "handl", from = "ris", file = x, many = FALSE)
 }
 
 # x: a string

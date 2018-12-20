@@ -20,7 +20,8 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' 
 #' * `write(format, file = NULL, ...)` - write to std out or file
 #'     * `format`: one of citeproc, ris, bibtex, rdfxml
-#'     * `file`: a file path, if NULL to stdout
+#'     * `file`: a file path, if NULL to stdout. for `format=ris`, number of 
+#'       files must equal number of ris citations
 #'     * `...`: further args to the writer fxn, if any
 #'     * Note: If `$parsed` is `NULL` then it's likely `$read()` has not 
 #'       been run - in which case we attempt to run `$read()` to 
@@ -47,6 +48,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (x <- HandlrClient$new(x = z))
 #' x$read()
 #' x$read("citeproc")
+#' x$parsed
 #' 
 #' # you can run read() then write() 
 #' # or just run write(), and read() will be run for you if possible
@@ -55,16 +57,20 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' cat(x$write("ris"))
 #' 
 #' # read from a DOI as a url
-#' (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
-#' x$parsed
-#' x$read()
-#' x$write('bibtex')
+#' if (interactive()) {
+#'   (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
+#'   x$parsed
+#'   x$read()
+#'   x$write('bibtex')
+#' }
 #' 
 #' # read from a DOI
-#' (x <- HandlrClient$new('10.7554/elife.01567'))
-#' x$parsed
-#' x$read()
-#' x$write('bibtex')
+#' if (interactive()) {
+#'   (x <- HandlrClient$new('10.7554/elife.01567'))
+#'   x$parsed
+#'   x$read()
+#'   x$write('bibtex')
+#' }
 #' 
 #' # Example of specific formats
 #' # crosscite
@@ -106,14 +112,16 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' cat(x$write("ris"))
 #' 
 #' # read in bibtex, write out RDF XML
-#' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
-#' (x <- HandlrClient$new(x = z))
-#' x$path
-#' x$format
-#' x$read("bibtex")
-#' x$parsed
-#' x$write("rdfxml")
-#' cat(x$write("rdfxml"))
+#' if (interactive()) {
+#'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
+#'   (x <- HandlrClient$new(x = z))
+#'   x$path
+#'   x$format
+#'   x$read("bibtex")
+#'   x$parsed
+#'   x$write("rdfxml")
+#'   cat(x$write("rdfxml"))
+#' }
 #' 
 #' # codemeta
 #' (z <- system.file('extdata/codemeta.json', package = "handlr"))
@@ -123,6 +131,28 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read("codemeta")
 #' x$parsed
 #' x$write("codemeta")
+#' 
+#' # > 1
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' (x <- HandlrClient$new(x = z))
+#' x$parsed
+#' x$read()
+#' x$parsed
+#' ## schmea org
+#' x$write("schema_org")
+#' ## bibtex 
+#' x$write("bibtex")
+#' ## bibtex to file
+#' f <- tempfile(fileext=".bib")
+#' x$write("bibtex", f)
+#' readLines(f)
+#' unlink(f)
+#' ## to RIS
+#' x$write("ris")
+#' ### only one per file, so not combined
+#' files <- replicate(2, tempfile(fileext=".ris"))
+#' x$write("ris", files)
+#' lapply(files, readLines)
 #' 
 #' # handle strings instead of files
 #' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
@@ -198,7 +228,20 @@ HandlrClient <- R6::R6Class(
           paste(handlr_writers, collapse = ", "))
       )
       if (is.null(file)) return(out)
-      cat(out, "\n", file = file)
+      assert(out, c('list', 'character', 'json'))
+      if (!inherits(out, "list") && length(out) == 1) {
+        cat(out, "\n", file = file)
+      }
+      if (inherits(out, c("list", "character"))) {
+        if (format == "ris") {
+          if (length(out) != length(file)) {
+            stop("ris format: number of files to 'file' == no. citations")
+          }
+        }
+        for (i in seq_along(out)) {
+          cat(out[[i]], sep = "\n", file = file[i] %||% file, append = TRUE)
+        }
+      }
     }
   ),
 
@@ -221,7 +264,9 @@ HandlrClient <- R6::R6Class(
           if (json_val(x)) {
             # json types
             type <- "citeproc"
-            if (any(grepl("@context", readLines(x)))) type <- "codemeta"
+            if (
+              any(grepl("@context", if (file.exists(x)) readLines(x) else x))
+            ) type <- "codemeta"
             return(type)
           } else {
             # check for bibtex type

@@ -2,7 +2,7 @@
 #' 
 #' @export
 #' @param x (character) a file path or a bibtex string
-#' @return an object of class `BibEntry`
+#' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family bibtex
 #' @examples
@@ -12,18 +12,24 @@
 #' bibtex_reader(x = z)
 bibtex_reader <- function(x) {
   assert(x, "character")
-  # if not a file, write to a file
   x <- paste0(x, collapse = "\n")
   file <- tempfile(fileext = ".bib")
   if (!is_file(x)) cat(x, sep = "\n", file = file)
   if (is_file(x)) file <- x
-  meta <- unclass(RefManageR::ReadBib(file))[[1]]
+  meta <- unclass(RefManageR::ReadBib(file))
+  tmp <- lapply(meta, bibtex_read_one)
+  many <- length(meta) > 1
+  structure(if (many) tmp else tmp[[1]], 
+    class = "handl", from = "bibtex", 
+    file = file, many = many)
+}
 
-  type <- tolower(attr(meta, "bibtype") %||% NULL)
+bibtex_read_one <- function(x) {
+  type <- tolower(attr(x, "bibtype") %||% NULL)
   ttype <- BIB_TO_SO_TRANSLATIONS[[type]] %||% "ScholarlyArticle"
-  doi <- meta$doi
+  doi <- x$doi
 
-  author <- lapply(meta$author, function(z) {
+  author <- lapply(x$author, function(z) {
     list(
       type = "Person",
       name = pcsp(pcsp(z$given), pcsp(z$family)),
@@ -32,18 +38,18 @@ bibtex_reader <- function(x) {
     )
   })
 
-  is_part_of <- if (!is.null(meta$journal)) {
+  is_part_of <- if (!is.null(x$journal)) {
     ccp(list(
       type = "Periodical", 
-      title = meta$journal,
-      issn = meta$issn))
+      title = x$journal,
+      issn = x$issn))
   } else {
     NULL
   }
 
   first_page <- last_page <- NULL
-  if (!is.null(meta$pages)) {
-    pp <- strsplit(meta$pages, "--")[[1]]
+  if (!is.null(x$pages)) {
+    pp <- strsplit(x$pages, "--")[[1]]
     first_page <- as.numeric(pp[1])
     last_page <- as.numeric(pp[2])
   }
@@ -51,7 +57,7 @@ bibtex_reader <- function(x) {
   state <- if (!is.null(doi)) "findable" else "not_found"
 
   list(
-    "key" = attr(meta, "key"),
+    "key" = attr(x, "key"),
     "id" = normalize_doi(doi),
     "type" = type,
     "bibtex_type" = type,
@@ -60,18 +66,18 @@ bibtex_reader <- function(x) {
     "resource_type_general" = SO_TO_DC_TRANSLATIONS[[type]],
     "additional_type" = BIB_TO_CR_TRANSLATIONS[[type]] %||% type,
     "doi" = doi,
-    "b_url" = meta$url %||% NULL,
-    "title" = meta$title %||% NULL,
+    "b_url" = x$url %||% NULL,
+    "title" = x$title %||% NULL,
     "author" = author,
-    "publisher" = meta$publisher %||% NULL,
+    "publisher" = x$publisher %||% NULL,
     "is_part_of" = is_part_of,
-    "date_published" = meta$date %||% NULL,
-    "volume" = meta$volume %||% NULL,
+    "date_published" = x$date %||% NULL,
+    "volume" = x$volume %||% NULL,
     "first_page" = first_page,
     "last_page" = last_page,
-    # "description" = list(text = meta$abstract %||% NULL && sanitize(meta$abstract)),
-    "description" = list(text = meta$abstract %||% NULL),
-    "license" = list(id = meta$copyright %||% NULL),
+    # "description" = list(text = x$abstract %||% NULL && sanitize(x$abstract)),
+    "description" = list(text = x$abstract %||% NULL),
+    "license" = list(id = x$copyright %||% NULL),
     "state" = state
   )
 }

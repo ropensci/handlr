@@ -1,7 +1,7 @@
 #' citeproc writer
 #' 
 #' @export
-#' @param z a `handlr` internal format object
+#' @param z an object of class `handl`; see [handl] for more
 #' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
 #' @param pretty (logical) adds indentation whitespace to JSON output 
@@ -12,12 +12,23 @@
 #' @family citeproc
 #' @examples
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
-#' (tmp <- citeproc_reader(file = z))
+#' (tmp <- citeproc_reader(z))
 #' citeproc_writer(z = tmp)
-#' citeproc_writer(z = tmp, pretty = TRUE)
+#' citeproc_writer(z = tmp, pretty = FALSE)
 #' cat(ris_writer(z = tmp))
+#' 
+#' # many
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' w <- citeproc_reader(x = z)
+#' citeproc_writer(w)
 citeproc_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
-  jsonlite::toJSON(list(
+  assert(z, "handl")
+  w <- if (attr(z, "many") %||% FALSE) lapply(z, citeproc_write_one) else citeproc_write_one(z)
+  jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
+}
+
+citeproc_write_one <- function(z) {
+  list(
     type = z$citeproc_type %||% NULL,
     id = z$id,
     categories = lapply(z$keywords, function(k) 
@@ -37,5 +48,5 @@ citeproc_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
     URL = z$b_url %||% NULL,
     version = z$b_version %||% NULL,
     volume = z$volume %||% NULL
-  ), auto_unbox = auto_unbox, pretty = pretty, ...)
+  )
 }

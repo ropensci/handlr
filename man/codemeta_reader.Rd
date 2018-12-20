@@ -7,16 +7,21 @@
 codemeta_reader(x)
 }
 \arguments{
-\item{x}{a \code{handlr} internal format object}
+\item{x}{(character) a file path or string}
 }
 \value{
-an object of class \code{list}
+an object of class \code{handl}; see \link{handl} for more
 }
 \description{
 codemeta reader
 }
 \examples{
+# single
 (z <- system.file('extdata/codemeta.json', package = "handlr"))
+codemeta_reader(x = z)
+
+# many
+(z <- system.file('extdata/codemeta-many.json', package = "handlr"))
 codemeta_reader(x = z)
 }
 \seealso{

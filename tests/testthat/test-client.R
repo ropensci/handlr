@@ -22,8 +22,8 @@ test_that("HandlrClient class: after initializing and reading", {
   z <- system.file('extdata/citeproc.json', package = "handlr")
   x <- HandlrClient$new(x = z)
 
-  expect_is(x$read("citeproc"), "list")
-  expect_is(x$parsed, "list")
+  expect_is(x$read("citeproc"), "handl")
+  expect_is(x$parsed, "handl")
 })
 
 test_that("HandlrClient class: writing", {
@@ -55,6 +55,8 @@ test_that("handlr_readers", {
 
 
 test_that("HandlrClient class: works with DOIs", {
+  skip_if_net_down()
+
   a <- HandlrClient$new('https://doi.org/10.7554/elife.01567')
   a$read()
   a$parsed

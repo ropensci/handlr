@@ -1,7 +1,7 @@
 #' codemeta writer
 #' 
 #' @export
-#' @param z a `handlr` internal format object
+#' @param z an object of class `handl`; see [handl] for more
 #' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
 #' @param pretty (logical) adds indentation whitespace to JSON output 
@@ -14,8 +14,20 @@
 #' (x <- system.file('extdata/crossref.bib', package = "handlr"))
 #' (z <- bibtex_reader(x))
 #' codemeta_writer(z)
+#' 
+#' # many citeproc to schema 
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' w <- citeproc_reader(x = z)
+#' codemeta_writer(w)
+#' codemeta_writer(w, pretty = FALSE)
 codemeta_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
-  jsonlite::toJSON(list(
+  assert(z, "handl")
+  w <- if (attr(z, "many") %||% FALSE) lapply(z, codemeta_write_one) else codemeta_write_one(z)
+  jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
+}
+
+codemeta_write_one <- function(z) {
+  ccp(list(
     "@context" = if (!is.null(z$id)) url_cm else NULL,
     "@type" = z$type,
     "@id" = z$identifier,
@@ -31,7 +43,7 @@ codemeta_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
     "datePublished" = z$date_published,
     "dateModified" = z$date_modified,
     "publisher" = z$publisher
-  ), auto_unbox = auto_unbox, pretty = pretty, ...)
+  ))
 }
 
 url_cm <- 

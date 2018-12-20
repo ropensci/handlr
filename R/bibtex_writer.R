@@ -1,7 +1,7 @@
 #' bibtex writer
 #' 
 #' @export
-#' @param z a `handlr` internal format object
+#' @param z an object of class `handl`; see [handl] for more
 #' @param key (character) optional bibtex key to use. if `NULL` we 
 #' attempt try the following fields in order: `key`, `identifier`, 
 #' `id`, `doi`. if you pass in ouput from [bibtex_reader()] you're
@@ -11,7 +11,7 @@
 #' @family bibtex
 #' @examples
 #' (z <- system.file('extdata/citeproc.json', package = "handlr"))
-#' (tmp <- citeproc_reader(file = z))
+#' (tmp <- citeproc_reader(z))
 #' bibtex_writer(z = tmp)
 #' cat(bibtex_writer(z = tmp), sep = "\n")
 #' 
@@ -23,7 +23,19 @@
 #' # give a bibtex key
 #' cat(bibtex_writer(z, "foobar89"), sep = "\n")
 bibtex_writer <- function(z, key = NULL) {
-  assert(z, "list")
+  assert(z, "handl")
+  if (attr(z, "many") %||% FALSE) {
+    if (!is.null(key)) {
+      if (length(z) != length(key)) {
+        stop("if 'key' is given, it must be the same length as 'z'")
+      }
+    }
+    return(lapply(z, bibtex_write_one, key = key))
+  } 
+  bibtex_write_one(z, key)
+}
+
+bibtex_write_one <- function(z, key) {
   if (is.null(key)) key <- z[["key"]] %||% z$identifier %||% z$id %||% z[["doi"]]
   bib = ccp(list(
     bibtype = z$bibtex_type %||% "misc",

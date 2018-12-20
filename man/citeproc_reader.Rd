@@ -4,20 +4,25 @@
 \alias{citeproc_reader}
 \title{citeproc reader}
 \usage{
-citeproc_reader(file)
+citeproc_reader(x)
 }
 \arguments{
-\item{file}{(character) a file path}
+\item{x}{(character) a file path or string}
 }
 \value{
-xxx
+an object of class \code{handl}; see \link{handl} for more
 }
 \description{
 citeproc reader
 }
 \examples{
+# single
 z <- system.file('extdata/citeproc.json', package = "handlr")
-citeproc_reader(file = z)
+citeproc_reader(x = z)
+
+# many
+z <- system.file('extdata/citeproc-many.json', package = "handlr")
+citeproc_reader(x = z)
 }
 \seealso{
 Other readers: \code{\link{bibtex_reader}},

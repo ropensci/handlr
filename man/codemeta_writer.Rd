@@ -7,7 +7,7 @@
 codemeta_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 }
 \arguments{
-\item{z}{a \code{handlr} internal format object}
+\item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
 vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
@@ -27,6 +27,12 @@ codemeta writer
 (x <- system.file('extdata/crossref.bib', package = "handlr"))
 (z <- bibtex_reader(x))
 codemeta_writer(z)
+
+# many citeproc to schema 
+z <- system.file('extdata/citeproc-many.json', package = "handlr")
+w <- citeproc_reader(x = z)
+codemeta_writer(w)
+codemeta_writer(w, pretty = FALSE)
 }
 \seealso{
 Other writers: \code{\link{bibtex_writer}},

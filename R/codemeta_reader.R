@@ -1,15 +1,29 @@
 #' codemeta reader
 #' 
 #' @export
-#' @param x a `handlr` internal format object
-#' @return an object of class `list`
+#' @param x (character) a file path or string
+#' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family codemeta
 #' @examples
+#' # single
 #' (z <- system.file('extdata/codemeta.json', package = "handlr"))
+#' codemeta_reader(x = z)
+#' 
+#' # many
+#' (z <- system.file('extdata/codemeta-many.json', package = "handlr"))
 #' codemeta_reader(x = z)
 codemeta_reader <- function(x) {
   meta <- jsonlite::fromJSON(x, FALSE)
+  if (!is.null(names(meta))) meta <- list(meta)
+  tmp <- lapply(meta, codemeta_read_one)
+  many <- length(meta) > 1
+  structure(if (many) tmp else tmp[[1]],
+    class = "handl", from = "codemeta",
+    file = x, many = many)
+}
+
+codemeta_read_one <- function(meta) {
   identifier <- meta$identifier %||% NULL
   id <- normalize_id(meta$`@id` %||% meta$identifier)
   type <- meta$`@type` %||% NULL

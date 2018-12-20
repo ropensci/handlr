@@ -7,7 +7,7 @@
 bibtex_writer(z, key = NULL)
 }
 \arguments{
-\item{z}{a \code{handlr} internal format object}
+\item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{key}{(character) optional bibtex key to use. if \code{NULL} we
 attempt try the following fields in order: \code{key}, \code{identifier},
@@ -22,7 +22,7 @@ bibtex writer
 }
 \examples{
 (z <- system.file('extdata/citeproc.json', package = "handlr"))
-(tmp <- citeproc_reader(file = z))
+(tmp <- citeproc_reader(z))
 bibtex_writer(z = tmp)
 cat(bibtex_writer(z = tmp), sep = "\\n")
 

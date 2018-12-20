@@ -7,7 +7,7 @@
 rdf_xml_writer(z, ...)
 }
 \arguments{
-\item{z}{a \code{handlr} internal format object}
+\item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{...}{further params passed to \code{\link[jsonld:jsonld_to_rdf]{jsonld::jsonld_to_rdf()}}}
 }
@@ -21,10 +21,10 @@ RDF XML writer
 package \code{jsonld} required for this writer
 }
 \examples{
-if (requireNamespace("jsonld")) {
+if (requireNamespace("jsonld") && interactive()) {
   library("jsonld")
   z <- system.file('extdata/citeproc.json', package = "handlr")
-  (tmp <- citeproc_reader(file = z))
+  (tmp <- citeproc_reader(z))
 
   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
   (tmp <- bibtex_reader(z))

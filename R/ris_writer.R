@@ -1,36 +1,56 @@
 #' ris writer
 #' 
 #' @export
-#' @param z a `handlr` internal format object
-#' @return xxx
+#' @param z an object of class `handl`; see [handl] for more
+#' @return text if one RIS citation or list of many 
 #' @family writers
 #' @family ris
 #' @references RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 #' @examples
 #' # from a RIS file
 #' z <- system.file('extdata/crossref.ris', package = "handlr")
-#' tmp <- ris_reader(file = z)
+#' tmp <- ris_reader(z)
 #' cat(ris_writer(z = tmp))
 #' 
 #' # peerj
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
-#' tmp <- ris_reader(file = z)
+#' tmp <- ris_reader(z)
 #' cat(ris_writer(z = tmp))
 #' 
 #' # plos
 #' z <- system.file('extdata/plos.ris', package = "handlr")
-#' tmp <- ris_reader(file = z)
+#' tmp <- ris_reader(z)
 #' cat(ris_writer(z = tmp))
 #' 
 #' # elsevier
 #' z <- system.file('extdata/elsevier.ris', package = "handlr")
-#' tmp <- ris_reader(file = z)
+#' tmp <- ris_reader(z)
 #' cat(ris_writer(z = tmp))
 #' 
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
-#' res <- citeproc_reader(file = z)
+#' res <- citeproc_reader(z)
 #' cat(ris_writer(z = res))
+#' 
+#' # many
+#' ## RIS to RIS
+#' z <- system.file('extdata/crossref.ris', package = "handlr")
+#' cr <- ris_reader(z)
+#' z <- system.file('extdata/peerj.ris', package = "handlr")
+#' prj <- ris_reader(z)
+#' c(cr, prj)
+#' 
+#' ## manhy Citeproc to RIS
+#' z <- system.file('extdata/citeproc-many.json', package = "handlr")
+#' w <- citeproc_reader(x = z)
+#' ris_writer(w)
+#' cat(ris_writer(w), sep = "\n\n")
 ris_writer <- function(z) {
+  assert(z, "handl")
+  if (!attr(z, "many") %||% FALSE) return(ris_write_one(z))
+  vapply(z, ris_write_one, character(1))
+}
+
+ris_write_one <- function(z) {
   zz <- ccp(list(
     TY = z$ris_type %||% "",
     T1 = parse_attributes(z$title, content = "text", first = TRUE),

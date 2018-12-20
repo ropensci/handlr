@@ -10,7 +10,7 @@ bibtex_reader(x)
 \item{x}{(character) a file path or a bibtex string}
 }
 \value{
-an object of class \code{BibEntry}
+an object of class \code{handl}; see \link{handl} for more
 }
 \description{
 bibtex reader

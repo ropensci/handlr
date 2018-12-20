@@ -4,26 +4,32 @@
 \alias{ris_reader}
 \title{citeproc reader}
 \usage{
-ris_reader(file)
+ris_reader(x)
 }
 \arguments{
-\item{file}{(character) a file path}
+\item{x}{(character) a file path or string}
 }
 \value{
-xxx
+an object of class \code{handl}; see \link{handl} for more
 }
 \description{
 citeproc reader
 }
 \examples{
 z <- system.file('extdata/crossref.ris', package = "handlr")
-ris_reader(file = z)
+ris_reader(z)
 
 z <- system.file('extdata/peerj.ris', package = "handlr")
-ris_reader(file = z)
+ris_reader(z)
 
 z <- system.file('extdata/plos.ris', package = "handlr")
-ris_reader(file = z)
+ris_reader(z)
+
+# from a string
+z <- system.file('extdata/crossref.ris', package = "handlr")
+my_string <- ris_writer(ris_reader(z))
+class(my_string)
+ris_reader(my_string)
 }
 \references{
 RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)

@@ -11,7 +11,9 @@
 #' cr <- ris_reader(z)
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
 #' prj <- ris_reader(z)
-#' c(cr, prj)
+#' res <- c(cr, prj)
+#' res
+#' cat(bibtex_writer(res), sep = "\n\n")
 c.handl <- function(...) {
   nw <- list(...)
   clz <- vapply(nw, inherits, logical(1), what = "handl")

@@ -41,12 +41,21 @@ res <- citeproc_reader(z)
 cat(ris_writer(z = res))
 
 # many
-## RIS to RIS
+## combine many RIS in a handl object
 z <- system.file('extdata/crossref.ris', package = "handlr")
 cr <- ris_reader(z)
 z <- system.file('extdata/peerj.ris', package = "handlr")
 prj <- ris_reader(z)
 c(cr, prj)
+
+# many bibtex to ris via c method
+a <- system.file('extdata/bibtex.bib', package = "handlr")
+b <- system.file('extdata/crossref.bib', package = "handlr")
+aa <- bibtex_reader(a)
+bb <- bibtex_reader(a)
+c(aa, bb)
+res <- c(aa, bb)
+cat(ris_writer(res), sep = "\\n\\n")
 
 ## manhy Citeproc to RIS
 z <- system.file('extdata/citeproc-many.json', package = "handlr")

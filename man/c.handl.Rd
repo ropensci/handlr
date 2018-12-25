@@ -7,10 +7,13 @@
 \method{c}{handl}(...)
 }
 \arguments{
-\item{...}{one or more objects of class \code{handl}; see \link{handl} for more}
+\item{...}{one or more objects of class \code{handl}; see \link{handl} for more.
+all inputs must be of class \code{handl}. if the first input is not of class
+\code{handl}, you will not get back an object of class \code{handl}}
 }
 \value{
-text if one RIS citation or list of many
+an object of class \code{handl} of length equal to number of
+\code{handl} objects passed in
 }
 \description{
 combine many handl objects

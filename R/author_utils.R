@@ -120,7 +120,7 @@ authors_as_string <- function(authors) {
   tmp <- lapply(authors, function(z) {
     if (!is.null(z$familyName)) {
       paste(z$givenName, z$familyName)
-    } else if (z$`@type` == "Person") {
+    } else if (!is.null(z$`@type`)) {
       z$name
     } else if (!is.null(z$name)) {
       paste0("{", z$name, "}")

@@ -13,7 +13,7 @@
 #' prj <- ris_reader(z)
 #' res <- c(cr, prj)
 #' res
-#' cat(bibtex_writer(res), sep = "\n\n")
+#' invisible(lapply(bibtex_writer(res), cat, sep = "\n\n"))
 c.handl <- function(...) {
   nw <- list(...)
   clz <- vapply(nw, inherits, logical(1), what = "handl")

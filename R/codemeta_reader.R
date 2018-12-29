@@ -1,7 +1,7 @@
 #' codemeta reader
 #' 
 #' @export
-#' @param x (character) a file path or string
+#' @param x (character) a file path or string (character or json)
 #' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family codemeta
@@ -14,13 +14,15 @@
 #' (z <- system.file('extdata/codemeta-many.json', package = "handlr"))
 #' codemeta_reader(x = z)
 codemeta_reader <- function(x) {
+  assert(x, c("character", "json"))
   meta <- jsonlite::fromJSON(x, FALSE)
   if (!is.null(names(meta))) meta <- list(meta)
   tmp <- lapply(meta, codemeta_read_one)
   many <- length(meta) > 1
   structure(if (many) tmp else tmp[[1]],
     class = "handl", from = "codemeta",
-    file = x, many = many)
+    source_type = if (is_file(x)) "file" else "string", 
+    file = if (is_file(x)) x else "", many = many)
 }
 
 codemeta_read_one <- function(meta) {

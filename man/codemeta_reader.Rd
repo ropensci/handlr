@@ -7,7 +7,7 @@
 codemeta_reader(x)
 }
 \arguments{
-\item{x}{(character) a file path or string}
+\item{x}{(character) a file path or string (character or json)}
 }
 \value{
 an object of class \code{handl}; see \link{handl} for more

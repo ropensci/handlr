@@ -21,7 +21,8 @@ bibtex_reader <- function(x) {
   many <- length(meta) > 1
   structure(if (many) tmp else tmp[[1]], 
     class = "handl", from = "bibtex", 
-    file = file, many = many)
+    source_type = if (is_file(x)) "file" else "string", 
+    file = if (is_file(x)) x else "", many = many)
 }
 
 bibtex_read_one <- function(x) {

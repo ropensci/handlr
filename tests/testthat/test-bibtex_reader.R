@@ -18,6 +18,11 @@ test_that("bibtex_reader: works", {
   expect_is(x$author, "list")
   expect_is(x$author[[1]], "list")
   expect_equal(x$author[[1]]$type, "Person")
+
+  expect_equal(attr(x, "from"), "bibtex")
+  expect_equal(attr(x, "source_type"), "file")
+  expect_match(attr(x, "file"), ".bib")
+  expect_false(attr(x, "many"))
 })
 
 test_that("bibtex_reader fails well", {

@@ -57,7 +57,8 @@ ris_reader <- function(x) {
     # author = get_authors(author),
     author = author,
     publisher = meta$PB %||% NULL,
-    journal = meta$JO %||% meta$JF %||% meta$JA %||% meta$J1 %||% meta$J2 %||% meta$T2 %||% NULL,
+    journal = meta$JO %||% meta$JF %||% meta$JA %||% meta$J1 %||% 
+      meta$J2 %||% meta$T2 %||% NULL,
     is_part_of = is_part_of,
     date_created = meta$Y1 %||% NULL,
     date_published = date_published,

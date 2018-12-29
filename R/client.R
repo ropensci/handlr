@@ -178,7 +178,8 @@ HandlrClient <- R6::R6Class(
       cat(paste0("  ext: ", self$ext), sep = "\n")
       cat(paste0("  format (guessed): ", self$format_guessed), sep = "\n")
       cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
-      cat(paste0("  string (abbrev.): ", self$substring %||% "none"), sep = "\n")
+      cat(paste0("  string (abbrev.): ", self$substring %||% "none"), 
+        sep = "\n")
       invisible(self)
     },
 

@@ -22,7 +22,11 @@
 #' codemeta_writer(w, pretty = FALSE)
 codemeta_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
   assert(z, "handl")
-  w <- if (attr(z, "many") %||% FALSE) lapply(z, codemeta_write_one) else codemeta_write_one(z)
+  w <- if (attr(z, "many") %||% FALSE) {
+    lapply(z, codemeta_write_one) 
+  } else {
+    codemeta_write_one(z)
+  }
   jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
 }
 
@@ -35,7 +39,8 @@ codemeta_write_one <- function(z) {
     "codeRepository" = z$b_url,
     "title" = z$title,
     "agents" = z$author,
-    "description" = parse_attributes(z$description, content = "text", first = TRUE),
+    "description" = parse_attributes(z$description, 
+      content = "text", first = TRUE),
     "version" = z$b_version,
     # FIXME: not sure what's going on here
     "tags" = if (!is.null(z$keywords)) unlist(z$keywords) else NULL,

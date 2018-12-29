@@ -24,20 +24,20 @@ citeproc_reader <- function(x) {
 }
 
 citeproc_read_one <- function(meta) {
-  citeproc_type = meta$type %||% NULL
-  type = CP_TO_SO_TRANSLATIONS[[citeproc_type]] %||% "CreativeWork"
+  citeproc_type <- meta$type %||% NULL
+  type <- CP_TO_SO_TRANSLATIONS[[citeproc_type]] %||% "CreativeWork"
   # FIXME: doi = normalize_doi(meta.fetch("DOI", nil))
-  doi = meta$DOI %||% NULL
+  doi <- meta$DOI %||% NULL
   # FIXME: get_authors(from_citeproc(Array.wrap(meta.fetch("author", nil))))
   # get_authors(from_citeproc(meta$author %||% NULL))
-  author = from_citeproc(meta$author %||% NULL)
+  author <- from_citeproc(meta$author %||% NULL)
   # author = meta$author %||% NULL
   # FIXME: get_authors(from_citeproc(Array.wrap(meta.fetch("editor", nil))))
   # get_authors(from_citeproc(meta$editor %||% NULL))
-  editor = from_citeproc(meta$editor %||% NULL)
+  editor <- from_citeproc(meta$editor %||% NULL)
   # editor = meta$editor %||% NULL
-  date_published = get_date_from_date_parts(meta$issued %||% NULL)
-  container_title = meta$`container-title` %||% NULL
+  date_published <- get_date_from_date_parts(meta$issued %||% NULL)
+  container_title <- meta$`container-title` %||% NULL
   is_part_of <- if (!is.null(container_title)) {
     ccp(list(type = "Periodical",
       title = container_title,

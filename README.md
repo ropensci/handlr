@@ -5,6 +5,7 @@ handlr
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
+[![codecov.io](https://codecov.io/github/ropensci/handlr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/handlr?branch=master)
 
 a tool for converting among citation formats.
 
@@ -48,6 +49,7 @@ z <- system.file('extdata/citeproc.json', package = "handlr")
 x <- HandlrClient$new(x = z)
 x
 #> <handlr> 
+#>   doi: 
 #>   ext: json
 #>   format (guessed): citeproc
 #>   path: /Library/Frameworks/R.framework/Versions/3.5/Resources/library/handlr/extdata/citeproc.json

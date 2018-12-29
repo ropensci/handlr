@@ -75,6 +75,6 @@ test_that("HandlrClient class: works with DOIs", {
   # fails as expected
   expect_error(
     HandlrClient$new('10.7554/elife.01567', timeout_ms = 100),
-    "time"
+    "out"
   )
 })

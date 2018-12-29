@@ -7,11 +7,11 @@ get_date_parts <- function(x = NULL) {
 }
 
 get_date_from_date_parts <- function(x) {
-  date_parts = x$`date-parts`[[1]]
-  year = date_parts[[1]]
-  month = tryCatch(date_parts[[2]], error = function(e) e)
+  date_parts <- x$`date-parts`[[1]]
+  year <- date_parts[[1]]
+  month <- tryCatch(date_parts[[2]], error = function(e) e)
   if (inherits(month, "error")) month <- NULL
-  day = tryCatch(date_parts[[3]], error = function(e) e)
+  day <- tryCatch(date_parts[[3]], error = function(e) e)
   if (inherits(day, "error")) day <- NULL
   get_date_from_parts(year, month, day)
 }

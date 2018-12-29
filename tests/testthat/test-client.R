@@ -32,7 +32,7 @@ test_that("HandlrClient class: writing", {
   x$read("citeproc")
 
   expect_is(x$write("citeproc"), "json")
-  expect_null(x$write("citeproc", (f=tempfile())))
+  expect_null(x$write("citeproc", (f<-tempfile())))
   expect_is(f, "character")
   expect_equal(jsonlite::fromJSON(f, FALSE)$categories, x$parsed$keywords)
 })

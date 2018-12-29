@@ -59,30 +59,6 @@ convert_to_bibtex <- function(object) {
 }
 
 # from RefManageR
-# is.interval <- function(x) grepl("-|/", x)
-# ConvertDate <- function(obj) {
-#   dat <- obj$date
-#   if (!is.null(dat) && is.null(obj$year)) {
-#     if (is.interval(dat)) {
-#       obj$year <- tolower(year(int_start(dat)))
-#     } else {
-#       obj$year <- tolower(year(dat))
-#     }
-#   }
-#   if (!is.null(dat) && is.null(obj$month)) { 
-#     if (is.interval(dat)) {
-#       datsp <- strsplit(dat, "-|/")[[1]]
-#     }
-#     # if (is.interval(dat)) {
-#     #   obj$month <- tolower(month(int_start(dat), TRUE, TRUE))
-#     # } else {
-#     #   obj$month <- tolower(month(dat, TRUE, TRUE))
-#     # }
-#   }
-#   obj
-# }
-
-# from RefManageR
 ConvertBibtype <- function(bibtype){
   types <- tolower(names(BibTeX_entry_field_db))
   if (length(pos <- which(types %in% bibtype))) {

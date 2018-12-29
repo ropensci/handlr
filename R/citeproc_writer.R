@@ -23,7 +23,11 @@
 #' citeproc_writer(w)
 citeproc_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
   assert(z, "handl")
-  w <- if (attr(z, "many") %||% FALSE) lapply(z, citeproc_write_one) else citeproc_write_one(z)
+  w <- if (attr(z, "many") %||% FALSE) {
+    lapply(z, citeproc_write_one) 
+  } else {
+    citeproc_write_one(z)
+  }
   jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
 }
 

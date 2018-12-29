@@ -32,16 +32,21 @@ schema_hsh <- function(x) {
     "@context" = if (!is.null(x$id)) "http://schema.org" else NULL,
     "@type" = x$type,
     "@id" = x$id,
-    "identifier" = to_schema_org_identifier(x$id, ccp(list(alternate_identifier = x$alternate_identifier %||% NULL))),
+    "identifier" = to_schema_org_identifier(x$id, 
+      ccp(list(alternate_identifier = x$alternate_identifier %||% NULL))),
     "url" = x$b_url,
     "additionalType" = x$additional_type,
     "name" = parse_attributes(x$title, content = "text", first = TRUE),
     "author" = to_schema_org(x$author),
     "editor" = to_schema_org(x$editor),
-    "description" = parse_attributes(x$description, content = "text", first = TRUE),
+    "description" = 
+      parse_attributes(x$description, content = "text", first = TRUE),
     "license" = unlist(ccp(lapply(x$license, function(l) l$id))),
     "version" = x$b_version,
-    "keywords" = if (!is.null(x$keywords)) paste0(lapply(x$keywords, function(k) parse_attributes(k, content = "text", first = TRUE)), collapse = ", ") else NULL,
+    "keywords" = if (!is.null(x$keywords)) 
+      paste0(lapply(x$keywords, function(k) 
+        parse_attributes(k, content = "text", first = TRUE)), 
+      collapse = ", ") else NULL,
     "inLanguage" = x$language %||% NULL,
     "contentSize" = x$content_size %||% NULL,
     "encodingFormat" = x$content_format %||% NULL,
@@ -52,7 +57,9 @@ schema_hsh <- function(x) {
     "pageEnd" = x$last_page %||% NULL,
     "spatialCoverage" = x$spatial_coverage %||% NULL,
     "sameAs" = to_schema_org(x$is_identical_to),
-    "isPartOf" = if (x$type == "Dataset") NULL else to_schema_org_container(x$is_part_of, list(container_title = x$container_title, type = x$type)),
+    "isPartOf" = if (x$type == "Dataset") NULL else 
+      to_schema_org_container(x$is_part_of, list(
+        container_title = x$container_title, type = x$type)),
     "hasPart" = to_schema_org(x$has_part),
     "predecessor_of" = to_schema_org(x$is_previous_version_of),
     "successor_of" = to_schema_org(x$is_new_version_of),
@@ -60,16 +67,20 @@ schema_hsh <- function(x) {
     "@reverse" = x$reverse.presence,
     "contentUrl" = x$content_url %||% NULL,
     "schemaVersion" = x$schema_version %||% NULL,
-    "includedInDataCatalog" = if (x$type == "Dataset") to_schema_org_container(x$is_part_of, list(container_title = x$container_title, type = x$type)) else NULL,
-    "publisher" = if (!is.null(x$publisher)) list("@type" = "Organization", "name" = x$publisher) else NULL,
+    "includedInDataCatalog" = if (x$type == "Dataset") 
+      to_schema_org_container(x$is_part_of, 
+        list(container_title = x$container_title, type = x$type)) else NULL,
+    "publisher" = if (!is.null(x$publisher)) 
+      list("@type" = "Organization", "name" = x$publisher) else NULL,
     "funding" = to_schema_org(x$funding),
-    "provider" = if (!is.null(x$service_provider)) list("@type" = "Organization", "name" = x$service_provider) else NULL
+    "provider" = if (!is.null(x$service_provider)) 
+      list("@type" = "Organization", "name" = x$service_provider) else NULL
   ))
 }
 
 # utils
 to_schema_org <- function(element) {
-  mapping = list(type = "@type", id = "@id", title = "name")
+  mapping <- list(type = "@type", id = "@id", title = "name")
   map_hash_keys(element = element, mapping = mapping)
 }
 

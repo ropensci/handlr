@@ -36,15 +36,18 @@ bibtex_writer <- function(z, key = NULL) {
 }
 
 bibtex_write_one <- function(z, key) {
-  if (is.null(key)) key <- z[["key"]] %||% z$identifier %||% z$id %||% z[["doi"]]
-  bib = ccp(list(
+  if (is.null(key)) 
+    key <- z[["key"]] %||% z$identifier %||% z$id %||% z[["doi"]]
+  bib <- ccp(list(
     bibtype = z$bibtex_type %||% "misc",
     key = key,
     doi = z$doi,
     url = z$b_url,
     # author = authors_as_string(z$author),
     author = z$author,
-    keywords = paste0(vapply(z$keywords, function(w) parse_attributes(w, content = "text", first = TRUE), ""), collapse = ", "),
+    keywords = paste0(vapply(z$keywords, function(w) 
+      parse_attributes(w, content = "text", first = TRUE), ""), 
+      collapse = ", "),
     language = z$language,
     # title = parse_attributes(z$title, content = "text", first = TRUE),
     title = z$title,
@@ -53,7 +56,8 @@ bibtex_write_one <- function(z, key) {
     issue = z$issue,
     pages = paste(z$first_page, z$last_page, sep = "--"),
     publisher = z$publisher,
-    year = if (!is.null(z$date_published)) substring(z$date_published, 1, 4) else NULL,
+    year = if (!is.null(z$date_published)) 
+      substring(z$date_published, 1, 4) else NULL,
     date = z$date_published
   ))
   convert_to_bibtex(bib)

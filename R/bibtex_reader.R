@@ -82,12 +82,12 @@ bibtex_read_one <- function(x) {
   )
 }
 
-BIB_TO_CP_TRANSLATIONS = list(
+BIB_TO_CP_TRANSLATIONS <- list(
   article = "article-journal",  
   phdthesis = "thesis"
 )
 
-BIB_TO_RIS_TRANSLATIONS = list(
+BIB_TO_RIS_TRANSLATIONS <- list(
   article = "JOUR",
   book = "BOOK",
   inbook = "CHAP",
@@ -100,12 +100,12 @@ BIB_TO_RIS_TRANSLATIONS = list(
   unpublished = "UNPD"
 )
 
-BIB_TO_SO_TRANSLATIONS = list(
+BIB_TO_SO_TRANSLATIONS <- list(
   article = "ScholarlyArticle",
   phdthesis = "Thesis"
 )
 
-SO_TO_DC_TRANSLATIONS = list(
+SO_TO_DC_TRANSLATIONS <- list(
   article = "Text",
   audioObject = "Sound",
   blog = "Text",

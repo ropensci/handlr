@@ -68,7 +68,8 @@ ris_write_one <- function(z) {
     DO = z$doi,
     UR = z$b_url,
     AB = parse_attributes(z$description, content = "text", first = TRUE),
-    KW = vapply(z$keywords, function(w) parse_attributes(w, content = "text", first = TRUE), ""),
+    KW = vapply(z$keywords, function(w) 
+      parse_attributes(w, content = "text", first = TRUE), ""),
     PY = z$publication_year,
     Y1 = z$date_created,
     PB = z$publisher,

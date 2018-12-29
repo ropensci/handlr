@@ -26,7 +26,8 @@ parse_attributes <- function(e, content = "__content__", first = FALSE) {
   } else if (is.list(e)) {
     e[[content]] %||% NULL
   } else {
-    tmp <- lapply(e, function(z) if (inherits(z, "xx")) z[[content]] %||% NULL else z)
+    tmp <- lapply(e, function(z) 
+      if (inherits(z, "xx")) z[[content]] %||% NULL else z)
     tmp <- unique(unlist(tmp))
     if (first) tmp[[1]] else tmp
   }
@@ -40,7 +41,7 @@ check_for_package <- function(x) {
   }
 }
 
-is_file = function(x) file.exists(x)
+is_file <- function(x) file.exists(x)
 
 is_url <- function(x) {
   grepl("https?://", x, ignore.case = TRUE) || 
@@ -49,7 +50,8 @@ is_url <- function(x) {
 
 get_doi <- function(x, ...) {
   base <- "https://api.crossref.org"
-  path <- file.path("works", x, "transform/application/vnd.citationstyles.csl+json")
+  path <- file.path("works", x, 
+    "transform/application/vnd.citationstyles.csl+json")
   con <- crul::HttpClient$new(
     url = base,
     headers = list(

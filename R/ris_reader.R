@@ -22,6 +22,7 @@
 #' class(my_string)
 #' ris_reader(my_string)
 ris_reader <- function(x) {
+  assert(x, "character")
   txt <- if (file.exists(x)) readLines(x) else strsplit(x, "\n")[[1]]
   meta <- ris_meta(txt)
   ris_type <- meta$TY %||% "GEN"
@@ -71,7 +72,9 @@ ris_reader <- function(x) {
     keywords = unname(unlist(meta[names(meta) == "KW"])) %||% NULL,
     language = meta$LA %||% NULL,
     state = state
-  ), class = "handl", from = "ris", file = x, many = FALSE)
+  ), class = "handl", from = "ris", 
+  source_type = if (is_file(x)) "file" else "string", 
+  file = if (is_file(x)) x else "", many = FALSE)
 }
 
 # x: a string

@@ -34,8 +34,8 @@ codemeta_write_one <- function(z) {
   ccp(list(
     "@context" = if (!is.null(z$id)) url_cm else NULL,
     "@type" = z$type,
-    "@id" = z$identifier,
-    "identifier" = z$identifier,
+    "@id" = z$id %||% z$identifier,
+    "identifier" = z$id %||% z$identifier,
     "codeRepository" = z$b_url,
     "title" = z$title,
     "agents" = z$author,

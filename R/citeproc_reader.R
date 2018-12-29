@@ -14,13 +14,15 @@
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
 #' citeproc_reader(x = z)
 citeproc_reader <- function(x) {
+  assert(x, "character")
   meta <- jsonlite::fromJSON(x, FALSE)
   if (!is.null(names(meta))) meta <- list(meta)
   tmp <- lapply(meta, citeproc_read_one)
   many <- length(meta) > 1
   structure(if (many) tmp else tmp[[1]], 
     class = "handl", from = "citeproc", 
-    file = x, many = many)
+    source_type = if (is_file(x)) "file" else "string", 
+    file = if (is_file(x)) x else "", many = many)
 }
 
 citeproc_read_one <- function(meta) {

@@ -1,10 +1,7 @@
-# skip_if_net_down <- function() {
-#   testthat::skip_if(!crul::ok("https://httpbin.org/get"),
-#     "internet down")
-# }
-
 has_internet <- function() {
-  !is.null(suppressWarnings(utils::nsl("www.google.com")))
+  z <- try(suppressWarnings(readLines('https://www.google.com', n = 1)),
+    silent = TRUE)
+  !inherits(z, "try-error")
 }
 
 skip_if_net_down <- function() {

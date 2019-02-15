@@ -46,7 +46,7 @@ ris_reader <- function(x) {
   }
   tmp <- lapply(meta, ris_read_one)
   many <- length(meta) > 1
-  structure(tmp, class = "handl", from = "ris",
+  structure(if (many) tmp else tmp[[1]], class = "handl", from = "ris",
     source_type = if (is_file(x)) "file" else "string",
     file = if (is_file(x)) x else "", many = many)
 }

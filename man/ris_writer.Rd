@@ -53,15 +53,14 @@ a <- system.file('extdata/bibtex.bib', package = "handlr")
 b <- system.file('extdata/crossref.bib', package = "handlr")
 aa <- bibtex_reader(a)
 bb <- bibtex_reader(a)
-c(aa, bb)
-res <- c(aa, bb)
+(res <- c(aa, bb))
 cat(ris_writer(res), sep = "\\n\\n")
 
 ## manhy Citeproc to RIS
 z <- system.file('extdata/citeproc-many.json', package = "handlr")
 w <- citeproc_reader(x = z)
 ris_writer(w)
-cat(ris_writer(w), sep = "\\n\\n")
+cat(ris_writer(w), sep = "\\n")
 }
 \references{
 RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)

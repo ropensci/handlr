@@ -45,7 +45,7 @@ There's a single R6 interface to all readers and writers
 
 
 ```r
-z <- system.file('extdata/citeproc.json', package = "handlr")
+z <- system.file("extdata/citeproc.json", package = "handlr")
 x <- HandlrClient$new(x = z)
 x
 #> <handlr> 

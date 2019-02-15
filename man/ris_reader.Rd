@@ -2,7 +2,7 @@
 % Please edit documentation in R/ris_reader.R
 \name{ris_reader}
 \alias{ris_reader}
-\title{citeproc reader}
+\title{ris reader}
 \usage{
 ris_reader(x)
 }
@@ -13,7 +13,7 @@ ris_reader(x)
 an object of class \code{handl}; see \link{handl} for more
 }
 \description{
-citeproc reader
+ris reader
 }
 \examples{
 z <- system.file('extdata/crossref.ris', package = "handlr")
@@ -30,6 +30,10 @@ z <- system.file('extdata/crossref.ris', package = "handlr")
 my_string <- ris_writer(ris_reader(z))
 class(my_string)
 ris_reader(my_string)
+
+# many
+z <- system.file('extdata/multiple-eg.ris', package = "handlr")
+ris_reader(z)
 }
 \references{
 RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)

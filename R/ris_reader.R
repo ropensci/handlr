@@ -1,5 +1,15 @@
-#' citeproc reader
-#' 
+split_list <- function(lst, splits) {
+  out <- list()
+  for (i in seq_along(splits)) {
+    start <- if (length(out)) length(out[[1]]) + 2 else 1
+    out[[i]] <- lst[seq(from = start, to = splits[i] - 1)]
+  }
+  return(out)
+}
+
+
+#' ris reader
+#'
 #' @export
 #' @param x (character) a file path or string
 #' @return an object of class `handl`; see [handl] for more
@@ -9,72 +19,87 @@
 #' @examples
 #' z <- system.file('extdata/crossref.ris', package = "handlr")
 #' ris_reader(z)
-#' 
+#'
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
 #' ris_reader(z)
-#' 
+#'
 #' z <- system.file('extdata/plos.ris', package = "handlr")
 #' ris_reader(z)
-#' 
+#'
 #' # from a string
 #' z <- system.file('extdata/crossref.ris', package = "handlr")
 #' my_string <- ris_writer(ris_reader(z))
 #' class(my_string)
 #' ris_reader(my_string)
+#'
+#' # many
+#' z <- system.file('extdata/multiple-eg.ris', package = "handlr")
+#' ris_reader(z)
 ris_reader <- function(x) {
   assert(x, "character")
   txt <- if (file.exists(x)) readLines(x) else strsplit(x, "\n")[[1]]
   meta <- ris_meta(txt)
-  ris_type <- meta$TY %||% "GEN"
+  if (!"ER" %in% names(meta)) meta <- list(meta)
+  if ("ER" %in% names(meta)) {
+    splits <- which(names(meta) %in% "ER")
+    meta <- split_list(meta, splits)
+  }
+  tmp <- lapply(meta, ris_read_one)
+  many <- length(meta) > 1
+  structure(tmp, class = "handl", from = "ris",
+    source_type = if (is_file(x)) "file" else "string",
+    file = if (is_file(x)) x else "", many = many)
+}
+
+ris_read_one <- function(z) {
+  ris_type <- z$TY %||% "GEN"
   type <- RIS_TO_SO_TRANSLATIONS[[ris_type]] %||% "CreativeWork"
-  doi <- validate_doi(meta$DO %||% meta$M3)
-  # other author codes exist, but just using AU/A1 to stick 
+  doi <- validate_doi(z$DO %||% z$M3)
+  # other author codes exist, but just using AU/A1 to stick
   # to main authors (not editors/reviewers/etc.)
-  author <- Map(function(a) list(name = a), 
-    meta[names(meta) %in% c("AU", "A1")], 
+  author <- Map(function(a) list(name = a),
+    z[names(z) %in% c("AU", "A1")],
     USE.NAMES = FALSE)
-  container_title <- meta$T2 %||% NULL
-  date_parts <- meta$PY %||% NULL
+  container_title <- z$T2 %||% NULL
+  date_parts <- z$PY %||% NULL
   if (!is.null(date_parts)) date_parts <- strsplit(date_parts, "/")[[1]]
   date_published <- get_date_from_parts(date_parts)
   is_part_of <- NULL
   is_part_of <- if (!is.null(container_title)) {
     ccp(list(
-      type = "Periodical", 
-      title = container_title, 
-      issn = meta$SN %||% NULL))
+      type = "Periodical",
+      title = container_title,
+      issn = z$SN %||% NULL))
   }
   state <- if (!is.null(doi)) "findable" else "not_found"
-  
-  structure(list(
+
+  list(
     id = normalize_doi(doi),
     type = type,
     citeproc_type = RIS_TO_CP_TRANSLATIONS[[type]] %||% "misc",
     ris_type = ris_type,
     resource_type_general = SO_TO_DC_TRANSLATIONS[[type]],
     doi = doi,
-    b_url = meta$UR %||% NULL,
-    title = meta$TI %||% meta$T1 %||% NULL,
+    b_url = z$UR %||% NULL,
+    title = z$TI %||% z$T1 %||% NULL,
     # author = get_authors(author),
     author = author,
-    publisher = meta$PB %||% NULL,
-    journal = meta$JO %||% meta$JF %||% meta$JA %||% meta$J1 %||% 
-      meta$J2 %||% meta$T2 %||% NULL,
+    publisher = z$PB %||% NULL,
+    journal = z$JO %||% z$JF %||% z$JA %||% z$J1 %||%
+      z$J2 %||% z$T2 %||% NULL,
     is_part_of = is_part_of,
-    date_created = meta$Y1 %||% NULL,
+    date_created = z$Y1 %||% NULL,
     date_published = date_published,
-    date_accessed = meta$Y2 %||% NULL,
-    description = meta$AB %||% meta$N2 %||% NULL,
-    volume = meta$VL %||% NULL,
-    issue = meta$IS %||% NULL,
-    first_page = meta$SP %||% NULL,
-    last_page = meta$EP %||% NULL,
-    keywords = unname(unlist(meta[names(meta) == "KW"])) %||% NULL,
-    language = meta$LA %||% NULL,
+    date_accessed = z$Y2 %||% NULL,
+    description = z$AB %||% z$N2 %||% NULL,
+    volume = z$VL %||% NULL,
+    issue = z$IS %||% NULL,
+    first_page = z$SP %||% NULL,
+    last_page = z$EP %||% NULL,
+    keywords = unname(unlist(z[names(z) == "KW"])) %||% NULL,
+    language = z$LA %||% NULL,
     state = state
-  ), class = "handl", from = "ris", 
-  source_type = if (is_file(x)) "file" else "string", 
-  file = if (is_file(x)) x else "", many = FALSE)
+  )
 }
 
 # x: a string
@@ -86,26 +111,18 @@ ris_meta <- function(x) {
       ab_start <- grep("^AB|^N2", x)
       indices <- grep("^[A-Z]{2}", x)
       ab_end <- indices[which(indices == ab_start) + 1] - 1
-      ab_text <- strtrim(paste0(x[(ab_start+1):ab_end], collapse = " "))
+      ab_text <- strtrim(paste0(x[(ab_start + 1):ab_end], collapse = " "))
       x[ab_start] <- paste(x[ab_start], ab_text)
-      x <- x[!seq_along(x) %in% (ab_start+1):ab_end]
+      x <- x[!seq_along(x) %in% (ab_start + 1):ab_end]
     }
   }
   # splitting
   sapply(x, function(z) {
     tt <- strsplit(z, "\\s+-\\s+")[[1]]
+    if (any(grepl("-$", tt))) tt <- c(sub("\\s+-$", "", tt), NA_character_)
     as.list(stats::setNames(tt[2], tt[1]))
   }, USE.NAMES = FALSE)
 }
-
-# def ris_meta(string: nil)
-#   h = Hash.new { |h,k| h[k] = [] }
-#   string.split("\n").reduce(h) do |sum, line|
-#     k, v = line.split("-")
-#     h[k.strip] << v.to_s.strip
-#     sum
-#   end.map { |k,v| [k, v.unwrap] }.to_h.compact
-# end
 
 RIS_TO_SO_TRANSLATIONS <- list(
   "BLOG" = "BlogPosting",

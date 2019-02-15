@@ -1,7 +1,7 @@
 context("ris_writer")
 
 test_that("ris_writer: works", {
-  z <- system.file('extdata/crossref.ris', package = "handlr")
+  z <- system.file("extdata/crossref.ris", package = "handlr")
   tmp <- ris_reader(z)
   x <- ris_writer(tmp)
 
@@ -10,14 +10,14 @@ test_that("ris_writer: works", {
 })
 
 test_that("ris_writer: write from citeproc json", {
-  z <- system.file('extdata/citeproc.json', package = "handlr")
+  z <- system.file("extdata/citeproc.json", package = "handlr")
   tmp <- citeproc_reader(z)
-  x <- ris_writer(z = tmp)
+  x <- ris_writer(tmp)
   expect_is(ris_reader(x), "handl")
 })
 
 test_that("ris_writer: output gives back same as input from ris_reader", {
-  z <- system.file('extdata/peerj.ris', package = "handlr")
+  z <- system.file("extdata/peerj.ris", package = "handlr")
   w <- ris_reader(z)
   bw_out <- ris_writer(w)
   og_out <- readLines(z)

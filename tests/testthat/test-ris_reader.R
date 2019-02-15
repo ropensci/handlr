@@ -1,7 +1,7 @@
 context("ris_reader")
 
 test_that("ris_reader: works", {
-  z <- system.file('extdata/crossref.ris', package = "handlr")
+  z <- system.file("extdata/crossref.ris", package = "handlr")
   x <- ris_reader(z)
 
   expect_is(ris_reader, "function")
@@ -22,6 +22,20 @@ test_that("ris_reader: works", {
   expect_equal(attr(x, "source_type"), "file")
   expect_match(attr(x, "file"), ".ris")
   expect_false(attr(x, "many"))
+})
+
+test_that("ris_reader: many inputs", {
+  z <- system.file("extdata/multiple-eg.ris", package = "handlr")
+  x <- ris_reader(z)
+
+  expect_is(ris_reader, "function")
+  expect_is(x, "handl")
+  expect_named(x, NULL)
+
+  expect_equal(attr(x, "from"), "ris")
+  expect_equal(attr(x, "source_type"), "file")
+  expect_match(attr(x, "file"), ".ris")
+  expect_true(attr(x, "many"))
 })
 
 test_that("ris_reader fails well", {

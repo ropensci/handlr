@@ -23,6 +23,7 @@
 #' schema_org_writer(w, pretty = FALSE)
 schema_org_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
   assert(z, "handl")
+  stopifnot(length(z) > 0)
   w <- if (attr(z, "many") %||% FALSE) lapply(z, schema_hsh) else schema_hsh(z)
   jsonlite::toJSON(w, auto_unbox = auto_unbox, pretty = pretty, ...)
 }

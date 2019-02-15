@@ -22,6 +22,7 @@
 #' codemeta_writer(w, pretty = FALSE)
 codemeta_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
   assert(z, "handl")
+  stopifnot(length(z) > 0)
   w <- if (attr(z, "many") %||% FALSE) {
     lapply(z, codemeta_write_one) 
   } else {

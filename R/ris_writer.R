@@ -55,6 +55,7 @@
 #' cat(ris_writer(w), sep = "\n\n")
 ris_writer <- function(z) {
   assert(z, "handl")
+  stopifnot(length(z) > 0)
   if (!attr(z, "many") %||% FALSE) return(ris_write_one(z))
   vapply(z, ris_write_one, character(1))
 }

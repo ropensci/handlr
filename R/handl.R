@@ -1,10 +1,10 @@
 #' handl object
-#' 
+#'
 #' @name handl
 #' @details
 #' a handl object is what's returned from the reader functions,
 #' and looks something like:
-#' 
+#'
 #' ```
 #' <handl>
 #'   from: codemeta
@@ -14,9 +14,9 @@
 #'     id/doi: https://doi.org/10.5063%2ff1m61h5x
 #'     id/doi: https://doi.org/10.5063%2ff1m61h5x
 #' ```
-#' 
+#'
 #' Details on each entry:
-#' 
+#'
 #' - from: the data type the citations come from
 #' - many: is there more than 1 citation?
 #' - count: number of citations
@@ -26,14 +26,14 @@ NULL
 
 print.handl <- function(x, ...) {
   many <- attr(x, "many")
-  cat('<handl> ', sep = "\n")
-  cat(paste0('  from: ', attr(x, "from")), sep = "\n")
-  cat(paste0('  many: ', many), sep = "\n")
-  cat(paste0('  count: ', if (many) length(x) else 1), sep = "\n")
+  cat("<handl> ", sep = "\n")
+  cat(paste0("  from: ", attr(x, "from")), sep = "\n")
+  cat(paste0("  many: ", many), sep = "\n")
+  cat(paste0("  count: ", if (many) length(x) else 1), sep = "\n")
   if (!is.null(names(x))) x <- list(x)
-  cat('  first 10 ', sep = "\n")
+  cat("  first 10 ", sep = "\n")
   for (i in seq_along_n(x, 10)) {
-    cat(paste0('    id/doi: ', x[[i]]$id %||% x[[i]]$doi), sep = "\n")
+    cat(paste0("    id/doi: ", x[[i]]$id %||% x[[i]]$doi), sep = "\n")
   }
 }
 

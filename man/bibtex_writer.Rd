@@ -33,6 +33,11 @@ cat(bibtex_writer(z), sep = "\\n")
 
 # give a bibtex key
 cat(bibtex_writer(z, "foobar89"), sep = "\\n")
+
+# many at once 
+(z <- system.file('extdata/bib-many.bib', package = "handlr"))
+out <- bibtex_reader(x = z)
+bibtex_writer(out)
 }
 \seealso{
 Other writers: \code{\link{citeproc_writer}},

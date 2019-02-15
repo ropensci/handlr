@@ -1,7 +1,7 @@
 Package: handlr
 Title: Convert Among Citation Formats
 Description: Converter for many citation formats.
-Version: 0.0.5.9100
+Version: 0.0.7.9100
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),

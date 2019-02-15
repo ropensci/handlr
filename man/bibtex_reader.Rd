@@ -20,6 +20,10 @@ bibtex reader
 bibtex_reader(x = z)
 (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 bibtex_reader(x = z)
+
+# many at once 
+(z <- system.file('extdata/bib-many.bib', package = "handlr"))
+bibtex_reader(x = z)
 }
 \seealso{
 Other readers: \code{\link{citeproc_reader}},

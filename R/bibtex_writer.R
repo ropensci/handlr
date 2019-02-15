@@ -22,6 +22,11 @@
 #' 
 #' # give a bibtex key
 #' cat(bibtex_writer(z, "foobar89"), sep = "\n")
+#' 
+#' # many at once 
+#' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
+#' out <- bibtex_reader(x = z)
+#' bibtex_writer(out)
 bibtex_writer <- function(z, key = NULL) {
   assert(z, "handl")
   stopifnot(length(z) > 0)

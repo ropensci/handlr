@@ -10,6 +10,10 @@
 #' bibtex_reader(x = z)
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' bibtex_reader(x = z)
+#' 
+#' # many at once 
+#' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
+#' bibtex_reader(x = z)
 bibtex_reader <- function(x) {
   assert(x, "character")
   x <- paste0(x, collapse = "\n")

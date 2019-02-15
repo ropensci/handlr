@@ -24,6 +24,7 @@
 #' cat(bibtex_writer(z, "foobar89"), sep = "\n")
 bibtex_writer <- function(z, key = NULL) {
   assert(z, "handl")
+  stopifnot(length(z) > 0)
   if (attr(z, "many") %||% FALSE) {
     if (!is.null(key)) {
       if (length(z) != length(key)) {

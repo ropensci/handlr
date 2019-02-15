@@ -23,6 +23,7 @@
 #' citeproc_writer(w)
 citeproc_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
   assert(z, "handl")
+  stopifnot(length(z) > 0)
   w <- if (attr(z, "many") %||% FALSE) {
     lapply(z, citeproc_write_one) 
   } else {

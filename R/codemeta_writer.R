@@ -33,7 +33,7 @@ codemeta_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
 
 codemeta_write_one <- function(z) {
   ccp(list(
-    "@context" = if (!is.null(z$id)) url_cm else NULL,
+    "@context" = if (!is.null(z$id)) cm_urls else NULL,
     "@type" = z$type,
     "@id" = z$id %||% z$identifier,
     "identifier" = z$id %||% z$identifier,
@@ -52,5 +52,4 @@ codemeta_write_one <- function(z) {
   ))
 }
 
-url_cm <- 
-  "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld"
+cm_urls <- c("http://purl.org/codemeta/2.0", "http://schema.org")

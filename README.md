@@ -27,6 +27,10 @@ supported writers:
 - [rdfxml][] (requires suggested package [jsonld][])
 - [codemeta][]
 
+not supported yet, but plan to:
+
+- crosscite
+
 ## Installation
 
 

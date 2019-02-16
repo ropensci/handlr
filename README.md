@@ -5,6 +5,7 @@ handlr
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
+[![Build status](https://ci.appveyor.com/api/projects/status/iu4r3amtntam4c1b?svg=true)](https://ci.appveyor.com/project/sckott/handlr)
 [![codecov.io](https://codecov.io/github/ropensci/handlr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/handlr?branch=master)
 
 a tool for converting among citation formats.
@@ -32,6 +33,15 @@ not supported yet, but plan to:
 - crosscite
 
 ## Installation
+
+stable version
+
+
+```r
+install.packages("handlr")
+```
+
+dev version
 
 
 ```r

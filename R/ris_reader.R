@@ -38,6 +38,9 @@ split_list <- function(lst, splits) {
 ris_reader <- function(x) {
   assert(x, "character")
   txt <- if (file.exists(x)) readLines(x) else strsplit(x, "\n")[[1]]
+  if (any(grepl("\\{", txt)) && any(grepl("\\}", txt))) {
+    stop("'x' is not likely RIS format",  call. = FALSE)
+  }
   meta <- ris_meta(txt)
   if (!"ER" %in% names(meta)) meta <- list(meta)
   if ("ER" %in% names(meta)) {

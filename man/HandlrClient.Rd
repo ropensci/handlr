@@ -56,7 +56,7 @@ x$read()
 x$read("citeproc")
 x$parsed
 
-# you can run read() then write() 
+# you can run read() then write()
 # or just run write(), and read() will be run for you if possible
 z <- system.file('extdata/citeproc.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
@@ -77,12 +77,6 @@ if (interactive()) {
   x$read()
   x$write('bibtex')
 }
-
-# Example of specific formats
-# crosscite
-z <- system.file('extdata/crosscite.json', package = "handlr")
-(x <- HandlrClient$new(x = z))
-x$path
 
 # read in citeproc, write out bibtex
 z <- system.file('extdata/citeproc.json', package = "handlr")
@@ -146,7 +140,7 @@ x$read()
 x$parsed
 ## schmea org
 x$write("schema_org")
-## bibtex 
+## bibtex
 x$write("bibtex")
 ## bibtex to file
 f <- tempfile(fileext=".bib")

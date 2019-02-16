@@ -18,7 +18,8 @@ Imports:
     crul,
     xml2,
     RefManageR,
-    urltools
+    urltools,
+    mime
 Suggests:
     testthat,
     jsonld

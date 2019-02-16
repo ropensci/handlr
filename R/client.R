@@ -1,46 +1,46 @@
 handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta')
-handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org', 
+handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
   'rdfxml', 'codemeta')
 
 #' handlr client
 #'
 #' @export
-#' @param x (character) a file path (the file must exist), a string 
-#' containing contents of the citation, a DOI, or a DOI as a URL. 
+#' @param x (character) a file path (the file must exist), a string
+#' containing contents of the citation, a DOI, or a DOI as a URL.
 #' See Details.
 #' @param ... curl options passed on to [crul::HttpClient]
-#' 
+#'
 #' @details
 #' **Methods**
-#' 
+#'
 #' * `read(format = NULL, ...)` - read input
 #'     * `format`: one of citeproc, ris, bibtex, codemeta, or `NULL`. If `NULL`,
 #'       we attempt to guess the format, and error if we can not guess
 #'     * `...`: further args to the writer fxn, if any
-#' 
+#'
 #' * `write(format, file = NULL, ...)` - write to std out or file
 #'     * `format`: one of citeproc, ris, bibtex, rdfxml
-#'     * `file`: a file path, if NULL to stdout. for `format=ris`, number of 
+#'     * `file`: a file path, if NULL to stdout. for `format=ris`, number of
 #'       files must equal number of ris citations
 #'     * `...`: further args to the writer fxn, if any
-#'     * Note: If `$parsed` is `NULL` then it's likely `$read()` has not 
-#'       been run - in which case we attempt to run `$read()` to 
+#'     * Note: If `$parsed` is `NULL` then it's likely `$read()` has not
+#'       been run - in which case we attempt to run `$read()` to
 #'       populate `$parsed`
 #'
 #' @format NULL
 #' @usage NULL
-#' 
+#'
 #' @details The various inputs to the `x` parameter are handled in different
 #' ways:
-#' 
-#' - file: contents read from file, we grab file extension, and we guess 
-#' format based on combination of contents and file extension because 
+#'
+#' - file: contents read from file, we grab file extension, and we guess
+#' format based on combination of contents and file extension because
 #' file extensions may belie what's in the file
 #' - string: string read in, and we guess format based on contents of
 #' the string
 #' - DOI: we request citeproc-json format from the Crossref API
 #' - DOI url: we request citeproc-json format from the Crossref API
-#' 
+#'
 #' @examples
 #' # read() can be run with format specified or not
 #' # if format not given, we attempt to guess the format and then read
@@ -49,13 +49,13 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read()
 #' x$read("citeproc")
 #' x$parsed
-#' 
-#' # you can run read() then write() 
+#'
+#' # you can run read() then write()
 #' # or just run write(), and read() will be run for you if possible
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
 #' cat(x$write("ris"))
-#' 
+#'
 #' # read from a DOI as a url
 #' if (interactive()) {
 #'   (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
@@ -63,7 +63,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'   x$read()
 #'   x$write('bibtex')
 #' }
-#' 
+#'
 #' # read from a DOI
 #' if (interactive()) {
 #'   (x <- HandlrClient$new('10.7554/elife.01567'))
@@ -71,13 +71,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'   x$read()
 #'   x$write('bibtex')
 #' }
-#' 
-#' # Example of specific formats
-#' # crosscite
-#' z <- system.file('extdata/crosscite.json', package = "handlr")
-#' (x <- HandlrClient$new(x = z))
-#' x$path
-#' 
+#'
 #' # read in citeproc, write out bibtex
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
@@ -90,7 +84,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$write("bibtex", file = f)
 #' readLines(f)
 #' unlink(f)
-#' 
+#'
 #' # read in ris, write out ris
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
@@ -100,7 +94,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
-#' 
+#'
 #' # read in bibtex, write out ris
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' (x <- HandlrClient$new(x = z))
@@ -110,7 +104,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
-#' 
+#'
 #' # read in bibtex, write out RDF XML
 #' if (interactive()) {
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
@@ -122,7 +116,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'   x$write("rdfxml")
 #'   cat(x$write("rdfxml"))
 #' }
-#' 
+#'
 #' # codemeta
 #' (z <- system.file('extdata/codemeta.json', package = "handlr"))
 #' (x <- HandlrClient$new(x = z))
@@ -131,7 +125,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read("codemeta")
 #' x$parsed
 #' x$write("codemeta")
-#' 
+#'
 #' # > 1
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
@@ -140,7 +134,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$parsed
 #' ## schmea org
 #' x$write("schema_org")
-#' ## bibtex 
+#' ## bibtex
 #' x$write("bibtex")
 #' ## bibtex to file
 #' f <- tempfile(fileext=".bib")
@@ -153,7 +147,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' files <- replicate(2, tempfile(fileext=".ris"))
 #' x$write("ris", files)
 #' lapply(files, readLines)
-#' 
+#'
 #' # handle strings instead of files
 #' z <- system.file('extdata/citeproc-crossref.json', package = "handlr")
 #' (x <- HandlrClient$new(x = readLines(z)))
@@ -178,7 +172,7 @@ HandlrClient <- R6::R6Class(
       cat(paste0("  ext: ", self$ext), sep = "\n")
       cat(paste0("  format (guessed): ", self$format_guessed), sep = "\n")
       cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
-      cat(paste0("  string (abbrev.): ", self$substring %||% "none"), 
+      cat(paste0("  string (abbrev.): ", self$substring %||% "none"),
         sep = "\n")
       invisible(self)
     },
@@ -210,7 +204,7 @@ HandlrClient <- R6::R6Class(
         ris = ris_reader(self$path %||% self$string, ...),
         bibtex = bibtex_reader(self$path %||% self$string, ...),
         codemeta = codemeta_reader(self$path %||% self$string, ...),
-        stop("format must be one of ", 
+        stop("format must be one of ",
           paste(handlr_readers, collapse = ", "))
       )
     },
@@ -229,7 +223,7 @@ HandlrClient <- R6::R6Class(
           paste(handlr_writers, collapse = ", "))
       )
       if (is.null(file)) return(out)
-      assert(out, c('list', 'character', 'json'))
+      assert(out, c("list", "character", "json"))
       if (!inherits(out, "list") && length(out) == 1) {
         cat(out, "\n", file = file)
       }
@@ -254,9 +248,11 @@ HandlrClient <- R6::R6Class(
     },
 
     guess_format = function(x) {
-      reader_funs <- paste0(handlr_readers, "_reader")
+      reader_funs <- paste0(
+        grep("bibtex", handlr_readers, invert = TRUE, value = TRUE), "_reader")
+      reader_funs <- c(reader_funs, "bibtex_checker")
       read_attempts <- vapply(reader_funs, function(fun) {
-        tmp <- tryCatch(suppressWarnings(eval(parse(text=fun))(x)), 
+        tmp <- tryCatch(suppressWarnings(eval(parse(text = fun))(x)),
           error = function(e) e)
         !inherits(tmp, "error")
       }, logical(1L))
@@ -271,10 +267,9 @@ HandlrClient <- R6::R6Class(
             return(type)
           } else {
             # check for bibtex type
-            ## if file does not have .bib extension then we'll fail 
             if (
-              "bibtex_reader" %in% names(which(read_attempts)) && 
-              self$ext == "bib"
+              "bibtex_checker" %in% names(which(read_attempts))
+              # && self$ext == "bib"
             ) {
               return("bibtex")
             }
@@ -282,7 +277,9 @@ HandlrClient <- R6::R6Class(
         }
         stop("could not guess format for string; specify format")
       } else {
-        return(handlr_readers[read_attempts])
+        handlr_names <- unname(
+          vapply(reader_funs, function(z) strsplit(z, "_")[[1]][1], ""))
+        return(handlr_names[read_attempts])
       }
     }
   )
@@ -291,4 +288,8 @@ HandlrClient <- R6::R6Class(
 json_val <- function(x) {
   b <- tryCatch(jsonlite::fromJSON(x), error = function(e) e)
   !inherits(b, "error")
+}
+
+bibtex_checker <- function(x) {
+  if (!mime::guess_type(x) == "text/x-bibtex") stop("not bibtex")
 }

@@ -32,6 +32,7 @@
 #' @importFrom RefManageR ReadBib
 #' @importFrom urltools url_encode url_parse
 #' @importFrom crul HttpClient
+#' @importFrom mime guess_type
 #' @name handlr-package
 #' @aliases handlr
 #' @author Scott Chamberlain \email{sckott@@protonmail.com}

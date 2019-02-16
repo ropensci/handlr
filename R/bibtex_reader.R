@@ -55,8 +55,8 @@ bibtex_read_one <- function(x) {
   first_page <- last_page <- NULL
   if (!is.null(x$pages)) {
     pp <- strsplit(x$pages, "--")[[1]]
-    first_page <- as.numeric(pp[1])
-    last_page <- as.numeric(pp[2])
+    first_page <- try_with_warn(pp[1], as.numeric)
+    last_page <- try_with_warn(pp[2], as.numeric)
   }
   
   state <- if (!is.null(doi)) "findable" else "not_found"
@@ -134,3 +134,9 @@ SO_TO_DC_TRANSLATIONS <- list(
 )
 
 pcsp <- function(...) paste(..., collapse = " ")
+
+try_with_warn <- function(x, fun) {
+  res <- tryCatch(eval(fun)(x), warning = function(w) w)
+  if (inherits(res, "warning")) return(x)
+  x
+}

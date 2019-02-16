@@ -1,7 +1,7 @@
 context("HandlrClient: guesses format")
 
 test_that("guesses correctly: citeproc", {
-  z <- system.file('extdata/citeproc.json', package = "handlr")
+  z <- system.file("extdata/citeproc.json", package = "handlr")
   x <- HandlrClient$new(z)
 
   expect_is(x, "HandlrClient")

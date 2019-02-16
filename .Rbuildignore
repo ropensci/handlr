@@ -11,7 +11,6 @@ Makefile
 docs
 .github
 inst/vign
-^\.httr-oauth$
 ^codemeta\.json$
 references.bib
 citeproc_json_from_rorcid.json

@@ -17,12 +17,11 @@ Imports:
     jsonlite,
     crul,
     xml2,
-    RefManageR (>= 1.2.8),
+    RefManageR,
     urltools
 Suggests:
     testthat,
     jsonld
-Remotes: ropensci/RefManageR
 X-schema.org-applicationCategory: Metadata
 X-schema.org-keywords: doi, metadata, citation, bibtex
 X-schema.org-isPartOf: https://ropensci.org

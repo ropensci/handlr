@@ -1,11 +1,11 @@
 Package: handlr
 Title: Convert Among Citation Formats
 Description: Converter for many citation formats.
-Version: 0.0.8.9100
+Version: 0.0.9.9100
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
-    email = "myrmecocystus@gmail.com",
+    email = "sckott@protonmail.com",
     comment = c(ORCID = "0000-0003-1444-9135"))
     )
 URL: https://github.com/ropensci/handlr
@@ -24,6 +24,6 @@ Suggests:
     testthat,
     jsonld
 X-schema.org-applicationCategory: Metadata
-X-schema.org-keywords: doi, metadata, citation, bibtex
+X-schema.org-keywords: doi, metadata, citation, bibtex, Crossref, Crosscite, Codemeta, RIS, Citeproc, RDF, XML, JSON
 X-schema.org-isPartOf: https://ropensci.org
 RoxygenNote: 6.1.1

@@ -9,7 +9,7 @@ citeproc_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 \arguments{
 \item{z}{an object of class \code{handl}; see \link{handl} for more}
 
-\item{auto_unbox}{(logical) automatically ‘unbox’ all atomic
+\item{auto_unbox}{(logical) automatically "unbox" all atomic
 vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
 
 \item{pretty}{(logical) adds indentation whitespace to JSON output

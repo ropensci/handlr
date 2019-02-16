@@ -1,6 +1,9 @@
 Package: handlr
 Title: Convert Among Citation Formats
-Description: Converter for many citation formats.
+Description: Converts among many citation formats, including 'BibTeX',
+    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low
+    level 'R6' class is provided, as well as stand-alone functions
+    for each citation format for both read and write.
 Version: 0.0.9.9100
 License: MIT + file LICENSE
 Authors@R: c(

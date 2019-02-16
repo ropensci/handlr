@@ -2,7 +2,7 @@
 #' 
 #' @export
 #' @param z an object of class `handl`; see [handl] for more
-#' @param auto_unbox (logical) automatically ‘unbox’ all atomic 
+#' @param auto_unbox (logical) automatically "unbox" all atomic 
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
 #' @param pretty (logical) adds indentation whitespace to JSON output 
 #' (default: `TRUE`), passed to [jsonlite::toJSON()]

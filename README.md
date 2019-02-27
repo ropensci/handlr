@@ -4,9 +4,13 @@ handlr
 
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![cran checks](https://cranchecks.info/badges/worst/handlr)](https://cranchecks.info/pkgs/handlr)
 [![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
 [![Build status](https://ci.appveyor.com/api/projects/status/iu4r3amtntam4c1b?svg=true)](https://ci.appveyor.com/project/sckott/handlr)
 [![codecov.io](https://codecov.io/github/ropensci/handlr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/handlr?branch=master)
+[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
+[![cran version](http://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
+
 
 a tool for converting among citation formats.
 

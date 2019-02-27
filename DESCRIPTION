@@ -4,7 +4,7 @@ Description: Converts among many citation formats, including 'BibTeX',
     'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low
     level 'R6' class is provided, as well as stand-alone functions
     for each citation format for both read and write.
-Version: 0.1.0.9100
+Version: 0.1.0.9110
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),

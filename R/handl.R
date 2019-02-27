@@ -23,7 +23,7 @@
 #' - finally, some details of the first 10 are printed
 NULL
 
-
+#' @export
 print.handl <- function(x, ...) {
   many <- attr(x, "many")
   cat("<handl> ", sep = "\n")

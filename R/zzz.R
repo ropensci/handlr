@@ -74,3 +74,7 @@ handlr_ua <- function() {
                 # get_email())
   paste0(versions, collapse = " ")
 }
+
+bind_rows <- function(x) {
+  (data.table::setDF(data.table::rbindlist(x, fill = TRUE, use.names = TRUE)))
+}

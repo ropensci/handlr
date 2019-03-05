@@ -237,6 +237,10 @@ HandlrClient <- R6::R6Class(
           cat(out[[i]], sep = "\n", file = file[i] %||% file, append = TRUE)
         }
       }
+    },
+    
+    as_df = function() {
+      handl_to_df(self$parsed %||% handl_empty())
     }
   ),
 

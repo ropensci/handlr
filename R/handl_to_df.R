@@ -19,7 +19,7 @@
 #' res2 <- bibtex_reader(x = z)
 #' handl_to_df(res2)
 #' 
-#' # handl_to_df(handl_empty())
+#' handl_to_df(handl_empty())
 handl_to_df <- function(x) {
   # data.table not used unitl bind_rows(); using here to fail early
   check_for_package("data.table")
@@ -41,11 +41,11 @@ handl_to_df <- function(x) {
 
 # helpers
 handl_empty <- function() {
-  lst_nms <- c("id", "type", "citeproc_type", "ris_type", "resource_type_general",
-               "doi", "b_url", "title", "author", "publisher", "journal",
-               "is_part_of", "date_created", "date_published", "date_accessed",
-               "description", "volume", "issue", "first_page", "last_page",
-               "keywords", "language", "state")
+  lst_nms <- c("id", "type", "citeproc_type", "ris_type",
+    "resource_type_general","doi", "b_url", "title", "author", "publisher",
+    "journal","is_part_of", "date_created", "date_published", "date_accessed",
+    "description", "volume", "issue", "first_page", "last_page",
+    "keywords", "language", "state")
   lst <- vector("list", length(lst_nms))
   lst <- lapply(lst, function(z) z <- "")
   structure(stats::setNames(lst, lst_nms),

@@ -1,5 +1,5 @@
 context("handl_to_df")
-
+# handl_to_df(handl_empty())
 test_that("handl_to_df: works", {
   z <- system.file('extdata/crossref.bib', package = "handlr")
   x <- bibtex_reader(z)

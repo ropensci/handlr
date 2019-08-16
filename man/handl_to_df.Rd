@@ -32,6 +32,4 @@ x$as_df() # data.frame with citation data
 (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 res2 <- bibtex_reader(x = z)
 handl_to_df(res2)
-
-handl_to_df(handl_empty())
 }

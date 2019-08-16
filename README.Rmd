@@ -125,6 +125,14 @@ reader or writer. They are:
 - `schema_org_writer()`
 - `rdf_xml_writer()`
 
+## Convert data to data.frame
+
+```{r}
+z <- system.file('extdata/bib-many.bib', package = "handlr")
+res2 <- bibtex_reader(x = z)
+handl_to_df(res2)
+```
+
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ropensci/handlr/issues).

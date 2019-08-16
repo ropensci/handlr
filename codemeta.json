@@ -1,0 +1,165 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "handlr",
+  "description": "Converts among many citation formats, including 'BibTeX',\n    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low\n    level 'R6' class is provided, as well as stand-alone functions\n    for each citation format for both read and write.",
+  "name": "handlr: Convert Among Citation Formats",
+  "codeRepository": "https://github.com/ropensci/handlr",
+  "issueTracker": "https://github.com/ropensci/handlr/issues",
+  "license": "https://spdx.org/licenses/MIT",
+  "version": "0.2.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "version": "3.6.1",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 3.6.1 Patched (2019-07-17 r76848)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "sckott@protonmail.com",
+      "@id": "https://orcid.org/0000-0003-1444-9135"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "sckott@protonmail.com",
+      "@id": "https://orcid.org/0000-0003-1444-9135"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonld",
+      "name": "jsonld",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonld"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "data.table",
+      "name": "data.table",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=data.table"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "jsonlite",
+      "name": "jsonlite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=jsonlite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crul",
+      "name": "crul",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crul"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "xml2",
+      "name": "xml2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=xml2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "RefManageR",
+      "name": "RefManageR",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=RefManageR"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "urltools",
+      "name": "urltools",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=urltools"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "mime",
+      "name": "mime",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=mime"
+    }
+  ],
+  "applicationCategory": "Metadata",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["doi", "metadata", "citation", "bibtex", "Crossref", "Crosscite", "Codemeta", "RIS", "Citeproc", "RDF", "XML", "JSON", "citations", "digital-object-identifier", "citeproc", "crosscite", "ris", "r", "r-package", "rstats"],
+  "releaseNotes": "https://github.com/ropensci/handlr/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/handlr/blob/master/README.md",
+  "fileSize": "37.324KB",
+  "contIntegration": ["https://travis-ci.com/ropensci/handlr", "https://ci.appveyor.com/project/sckott/handlr", "https://codecov.io/github/ropensci/handlr?branch=master"],
+  "developmentStatus": "https://www.repostatus.org/#wip"
+}

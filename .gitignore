@@ -6,5 +6,7 @@
 revdep/checks.noindex
 revdep/data.sqlite
 revdep/library.noindex
+revdep/checks
+revdep/library
 references.bib
 handlr.Rproj

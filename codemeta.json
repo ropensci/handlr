@@ -1,5 +1,8 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "handlr",
   "description": "Converts among many citation formats, including 'BibTeX',\n    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low\n    level 'R6' class is provided, as well as stand-alone functions\n    for each citation format for both read and write.",
@@ -7,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/handlr",
   "issueTracker": "https://github.com/ropensci/handlr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.0",
+  "version": "0.2.0.9100",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -159,7 +162,11 @@
   "keywords": ["doi", "metadata", "citation", "bibtex", "Crossref", "Crosscite", "Codemeta", "RIS", "Citeproc", "RDF", "XML", "JSON", "citations", "digital-object-identifier", "citeproc", "crosscite", "ris", "r", "r-package", "rstats"],
   "releaseNotes": "https://github.com/ropensci/handlr/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/handlr/blob/master/README.md",
-  "fileSize": "37.324KB",
-  "contIntegration": ["https://travis-ci.com/ropensci/handlr", "https://ci.appveyor.com/project/sckott/handlr", "https://codecov.io/github/ropensci/handlr?branch=master"],
+  "fileSize": "37.429KB",
+  "contIntegration": [
+    "https://travis-ci.com/ropensci/handlr",
+    "https://ci.appveyor.com/project/sckott/handlr",
+    "https://codecov.io/github/ropensci/handlr?branch=master"
+  ],
   "developmentStatus": "https://www.repostatus.org/#wip"
 }

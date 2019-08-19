@@ -1,6 +1,8 @@
 context("handl-class")
 
 test_that("handl class", {
+  skip_on_cran()
+
   z <- system.file('extdata/crossref.bib', package = "handlr")
   x <- bibtex_reader(z)
 

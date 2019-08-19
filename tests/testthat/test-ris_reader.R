@@ -1,6 +1,8 @@
 context("ris_reader")
 
 test_that("ris_reader: works", {
+  skip_on_cran()
+
   z <- system.file("extdata/crossref.ris", package = "handlr")
   x <- ris_reader(z)
 
@@ -25,6 +27,8 @@ test_that("ris_reader: works", {
 })
 
 test_that("ris_reader: many inputs", {
+  skip_on_cran()
+  
   z <- system.file("extdata/multiple-eg.ris", package = "handlr")
   x <- ris_reader(z)
 

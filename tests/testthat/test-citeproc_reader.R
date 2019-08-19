@@ -1,6 +1,8 @@
 context("citeproc_reader")
 
 test_that("citeproc_reader: works", {
+  skip_on_cran()
+  
   z <- system.file('extdata/citeproc.json', package = "handlr")
   x <- citeproc_reader(z)
 

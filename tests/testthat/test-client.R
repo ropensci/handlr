@@ -1,5 +1,7 @@
 context("HandlrClient")
 
+skip_on_cran()
+
 test_that("HandlrClient class: after initializing, but before reading", {
   expect_is(HandlrClient, "R6ClassGenerator")
   expect_is(HandlrClient$new, "function")

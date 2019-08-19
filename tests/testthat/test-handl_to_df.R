@@ -1,6 +1,8 @@
 context("handl_to_df")
-# handl_to_df(handl_empty())
+
 test_that("handl_to_df: works", {
+  skip_on_cran()
+
   z <- system.file('extdata/crossref.bib', package = "handlr")
   x <- bibtex_reader(z)
   aa <- handl_to_df(x)
@@ -21,6 +23,8 @@ test_that("handl_to_df: works", {
 })
 
 test_that("handl_to_df: works with many citations", {
+  skip_on_cran()
+
   z <- system.file('extdata/bib-many.bib', package = "handlr")
   res2 <- bibtex_reader(x = z)
   aa <- handl_to_df(res2)
@@ -33,6 +37,8 @@ test_that("handl_to_df: works with many citations", {
 })
 
 test_that("handl_to_df: works with HandlrClient", {
+  skip_on_cran()
+  
   z <- system.file('extdata/bib-many.bib', package = "handlr")
   x <- HandlrClient$new(x = z)
   

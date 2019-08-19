@@ -3,6 +3,8 @@ context("codemeta_reader")
 z <- system.file('extdata/codemeta.json', package = "handlr")
 
 test_that("codemeta_reader: works", {
+  skip_on_cran()
+
   x <- codemeta_reader(z)
 
   expect_is(codemeta_reader, "function")
@@ -16,6 +18,8 @@ test_that("codemeta_reader: works", {
 })
 
 test_that("codemeta_reader: read from string", {
+  skip_on_cran()
+  
   str <- paste0(readLines(z), collapse = "")
   x <- codemeta_reader(str)
   

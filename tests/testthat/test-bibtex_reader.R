@@ -1,6 +1,8 @@
 context("bibtex_reader")
 
 test_that("bibtex_reader: works", {
+  skip_on_cran()
+  
   z <- system.file('extdata/crossref.bib', package = "handlr")
   x <- bibtex_reader(z)
 

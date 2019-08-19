@@ -1,5 +1,7 @@
 context("HandlrClient: guesses format")
 
+skip_on_cran()
+
 test_that("guesses correctly: citeproc", {
   z <- system.file("extdata/citeproc.json", package = "handlr")
   x <- HandlrClient$new(z)

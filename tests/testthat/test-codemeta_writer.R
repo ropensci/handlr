@@ -1,6 +1,8 @@
 context("codemeta_writer")
 
 test_that("codemeta_writer: works", {
+  skip_on_cran()
+
   z <- system.file('extdata/codemeta.json', package = "handlr")
   tmp <- codemeta_reader(z)
   x <- codemeta_writer(tmp)
@@ -11,6 +13,8 @@ test_that("codemeta_writer: works", {
 })
 
 test_that("codemeta_writer: write from citeproc json", {
+  skip_on_cran()
+
   z <- system.file('extdata/citeproc.json', package = "handlr")
   tmp <- citeproc_reader(z)
   x <- codemeta_writer(z = tmp)
@@ -19,6 +23,8 @@ test_that("codemeta_writer: write from citeproc json", {
 
 test_that("codemeta_writer: output gives back same as 
   input from codemeta_reader", {
+
+  skip_on_cran()
 
   z <- system.file('extdata/codemeta.json', package = "handlr")
   w <- codemeta_reader(z)

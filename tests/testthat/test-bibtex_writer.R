@@ -1,6 +1,8 @@
 context("bibtex_writer")
 
 test_that("bibtex_writer: works", {
+  skip_on_cran()
+
   z <- system.file('extdata/citeproc.json', package = "handlr")
   tmp <- citeproc_reader(z)
   x <- bibtex_writer(z = tmp)
@@ -10,6 +12,8 @@ test_that("bibtex_writer: works", {
 })
 
 test_that("bibtex_writer: write from citeproc json", {
+  skip_on_cran()
+
   z <- system.file('extdata/citeproc.json', package = "handlr")
   tmp <- citeproc_reader(z)
   x <- bibtex_writer(z = tmp)
@@ -17,6 +21,8 @@ test_that("bibtex_writer: write from citeproc json", {
 })
 
 test_that("bibtex_writer: output gives back same as input from bibtex_reader", {
+  skip_on_cran()
+  
   z <- system.file('extdata/bibtex2.bib', package = "handlr")
   w <- bibtex_reader(z)
   bw_out <- bibtex_writer(w)

@@ -11,7 +11,7 @@ Authors@R: c(
     email = "sckott@protonmail.com",
     comment = c(ORCID = "0000-0003-1444-9135"))
     )
-URL: https://github.com/ropensci/handlr
+URL: https://docs.ropensci.org/handlr, https://github.com/ropensci/handlr
 BugReports: https://github.com/ropensci/handlr/issues
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

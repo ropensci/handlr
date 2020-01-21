@@ -25,5 +25,5 @@ z <- system.file('extdata/peerj.ris', package = "handlr")
 prj <- ris_reader(z)
 res <- c(cr, prj)
 res
-invisible(lapply(bibtex_writer(res), cat, sep = "\\n\\n"))
+invisible(lapply(bibtex_writer(res), cat, sep = "\n\n"))
 }

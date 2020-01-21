@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/handlr",
   "issueTracker": "https://github.com/ropensci/handlr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.0.9100",
+  "version": "0.2.1.91",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
+    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 Patched (2019-07-17 r76848)",
+  "runtimePlatform": "R version 3.6.2 Patched (2019-12-12 r77564)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -162,11 +162,8 @@
   "keywords": ["doi", "metadata", "citation", "bibtex", "Crossref", "Crosscite", "Codemeta", "RIS", "Citeproc", "RDF", "XML", "JSON", "citations", "digital-object-identifier", "citeproc", "crosscite", "ris", "r", "r-package", "rstats"],
   "releaseNotes": "https://github.com/ropensci/handlr/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/handlr/blob/master/README.md",
-  "fileSize": "37.429KB",
-  "contIntegration": [
-    "https://travis-ci.com/ropensci/handlr",
-    "https://ci.appveyor.com/project/sckott/handlr",
-    "https://codecov.io/github/ropensci/handlr?branch=master"
-  ],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "fileSize": "38.207KB",
+  "contIntegration": ["https://travis-ci.com/ropensci/handlr", "https://ci.appveyor.com/project/sckott/handlr", "https://codecov.io/github/ropensci/handlr?branch=master"],
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "relatedLink": "https://docs.ropensci.org/handlr"
 }

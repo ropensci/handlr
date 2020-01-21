@@ -25,10 +25,13 @@ codemeta_reader(x = z)
 codemeta_reader(x = z)
 }
 \seealso{
-Other readers: \code{\link{bibtex_reader}},
-  \code{\link{citeproc_reader}}, \code{\link{ris_reader}}
+Other readers: 
+\code{\link{bibtex_reader}()},
+\code{\link{citeproc_reader}()},
+\code{\link{ris_reader}()}
 
-Other codemeta: \code{\link{codemeta_writer}}
+Other codemeta: 
+\code{\link{codemeta_writer}()}
 }
 \concept{codemeta}
 \concept{readers}

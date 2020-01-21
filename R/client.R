@@ -2,34 +2,10 @@ handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta')
 handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
   'rdfxml', 'codemeta')
 
-#' handlr client
+#' @title HandlrClient
+#' @description handlr client, read and write to and from all citation formats 
 #'
 #' @export
-#' @param x (character) a file path (the file must exist), a string
-#' containing contents of the citation, a DOI, or a DOI as a URL.
-#' See Details.
-#' @param ... curl options passed on to [crul::HttpClient]
-#'
-#' @details
-#' **Methods**
-#'
-#' * `read(format = NULL, ...)` - read input
-#'     * `format`: one of citeproc, ris, bibtex, codemeta, or `NULL`. If `NULL`,
-#'       we attempt to guess the format, and error if we can not guess
-#'     * `...`: further args to the writer fxn, if any
-#'
-#' * `write(format, file = NULL, ...)` - write to std out or file
-#'     * `format`: one of citeproc, ris, bibtex, rdfxml
-#'     * `file`: a file path, if NULL to stdout. for `format=ris`, number of
-#'       files must equal number of ris citations
-#'     * `...`: further args to the writer fxn, if any
-#'     * Note: If `$parsed` is `NULL` then it's likely `$read()` has not
-#'       been run - in which case we attempt to run `$read()` to
-#'       populate `$parsed`
-#'
-#' @format NULL
-#' @usage NULL
-#'
 #' @details The various inputs to the `x` parameter are handled in different
 #' ways:
 #'
@@ -61,6 +37,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'   (x <- HandlrClient$new('https://doi.org/10.7554/elife.01567'))
 #'   x$parsed
 #'   x$read()
+#'   x$parsed
 #'   x$write('bibtex')
 #' }
 #'
@@ -89,7 +66,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' z <- system.file('extdata/peerj.ris', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
 #' x$path
-#' x$format
+#' x$format_guessed
 #' x$read("ris")
 #' x$parsed
 #' x$write("ris")
@@ -99,7 +76,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' (x <- HandlrClient$new(x = z))
 #' x$path
-#' x$format
+#' x$format_guessed
 #' x$read("bibtex")
 #' x$parsed
 #' x$write("ris")
@@ -110,7 +87,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #'   (x <- HandlrClient$new(x = z))
 #'   x$path
-#'   x$format
+#'   x$format_guessed
 #'   x$read("bibtex")
 #'   x$parsed
 #'   x$write("rdfxml")
@@ -121,7 +98,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (z <- system.file('extdata/codemeta.json', package = "handlr"))
 #' (x <- HandlrClient$new(x = z))
 #' x$path
-#' x$format
+#' x$format_guessed
 #' x$read("codemeta")
 #' x$parsed
 #' x$write("codemeta")
@@ -157,26 +134,41 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 HandlrClient <- R6::R6Class(
   'HandlrClient',
   public = list(
+    #' @field path (character) non-empty if file path passed to initialize
     path = NULL,
+    #' @field string (character) non-empty if string (non-file) passed to initialize
     string = NULL,
-    substring = NULL,
+    #' @field parsed after `read()` is run, the parsed content
     parsed = NULL,
+    #' @field file (logical) `TRUE` if a file passed to initialize, else `FALSE`
     file = FALSE,
+    #' @field ext (character) the file extension
     ext = NULL,
+    #' @field format_guessed (character) the guessed file format
     format_guessed = NULL,
+    #' @field doi (character) the DOI, if any found
     doi = NULL,
 
+    #' @description print method for `HandlrClient` objects
+    #' @param x self
+    #' @param ... ignored
     print = function(x, ...) {
       cat("<handlr> ", sep = "\n")
       cat(paste0("  doi: ", self$doi), sep = "\n")
       cat(paste0("  ext: ", self$ext), sep = "\n")
       cat(paste0("  format (guessed): ", self$format_guessed), sep = "\n")
       cat(paste0("  path: ", self$path %||% "none"), sep = "\n")
-      cat(paste0("  string (abbrev.): ", self$substring %||% "none"),
+      cat(paste0("  string (abbrev.): ", private$substring %||% "none"),
         sep = "\n")
       invisible(self)
     },
 
+    #' @description Create a new `HandlrClient` object
+    #' @param x (character) a file path (the file must exist), a string
+    #' containing contents of the citation, a DOI, or a DOI as a URL.
+    #' See Details.
+    #' @param ... curl options passed on to [crul::verb-GET]
+    #' @return A new `HandlrClient` object
     initialize = function(x, ...) {
       assert(x, "character")
       if (is_url_doi(x) || is_doi(x)) {
@@ -190,12 +182,17 @@ HandlrClient <- R6::R6Class(
       if (!is_file(x)) {
         if (!nzchar(x)) stop("input is zero length string")
         self$string <- x
-        self$substring <- substring(x, 1, 80)
+        private$substring <- substring(x, 1, 80)
       }
       self$ext <- private$find_ext(x)
       self$format_guessed <- private$guess_format(x)
     },
 
+    #' @description read input
+    #' @param format (character) one of citeproc, ris, bibtex, codemeta, or
+    #' `NULL`. If `NULL`, we attempt to guess the format, and error if we
+    #' can not guess
+    #' @param ... further args to the writer fxn, if any
     read = function(format = NULL, ...) {
       if (is.null(format)) format <- self$format_guessed
       self$parsed <- switch(
@@ -209,6 +206,14 @@ HandlrClient <- R6::R6Class(
       )
     },
 
+    #' @description write to std out or file
+    #' @param format (character) one of citeproc, ris, bibtex, rdfxml
+    #' @param file a file path, if NULL to stdout. for `format=ris`,
+    #' number of files must equal number of ris citations
+    #' @param ... further args to the writer fxn, if any
+    #' @note If `$parsed` is `NULL` then it's likely `$read()` has not
+    #' been run - in which case we attempt to run `$read()` to
+    #' populate `$parsed`
     write = function(format, file = NULL, ...) {
       if (is.null(self$parsed)) self$read()
       out <- switch(
@@ -238,13 +243,16 @@ HandlrClient <- R6::R6Class(
         }
       }
     },
-    
+
+    #' @description convert data to a data.frame using [handl_to_df()]
+    #' @return a data.frame
     as_df = function() {
       handl_to_df(self$parsed %||% handl_empty())
     }
   ),
 
   private = list(
+    substring = NULL,
     find_ext = function(x) {
       if (!file.exists(x)) return(NULL)
       tmp <- strsplit(basename(x), "\\.")[[1]]

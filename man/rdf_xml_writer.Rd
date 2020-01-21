@@ -33,10 +33,12 @@ if (requireNamespace("jsonld") && interactive()) {
 }
 }
 \seealso{
-Other writers: \code{\link{bibtex_writer}},
-  \code{\link{citeproc_writer}},
-  \code{\link{codemeta_writer}}, \code{\link{ris_writer}},
-  \code{\link{schema_org_writer}}
+Other writers: 
+\code{\link{bibtex_writer}()},
+\code{\link{citeproc_writer}()},
+\code{\link{codemeta_writer}()},
+\code{\link{ris_writer}()},
+\code{\link{schema_org_writer}()}
 }
 \concept{rdf-xml}
 \concept{writers}

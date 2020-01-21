@@ -36,12 +36,15 @@ w <- citeproc_reader(x = z)
 citeproc_writer(w)
 }
 \seealso{
-Other writers: \code{\link{bibtex_writer}},
-  \code{\link{codemeta_writer}},
-  \code{\link{rdf_xml_writer}}, \code{\link{ris_writer}},
-  \code{\link{schema_org_writer}}
+Other writers: 
+\code{\link{bibtex_writer}()},
+\code{\link{codemeta_writer}()},
+\code{\link{rdf_xml_writer}()},
+\code{\link{ris_writer}()},
+\code{\link{schema_org_writer}()}
 
-Other citeproc: \code{\link{citeproc_reader}}
+Other citeproc: 
+\code{\link{citeproc_reader}()}
 }
 \concept{citeproc}
 \concept{writers}

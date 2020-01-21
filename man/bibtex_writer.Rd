@@ -24,15 +24,15 @@ bibtex writer
 (z <- system.file('extdata/citeproc.json', package = "handlr"))
 (tmp <- citeproc_reader(z))
 bibtex_writer(z = tmp)
-cat(bibtex_writer(z = tmp), sep = "\\n")
+cat(bibtex_writer(z = tmp), sep = "\n")
 
 (z <- system.file('extdata/bibtex2.bib', package = "handlr"))
 z <- bibtex_reader(z)
 bibtex_writer(z)
-cat(bibtex_writer(z), sep = "\\n")
+cat(bibtex_writer(z), sep = "\n")
 
 # give a bibtex key
-cat(bibtex_writer(z, "foobar89"), sep = "\\n")
+cat(bibtex_writer(z, "foobar89"), sep = "\n")
 
 # many at once 
 (z <- system.file('extdata/bib-many.bib', package = "handlr"))
@@ -40,12 +40,15 @@ out <- bibtex_reader(x = z)
 bibtex_writer(out)
 }
 \seealso{
-Other writers: \code{\link{citeproc_writer}},
-  \code{\link{codemeta_writer}},
-  \code{\link{rdf_xml_writer}}, \code{\link{ris_writer}},
-  \code{\link{schema_org_writer}}
+Other writers: 
+\code{\link{citeproc_writer}()},
+\code{\link{codemeta_writer}()},
+\code{\link{rdf_xml_writer}()},
+\code{\link{ris_writer}()},
+\code{\link{schema_org_writer}()}
 
-Other bibtex: \code{\link{bibtex_reader}}
+Other bibtex: 
+\code{\link{bibtex_reader}()}
 }
 \concept{bibtex}
 \concept{writers}

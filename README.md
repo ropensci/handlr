@@ -55,9 +55,6 @@ devtools::install_github("ropensci/handlr")
 
 ```r
 library("handlr")
-#> Registered S3 method overwritten by 'crul':
-#>   method                 from
-#>   as.character.form_file httr
 ```
 
 ## All in one
@@ -95,20 +92,6 @@ x$parsed
 #>   count: 1
 #>   first 10 
 #>     id/doi: https://doi.org/10.5438/4k3m-nyvg
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
-NA
 ```
 
 write out bibtex
@@ -146,18 +129,15 @@ reader or writer. They are:
 z <- system.file('extdata/bib-many.bib', package = "handlr")
 res2 <- bibtex_reader(x = z)
 handl_to_df(res2)
-#>             key                                        id    type
-#> 1    Amano_2016 https://doi.org/10.1093%2fbiosci%2fbiw022 article
-#> 2 Bachelot_2016       https://doi.org/10.1890%2f15-1397.1 article
-#>   bibtex_type   citeproc_type ris_type resource_type_general
-#> 1     article article-journal     JOUR                  <NA>
-#> 2     article article-journal     JOUR                  <NA>
-#>   additional_type                   doi
-#> 1  JournalArticle 10.1093/biosci/biw022
-#> 2  JournalArticle     10.1890/15-1397.1
-#>                                     b_url
-#> 1 http://dx.doi.org/10.1093/biosci/biw022
-#> 2     http://dx.doi.org/10.1890/15-1397.1
+#>             key                                        id    type bibtex_type
+#> 1    Amano_2016 https://doi.org/10.1093%2fbiosci%2fbiw022 article     article
+#> 2 Bachelot_2016       https://doi.org/10.1890%2f15-1397.1 article     article
+#>     citeproc_type ris_type resource_type_general additional_type
+#> 1 article-journal     JOUR                  <NA>  JournalArticle
+#> 2 article-journal     JOUR                  <NA>  JournalArticle
+#>                     doi                                   b_url
+#> 1 10.1093/biosci/biw022 http://dx.doi.org/10.1093/biosci/biw022
+#> 2     10.1890/15-1397.1     http://dx.doi.org/10.1890/15-1397.1
 #>                                                                                                        title
 #> 1                            Spatial Gaps in Global Biodiversity Information and the Role of Citizen Science
 #> 2 Long-lasting effects of land use history on soil fungal communities in second-growth tropical rain forests

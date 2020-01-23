@@ -41,6 +41,7 @@ RIS tags https://en.wikipedia.org/wiki/RIS_(file_format)
 \seealso{
 Other readers: 
 \code{\link{bibtex_reader}()},
+\code{\link{cff_reader}()},
 \code{\link{citeproc_reader}()},
 \code{\link{codemeta_reader}()}
 

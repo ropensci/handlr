@@ -27,6 +27,7 @@ citeproc_reader(x = z)
 \seealso{
 Other readers: 
 \code{\link{bibtex_reader}()},
+\code{\link{cff_reader}()},
 \code{\link{codemeta_reader}()},
 \code{\link{ris_reader}()}
 

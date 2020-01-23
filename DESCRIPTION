@@ -1,10 +1,11 @@
 Package: handlr
 Title: Convert Among Citation Formats
 Description: Converts among many citation formats, including 'BibTeX',
-    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low
-    level 'R6' class is provided, as well as stand-alone functions
-    for each citation format for both read and write.
-Version: 0.2.1.91
+    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', 'Schema.org', and
+    'Citation File Format'. A low level 'R6' class is provided, as well
+    as stand-alone functions for each citation format for both read
+    and write.
+Version: 0.2.2.92
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -23,7 +24,8 @@ Imports:
     xml2,
     RefManageR,
     urltools,
-    mime
+    mime,
+    yaml
 Suggests:
     testthat,
     jsonld,

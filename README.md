@@ -8,8 +8,8 @@ handlr
 [![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
 [![Build status](https://ci.appveyor.com/api/projects/status/iu4r3amtntam4c1b?svg=true)](https://ci.appveyor.com/project/sckott/handlr)
 [![codecov.io](https://codecov.io/github/ropensci/handlr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/handlr?branch=master)
-[![rstudio mirror downloads](http://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
-[![cran version](http://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
+[![cran version](https://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
 
 
 a tool for converting among citation formats.
@@ -49,7 +49,7 @@ dev version
 
 
 ```r
-devtools::install_github("ropensci/handlr")
+remotes::install_github("ropensci/handlr")
 ```
 
 

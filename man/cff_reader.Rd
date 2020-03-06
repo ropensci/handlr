@@ -15,9 +15,40 @@ an object of class \code{handl}; see \link{handl} for more
 \description{
 Citation File Format (cff) reader
 }
+\details{
+CFF only supports one citation, so \code{many} will always be
+\code{FALSE}. You can though have many references in your CFF file
+associated with the citation.
+
+\code{references} is an optional component in cff files. If included, we check
+the following:
+\itemize{
+\item each reference must have the 3 required fields: type, authors, title
+\item type must be in the allowed set, see \link{cff_reference_types}
+\item the elements within authors must each be an entity or person object
+https://github.com/citation-file-format/citation-file-format/blob/master/README.md#entity-objects
+https://github.com/citation-file-format/citation-file-format/blob/master/README.md#person-objects
+\item title must be a string
+}
+}
 \examples{
 (z <- system.file('extdata/citation.cff', package = "handlr"))
-cff_reader(x = z)
+res <- cff_reader(x = z)
+res
+res$cff_version
+res$b_version
+res$message
+res$id
+res$doi
+res$title
+res$author
+res$references
+
+# no references
+(z <- system.file('extdata/citation-norefs.cff', package = "handlr"))
+out <- cff_reader(x = z)
+out
+out$references
 }
 \references{
 CFF format:

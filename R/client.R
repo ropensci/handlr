@@ -1,4 +1,4 @@
-handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta')
+handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta', 'cff')
 handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
   'rdfxml', 'codemeta')
 
@@ -102,6 +102,15 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$read("codemeta")
 #' x$parsed
 #' x$write("codemeta")
+#' 
+#' # cff
+#' (z <- system.file('extdata/citation.cff', package = "handlr"))
+#' (x <- HandlrClient$new(x = z))
+#' x$path
+#' x$format_guessed
+#' x$read("cff")
+#' x$parsed
+#' x$write("codemeta")
 #'
 #' # > 1
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
@@ -201,6 +210,7 @@ HandlrClient <- R6::R6Class(
         ris = ris_reader(self$path %||% self$string, ...),
         bibtex = bibtex_reader(self$path %||% self$string, ...),
         codemeta = codemeta_reader(self$path %||% self$string, ...),
+        cff = cff_reader(self$path %||% self$string, ...),
         stop("format must be one of ",
           paste(handlr_readers, collapse = ", "))
       )
@@ -284,6 +294,10 @@ HandlrClient <- R6::R6Class(
               # && self$ext == "bib"
             ) {
               return("bibtex")
+            } else {
+              # decide between ris and cff
+              fmt <- if (!is.null(cff_reader(x)$cff_version)) "cff" else "ris"
+              return(fmt)
             }
           }
         }

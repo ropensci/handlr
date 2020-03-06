@@ -110,6 +110,15 @@ x$read("codemeta")
 x$parsed
 x$write("codemeta")
 
+# cff
+(z <- system.file('extdata/citation.cff', package = "handlr"))
+(x <- HandlrClient$new(x = z))
+x$path
+x$format_guessed
+x$read("cff")
+x$parsed
+x$write("codemeta")
+
 # > 1
 z <- system.file('extdata/citeproc-many.json', package = "handlr")
 (x <- HandlrClient$new(x = z))

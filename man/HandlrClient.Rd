@@ -180,6 +180,7 @@ cat(x$write("bibtex"), sep = "\n")
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-print"></a>}}
+\if{latex}{\out{\hypertarget{method-print}{}}}
 \subsection{Method \code{print()}}{
 print method for \code{HandlrClient} objects
 \subsection{Usage}{
@@ -198,6 +199,7 @@ print method for \code{HandlrClient} objects
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-new"></a>}}
+\if{latex}{\out{\hypertarget{method-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new \code{HandlrClient} object
 \subsection{Usage}{
@@ -221,6 +223,7 @@ A new \code{HandlrClient} object
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-read"></a>}}
+\if{latex}{\out{\hypertarget{method-read}{}}}
 \subsection{Method \code{read()}}{
 read input
 \subsection{Usage}{
@@ -241,6 +244,7 @@ can not guess}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-write"></a>}}
+\if{latex}{\out{\hypertarget{method-write}{}}}
 \subsection{Method \code{write()}}{
 write to std out or file
 \subsection{Usage}{
@@ -262,6 +266,7 @@ number of files must equal number of ris citations}
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-as_df"></a>}}
+\if{latex}{\out{\hypertarget{method-as_df}{}}}
 \subsection{Method \code{as_df()}}{
 convert data to a data.frame using \code{\link[=handl_to_df]{handl_to_df()}}
 \subsection{Usage}{
@@ -274,6 +279,7 @@ a data.frame
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

@@ -4,7 +4,9 @@
 \name{cff_reference_types}
 \alias{cff_reference_types}
 \title{cff references types}
-\format{An object of class \code{character} of length 47.}
+\format{
+An object of class \code{character} of length 47.
+}
 \usage{
 cff_reference_types
 }

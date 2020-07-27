@@ -6,7 +6,7 @@
 #' @family readers
 #' @family cff
 #' @references CFF format:
-#' https://github.com/citation-file-format/citation-file-format/blob/master/README.md
+#' https://github.com/citation-file-format/citation-file-format
 #' @details CFF only supports one citation, so `many` will always be
 #' `FALSE`. You can though have many references in your CFF file
 #' associated with the citation.
@@ -16,8 +16,8 @@
 #' - each reference must have the 3 required fields: type, authors, title
 #' - type must be in the allowed set, see [cff_reference_types]
 #' - the elements within authors must each be an entity or person object
-#' https://github.com/citation-file-format/citation-file-format/blob/master/README.md#entity-objects
-#' https://github.com/citation-file-format/citation-file-format/blob/master/README.md#person-objects
+#' https://github.com/citation-file-format/citation-file-format#entity-objects
+#' https://github.com/citation-file-format/citation-file-format#person-objects
 #' - title must be a string
 #' @examples
 #' (z <- system.file('extdata/citation.cff', package = "handlr"))

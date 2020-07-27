@@ -9,7 +9,7 @@ rdf_xml_writer(z, ...)
 \arguments{
 \item{z}{an object of class \code{handl}; see \link{handl} for more}
 
-\item{...}{further params passed to \code{\link[jsonld:jsonld_to_rdf]{jsonld::jsonld_to_rdf()}}}
+\item{...}{further params passed to \code{\link[jsonld:jsonld]{jsonld::jsonld_to_rdf()}}}
 }
 \value{
 RDF XML

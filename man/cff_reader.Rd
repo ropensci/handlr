@@ -26,8 +26,8 @@ the following:
 \item each reference must have the 3 required fields: type, authors, title
 \item type must be in the allowed set, see \link{cff_reference_types}
 \item the elements within authors must each be an entity or person object
-https://github.com/citation-file-format/citation-file-format/blob/master/README.md#entity-objects
-https://github.com/citation-file-format/citation-file-format/blob/master/README.md#person-objects
+https://github.com/citation-file-format/citation-file-format#entity-objects
+https://github.com/citation-file-format/citation-file-format#person-objects
 \item title must be a string
 }
 }
@@ -52,7 +52,7 @@ out$references
 }
 \references{
 CFF format:
-https://github.com/citation-file-format/citation-file-format/blob/master/README.md
+https://github.com/citation-file-format/citation-file-format
 }
 \seealso{
 Other readers: 

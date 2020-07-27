@@ -10,12 +10,12 @@ citeproc_writer(z, auto_unbox = TRUE, pretty = TRUE, ...)
 \item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{auto_unbox}{(logical) automatically "unbox" all atomic
-vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+vectors of length 1 (default: \code{TRUE}). passed to \code{\link[jsonlite:fromJSON]{jsonlite::toJSON()}}}
 
 \item{pretty}{(logical) adds indentation whitespace to JSON output
-(default: \code{TRUE}), passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+(default: \code{TRUE}), passed to \code{\link[jsonlite:fromJSON]{jsonlite::toJSON()}}}
 
-\item{...}{further params passed to \code{\link[jsonlite:toJSON]{jsonlite::toJSON()}}}
+\item{...}{further params passed to \code{\link[jsonlite:fromJSON]{jsonlite::toJSON()}}}
 }
 \value{
 citeproc as JSON

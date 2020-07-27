@@ -2,7 +2,7 @@
 % Please edit documentation in R/ris_reader.R
 \name{ris_reader}
 \alias{ris_reader}
-\title{ris reader}
+\title{ris reader (Research Information Systems)}
 \usage{
 ris_reader(x)
 }
@@ -13,7 +13,7 @@ ris_reader(x)
 an object of class \code{handl}; see \link{handl} for more
 }
 \description{
-ris reader
+ris reader (Research Information Systems)
 }
 \examples{
 z <- system.file('extdata/crossref.ris', package = "handlr")

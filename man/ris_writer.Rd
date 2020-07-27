@@ -2,7 +2,7 @@
 % Please edit documentation in R/ris_writer.R
 \name{ris_writer}
 \alias{ris_writer}
-\title{ris writer}
+\title{ris writer (Research Information Systems)}
 \usage{
 ris_writer(z)
 }
@@ -13,7 +13,7 @@ ris_writer(z)
 text if one RIS citation or list of many
 }
 \description{
-ris writer
+ris writer (Research Information Systems)
 }
 \examples{
 # from a RIS file

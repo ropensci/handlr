@@ -8,7 +8,7 @@ split_list <- function(lst, splits) {
 }
 
 
-#' ris reader
+#' ris reader (Research Information Systems)
 #'
 #' @export
 #' @param x (character) a file path or string

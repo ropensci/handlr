@@ -1,4 +1,4 @@
-#' ris writer
+#' ris writer (Research Information Systems)
 #'
 #' @export
 #' @param z an object of class `handl`; see [handl] for more

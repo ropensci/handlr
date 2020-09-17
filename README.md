@@ -3,12 +3,12 @@ handlr
 
 
 
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 [![cran checks](https://cranchecks.info/badges/worst/handlr)](https://cranchecks.info/pkgs/handlr)
 [![Build Status](https://travis-ci.com/ropensci/handlr.svg?branch=master)](https://travis-ci.com/ropensci/handlr)
 [![Build status](https://ci.appveyor.com/api/projects/status/iu4r3amtntam4c1b?svg=true)](https://ci.appveyor.com/project/sckott/handlr)
 [![codecov.io](https://codecov.io/github/ropensci/handlr/coverage.svg?branch=master)](https://codecov.io/github/ropensci/handlr?branch=master)
-[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/handlr)](https://github.com/metacran/cranlogs.app)
+[![rstudio mirror downloads](https://cranlogs.r-pkg.org/badges/handlr)](https://github.com/r-hub/cranlogs.app)
 [![cran version](https://www.r-pkg.org/badges/version/handlr)](https://cran.r-project.org/package=handlr)
 
 
@@ -70,7 +70,7 @@ x
 #>   doi: 
 #>   ext: json
 #>   format (guessed): citeproc
-#>   path: /Library/Frameworks/R.framework/Versions/3.6/Resources/library/handlr/extdata/citeproc.json
+#>   path: /Library/Frameworks/R.framework/Versions/4.0/Resources/library/handlr/extdata/citeproc.json
 #>   string (abbrev.): none
 ```
 
@@ -157,8 +157,7 @@ handl_to_df(res2)
 * Please [report any issues or bugs](https://github.com/ropensci/handlr/issues).
 * License: MIT
 * Get citation information for `handlr` in R doing `citation(package = 'handlr')`
-* Please note that this project is released with a [Contributor Code of Conduct][coc].
-By participating in this project you agree to abide by its terms.
+* Please note that this package is released with a [Contributor Code of Conduct](https://ropensci.org/code-of-conduct/). By contributing to this project, you agree to abide by its terms.
 
 [![ropensci_footer](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org)
 
@@ -170,4 +169,3 @@ By participating in this project you agree to abide by its terms.
 [bibtex]: http://www.bibtex.org/
 [schema.org]: https://schema.org/
 [rdfxml]: https://en.wikipedia.org/wiki/RDF/XML
-[coc]: https://github.com/ropensci/handlr/blob/master/CODE_OF_CONDUCT.md

@@ -49,12 +49,14 @@ prj <- ris_reader(z)
 c(cr, prj)
 
 # many bibtex to ris via c method
+if (require("bibtex")) {
 a <- system.file('extdata/bibtex.bib', package = "handlr")
 b <- system.file('extdata/crossref.bib', package = "handlr")
 aa <- bibtex_reader(a)
 bb <- bibtex_reader(a)
 (res <- c(aa, bb))
 cat(ris_writer(res), sep = "\n\n")
+}
 
 ## manhy Citeproc to RIS
 z <- system.file('extdata/citeproc-many.json', package = "handlr")

@@ -1,5 +1,7 @@
 context("bibtex_writer")
 
+skip_if_not_installed("bibtex")
+
 test_that("bibtex_writer: works", {
   skip_on_cran()
 

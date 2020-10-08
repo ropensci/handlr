@@ -8,15 +8,17 @@
 #' @family writers
 #' @family rdf-xml
 #' @examples
-#' if (requireNamespace("jsonld") && interactive()) {
+#' if (require("jsonld") && interactive()) {
 #'   library("jsonld")
 #'   z <- system.file('extdata/citeproc.json', package = "handlr")
 #'   (tmp <- citeproc_reader(z))
-#' 
+#'  
+#'   if (require("bibtex")) {
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #'   (tmp <- bibtex_reader(z))
 #'   rdf_xml_writer(z = tmp)
 #'   cat(rdf_xml_writer(z = tmp))
+#'   }
 #' }
 rdf_xml_writer <- function(z, ...) {
   check_for_package("jsonld")

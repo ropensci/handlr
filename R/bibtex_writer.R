@@ -19,7 +19,7 @@
 #' cat(bibtex_writer(tmp, "foobar89"), sep = "\n")
 #' 
 #' # many at once
-#' if (requireNamespace("bibtex", quietly = TRUE)) {
+#' if (require("bibtex")) {
 #' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 #' out <- bibtex_reader(x = z)
 #' bibtex_writer(out)

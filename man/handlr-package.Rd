@@ -13,8 +13,9 @@ A tool for converting among citation formats
 \itemize{
 \item citeproc
 \item ris
-\item bibtex
+\item bibtex (requires suggested package \code{bibtex})
 \item codemeta
+\item cff
 }
 }
 
@@ -27,6 +28,7 @@ A tool for converting among citation formats
 \item schema.org
 \item rdfxml (requires suggested package \code{jsonld})
 \item codemeta
+\item cff
 }
 }
 

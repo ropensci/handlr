@@ -5,7 +5,9 @@
 #' @return an object of class `handl`; see [handl] for more
 #' @family readers
 #' @family bibtex
+#' @note requires package `bibtex`, an optional package for handlr
 #' @examples
+#' if (require("bibtex")) {
 #' (z <- system.file('extdata/crossref.bib', package = "handlr"))
 #' bibtex_reader(x = z)
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
@@ -14,6 +16,7 @@
 #' # many at once 
 #' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 #' bibtex_reader(x = z)
+#' }
 bibtex_reader <- function(x) {
   check_for_package("bibtex")
   assert(x, "character")

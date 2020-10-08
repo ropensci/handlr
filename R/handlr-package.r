@@ -6,8 +6,9 @@
 #' 
 #' - citeproc
 #' - ris
-#' - bibtex
-#' - codemeta 
+#' - bibtex (requires suggested package `bibtex`)
+#' - codemeta
+#' - cff
 #' 
 #' @section supported writers:
 #' 
@@ -17,6 +18,7 @@
 #' - schema.org
 #' - rdfxml (requires suggested package `jsonld`)
 #' - codemeta
+#' - cff
 #' 
 #' @section links for citation formats:
 #' 

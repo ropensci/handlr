@@ -15,9 +15,11 @@
 #' x$read()
 #' x$as_df() # data.frame with citation data
 #' 
+#' if (require("bibtex")) {
 #' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 #' res2 <- bibtex_reader(x = z)
 #' handl_to_df(res2)
+#' }
 handl_to_df <- function(x) {
   # data.table not used unitl bind_rows(); using here to fail early
   check_for_package("data.table")

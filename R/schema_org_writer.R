@@ -11,10 +11,12 @@
 #' @family writers
 #' @family schema_org
 #' @examples
+#' if (require("bibtex")) {
 #' (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #' (tmp <- bibtex_reader(z))
 #' schema_org_writer(tmp)
 #' schema_org_writer(tmp, pretty = FALSE)
+#' }
 #' 
 #' # many citeproc to schema 
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")

@@ -1,5 +1,7 @@
 context("bibtex_reader")
 
+skip_if_not_installed("bibtex")
+
 test_that("bibtex_reader: works", {
   skip_on_cran()
   

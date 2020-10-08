@@ -2,6 +2,7 @@ context("handl_to_df")
 
 test_that("handl_to_df: works", {
   skip_on_cran()
+  skip_if_not_installed("bibtex")
 
   z <- system.file('extdata/crossref.bib', package = "handlr")
   x <- bibtex_reader(z)
@@ -24,6 +25,7 @@ test_that("handl_to_df: works", {
 
 test_that("handl_to_df: works with many citations", {
   skip_on_cran()
+  skip_if_not_installed("bibtex")
 
   z <- system.file('extdata/bib-many.bib', package = "handlr")
   res2 <- bibtex_reader(x = z)

@@ -15,7 +15,11 @@ an object of class \code{handl}; see \link{handl} for more
 \description{
 bibtex reader
 }
+\note{
+requires package \code{bibtex}, an optional package for handlr
+}
 \examples{
+if (require("bibtex")) {
 (z <- system.file('extdata/crossref.bib', package = "handlr"))
 bibtex_reader(x = z)
 (z <- system.file('extdata/bibtex.bib', package = "handlr"))
@@ -24,6 +28,7 @@ bibtex_reader(x = z)
 # many at once 
 (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 bibtex_reader(x = z)
+}
 }
 \seealso{
 Other readers: 

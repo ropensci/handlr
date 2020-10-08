@@ -5,7 +5,7 @@ Description: Converts among many citation formats, including 'BibTeX',
     'Citation File Format'. A low level 'R6' class is provided, as well
     as stand-alone functions for each citation format for both read
     and write.
-Version: 0.2.3.92
+Version: 0.2.4.91
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -22,14 +22,14 @@ Imports:
     jsonlite,
     crul,
     xml2,
-    RefManageR,
     urltools,
     mime,
     yaml
 Suggests:
     testthat,
     jsonld,
-    data.table
+    data.table,
+    bibtex
 RoxygenNote: 7.1.1
 X-schema.org-applicationCategory: Metadata
 X-schema.org-keywords: doi, metadata, citation, bibtex, Crossref, Crosscite, Codemeta, RIS, Citeproc, RDF, XML, JSON

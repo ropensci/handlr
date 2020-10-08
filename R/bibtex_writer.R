@@ -15,18 +15,15 @@
 #' bibtex_writer(z = tmp)
 #' cat(bibtex_writer(z = tmp), sep = "\n")
 #' 
-#' (z <- system.file('extdata/bibtex2.bib', package = "handlr"))
-#' z <- bibtex_reader(z)
-#' bibtex_writer(z)
-#' cat(bibtex_writer(z), sep = "\n")
-#' 
 #' # give a bibtex key
-#' cat(bibtex_writer(z, "foobar89"), sep = "\n")
+#' cat(bibtex_writer(tmp, "foobar89"), sep = "\n")
 #' 
-#' # many at once 
+#' # many at once
+#' if (requireNamespace("bibtex", quietly = TRUE)) {
 #' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 #' out <- bibtex_reader(x = z)
 #' bibtex_writer(out)
+#' }
 bibtex_writer <- function(z, key = NULL) {
   assert(z, "handl")
   stopifnot(length(z) > 0)

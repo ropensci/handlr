@@ -23,14 +23,14 @@ test_that("bibtex_writer: write from citeproc json", {
 test_that("bibtex_writer: output gives back same as input from bibtex_reader", {
   skip_on_cran()
   
-  z <- system.file('extdata/bibtex2.bib', package = "handlr")
+  z <- system.file('extdata/bibtex.bib', package = "handlr")
   w <- bibtex_reader(z)
   bw_out <- bibtex_writer(w)
   og_out <- readLines(z)
 
   # should be pretty close other than minor spacing issues
-  expect_true(any(grepl(w$title, bw_out)))
-  expect_true(any(grepl(w$title, og_out)))
+  expect_true(any(grepl(w$title, bw_out, perl = TRUE)))
+  expect_true(any(grepl(w$title, og_out, perl = TRUE)))
 
   expect_true(any(grepl(w$publisher, bw_out)))
   expect_true(any(grepl(w$publisher, og_out)))

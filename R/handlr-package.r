@@ -29,7 +29,6 @@
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom xml2 read_xml
-#' @importFrom RefManageR ReadBib
 #' @importFrom urltools url_encode url_parse
 #' @importFrom crul HttpClient
 #' @importFrom mime guess_type

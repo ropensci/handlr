@@ -15,3 +15,4 @@ inst/vign
 references.bib
 citeproc_json_from_rorcid.json
 appveyor.yml
+^LICENSE\.md$

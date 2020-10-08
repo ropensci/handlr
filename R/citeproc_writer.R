@@ -51,7 +51,7 @@ citeproc_write_one <- function(z) {
     publisher = z$publisher %||% NULL,
     title = parse_attributes(z$title, content = "text", first = TRUE),
     URL = z$b_url %||% NULL,
-    version = z$b_version %||% NULL,
+    version = z$software_version %||% NULL,
     volume = z$volume %||% NULL
   )
 }

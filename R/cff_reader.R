@@ -8,11 +8,14 @@
 #' @references CFF format:
 #' https://github.com/citation-file-format/citation-file-format
 #' @details CFF only supports one citation, so `many` will always be
-#' `FALSE`. You can though have many references in your CFF file
-#' associated with the citation.
+#' `FALSE`. 
 #' 
-#' `references` is an optional component in cff files. If included, we check
-#' the following:
+#' Required fields: `cff-version`, `version`, `message`, `date-released`,
+#' `title`, `authors`. We'll stop with error if any of these are missing
+#' 
+#' You can though have many references in your CFF file
+#' associated with the citation. `references` is an optional component in
+#' cff files. If included, we check the following:
 #' - each reference must have the 3 required fields: type, authors, title
 #' - type must be in the allowed set, see [cff_reference_types]
 #' - the elements within authors must each be an entity or person object
@@ -24,7 +27,7 @@
 #' res <- cff_reader(x = z)
 #' res
 #' res$cff_version
-#' res$b_version
+#' res$software_version
 #' res$message
 #' res$id
 #' res$doi
@@ -48,7 +51,7 @@ cff_reader <- function(x) {
 
 cff_read_one <- function(x) {
   doi <- x$doi
-  author <- lapply(x$authors, function(z) {
+  author <- lapply(req(x$authors, "authors"), function(z) {
     list(
       type = "Person",
       name = pcsp(pcsp(z$`given-names`), pcsp(z$`family-names`)),
@@ -60,8 +63,8 @@ cff_read_one <- function(x) {
   state <- if (!is.null(doi)) "findable" else "not_found"
   type <- "SoftwareSourceCode"
   list(
-    "cff_version" = x$`cff-version`,
-    "message" = x$message,
+    "cff_version" = req(x$`cff-version`, "cff-version"),
+    "message" = req(x$message, "message"),
     # "key" = attr(x, "key"),
     "id" = normalize_doi(doi),
     "type" = type,
@@ -73,12 +76,13 @@ cff_read_one <- function(x) {
     "identifier" = doi,
     "doi" = doi,
     "b_url" = x$url %||% NULL,
-    "title" = x$title %||% NULL,
+    "title" = req(x$title, "title"),
     "author" = author,
-    "date_published" = x$`date-released` %||% NULL,
-    "b_version" = x$version %||% NULL,
+    "date_published" = req(x$`date-released`, "date-released"),
+    "software_version" = req(x$version, "version"),
     "description" = list(text = x$abstract %||% NULL),
     "license" = list(id = x$license %||% NULL),
+    "keywords" = x$keywords %||% NULL,
     "state" = state,
     "references" = process_refs(x$references)
     # "description" = list(text = x$abstract %||% NULL && sanitize(x$abstract)),

@@ -10,7 +10,9 @@ test_that("cff_reader: works", {
   expect_is(cff_reader, "function")
   expect_is(x, "handl")
   expect_named(x)
-  expect_null(x$key)
+  expect_null(x[["key"]])
+  expect_is(x$keywords, "character")
+  expect_gt(length(x$keywords), 1)
   expect_is(x$id, "character")
   expect_equal(x$type, "SoftwareSourceCode")
   expect_equal(x$bibtex_type, "misc")
@@ -28,6 +30,48 @@ test_that("cff_reader: works", {
   expect_false(attr(x, "many"))
 })
 
+# main field checks
+test_that("cff_reader: required fields", {
+  skip_on_cran()
+  
+  zy <- yaml::yaml.load_file(z)
+  zy$`cff-version` <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'cff-version' is required")
+
+  zy <- yaml::yaml.load_file(z)
+  zy$version <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'version' is required")
+
+  zy <- yaml::yaml.load_file(z)
+  zy$message <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'message' is required")
+
+  zy <- yaml::yaml.load_file(z)
+  zy$`date-released` <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'date-released' is required")
+
+  zy <- yaml::yaml.load_file(z)
+  zy$title <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'title' is required")
+
+  zy <- yaml::yaml.load_file(z)
+  zy$authors <- NULL
+  tf <- tempfile(fileext = ".yml")
+  yaml::write_yaml(zy, tf)
+  expect_error(cff_reader(tf), "'authors' is required")
+})
+
+# reference checks
 test_that("cff_reader: reference types are checked", {
   skip_on_cran()
   
@@ -39,7 +83,7 @@ test_that("cff_reader: reference types are checked", {
   expect_error(cff_reader(tf), "reference")
 })
 
-test_that("cff_reader: title type is checked", {
+test_that("cff_reader: reference title type is checked", {
   skip_on_cran()
   
   zy <- yaml::yaml.load_file(z)
@@ -50,7 +94,7 @@ test_that("cff_reader: title type is checked", {
   expect_error(cff_reader(tf), "'title' must be a string")
 })
 
-test_that("cff_reader: author elements each must be entity or person", {
+test_that("cff_reader: reference author elements each must be entity or person", {
   skip_on_cran()
   
   zy <- yaml::yaml.load_file(z)

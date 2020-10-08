@@ -70,7 +70,7 @@ citeproc_read_one <- function(meta) {
     volume = meta$volume %||% NULL,
     description = meta$abstract %||% NULL,
     # "description" = meta.fetch("abstract", nil).present? ? { "text" = sanitize(meta.fetch("abstract")) } : nil,
-    b_version = meta$version %||% NULL,
+    software_version = meta$version %||% NULL,
     keywords = meta$categories %||% NULL,
     state = state
   )

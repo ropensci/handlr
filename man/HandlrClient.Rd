@@ -233,8 +233,8 @@ read input
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{format}}{(character) one of citeproc, ris, bibtex, codemeta, or
-\code{NULL}. If \code{NULL}, we attempt to guess the format, and error if we
+\item{\code{format}}{(character) one of citeproc, ris, bibtex, codemeta, cff,
+or \code{NULL}. If \code{NULL}, we attempt to guess the format, and error if we
 can not guess}
 
 \item{\code{...}}{further args to the writer fxn, if any}
@@ -254,7 +254,8 @@ write to std out or file
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{format}}{(character) one of citeproc, ris, bibtex, rdfxml}
+\item{\code{format}}{(character) one of citeproc, ris, bibtex, schema_org,
+rdfxml, codemeta, or cff}
 
 \item{\code{file}}{a file path, if NULL to stdout. for \code{format=ris},
 number of files must equal number of ris citations}

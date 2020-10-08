@@ -72,5 +72,6 @@ named list with:
 \item description: (string) description of the work, often an abstract
 \item license: (string) license of the work, a named list
 \item state: (string) the state of the list
+\item software_version: (string) software version
 }
 }

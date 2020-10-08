@@ -5,7 +5,7 @@ Description: Converts among many citation formats, including 'BibTeX',
     'Citation File Format'. A low level 'R6' class is provided, as well
     as stand-alone functions for each citation format for both read
     and write.
-Version: 0.2.2.92
+Version: 0.2.3.92
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),
@@ -13,7 +13,7 @@ Authors@R: c(
     comment = c(ORCID = "0000-0003-1444-9135"))
     )
 URL: https://github.com/ropensci/handlr (devel), 
-    https://docs.ropensci.org/handlr (documentation)
+    https://docs.ropensci.org/handlr/ (docs)
 BugReports: https://github.com/ropensci/handlr/issues
 Roxygen: list(markdown = TRUE)
 Encoding: UTF-8

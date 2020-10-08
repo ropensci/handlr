@@ -17,11 +17,14 @@ Citation File Format (cff) reader
 }
 \details{
 CFF only supports one citation, so \code{many} will always be
-\code{FALSE}. You can though have many references in your CFF file
-associated with the citation.
+\code{FALSE}.
 
-\code{references} is an optional component in cff files. If included, we check
-the following:
+Required fields: \code{cff-version}, \code{version}, \code{message}, \code{date-released},
+\code{title}, \code{authors}. We'll stop with error if any of these are missing
+
+You can though have many references in your CFF file
+associated with the citation. \code{references} is an optional component in
+cff files. If included, we check the following:
 \itemize{
 \item each reference must have the 3 required fields: type, authors, title
 \item type must be in the allowed set, see \link{cff_reference_types}
@@ -36,7 +39,7 @@ https://github.com/citation-file-format/citation-file-format#person-objects
 res <- cff_reader(x = z)
 res
 res$cff_version
-res$b_version
+res$software_version
 res$message
 res$id
 res$doi
@@ -60,6 +63,9 @@ Other readers:
 \code{\link{citeproc_reader}()},
 \code{\link{codemeta_reader}()},
 \code{\link{ris_reader}()}
+
+Other cff: 
+\code{\link{cff_writer}()}
 }
 \concept{cff}
 \concept{readers}

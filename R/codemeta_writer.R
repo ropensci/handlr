@@ -42,7 +42,7 @@ codemeta_write_one <- function(z) {
     "agents" = z$author,
     "description" = parse_attributes(z$description, 
       content = "text", first = TRUE),
-    "version" = z$b_version,
+    "version" = z$software_version,
     # FIXME: not sure what's going on here
     "tags" = if (!is.null(z$keywords)) unlist(z$keywords) else NULL,
     "dateCreated" = z$date_created,

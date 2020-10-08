@@ -198,8 +198,8 @@ HandlrClient <- R6::R6Class(
     },
 
     #' @description read input
-    #' @param format (character) one of citeproc, ris, bibtex, codemeta, or
-    #' `NULL`. If `NULL`, we attempt to guess the format, and error if we
+    #' @param format (character) one of citeproc, ris, bibtex, codemeta, cff,
+    #' or `NULL`. If `NULL`, we attempt to guess the format, and error if we
     #' can not guess
     #' @param ... further args to the writer fxn, if any
     read = function(format = NULL, ...) {
@@ -217,7 +217,8 @@ HandlrClient <- R6::R6Class(
     },
 
     #' @description write to std out or file
-    #' @param format (character) one of citeproc, ris, bibtex, rdfxml
+    #' @param format (character) one of citeproc, ris, bibtex, schema_org,
+    #' rdfxml, codemeta, or cff
     #' @param file a file path, if NULL to stdout. for `format=ris`,
     #' number of files must equal number of ris citations
     #' @param ... further args to the writer fxn, if any
@@ -234,6 +235,7 @@ HandlrClient <- R6::R6Class(
         schema_org = schema_org_writer(self$parsed, ...),
         rdfxml = rdf_xml_writer(self$parsed, ...),
         codemeta = codemeta_writer(self$parsed, ...),
+        cff = cff_writer(self$parsed, ...),
         stop("format must be one of ",
           paste(handlr_writers, collapse = ", "))
       )

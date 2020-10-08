@@ -38,6 +38,7 @@ schema_org_writer(w, pretty = FALSE)
 \seealso{
 Other writers: 
 \code{\link{bibtex_writer}()},
+\code{\link{cff_writer}()},
 \code{\link{citeproc_writer}()},
 \code{\link{codemeta_writer}()},
 \code{\link{rdf_xml_writer}()},

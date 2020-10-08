@@ -63,7 +63,7 @@ codemeta_read_one <- function(meta) {
       NULL
     },
     "license" = list(id = meta$license %||% NULL ),
-    "b_version" = meta$version %||% NULL,
+    "software_version" = meta$version %||% NULL,
     "keywords" = meta$tags %||% NULL,
     "state" = state
   )

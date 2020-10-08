@@ -41,6 +41,7 @@ bibtex_writer(out)
 }
 \seealso{
 Other writers: 
+\code{\link{cff_writer}()},
 \code{\link{citeproc_writer}()},
 \code{\link{codemeta_writer}()},
 \code{\link{rdf_xml_writer}()},

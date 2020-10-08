@@ -35,6 +35,7 @@ if (requireNamespace("jsonld") && interactive()) {
 \seealso{
 Other writers: 
 \code{\link{bibtex_writer}()},
+\code{\link{cff_writer}()},
 \code{\link{citeproc_writer}()},
 \code{\link{codemeta_writer}()},
 \code{\link{ris_writer}()},

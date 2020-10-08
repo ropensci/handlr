@@ -65,6 +65,7 @@
 #' - description: (string) description of the work, often an abstract
 #' - license: (string) license of the work, a named list
 #' - state: (string) the state of the list
+#' - software_version: (string) software version
 NULL
 
 #' @export

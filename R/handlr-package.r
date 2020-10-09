@@ -28,6 +28,7 @@
 #' - bibtex: <http://www.bibtex.org/>
 #' - schema.org: <https://schema.org/>
 #' - rdfxml: <https://en.wikipedia.org/wiki/RDF/XML>
+#' - cff: <https://citation-file-format.github.io/>
 #'
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom xml2 read_xml

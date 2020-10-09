@@ -19,8 +19,9 @@ supported readers:
 
 - [citeproc][]
 - [ris][]
-- [bibtex][]
+- [bibtex][] (requires suggested package `bibtex`)
 - [codemeta][]
+- [cff][]
 
 supported writers:
 
@@ -30,6 +31,7 @@ supported writers:
 - [schema.org][]
 - [rdfxml][] (requires suggested package [jsonld][])
 - [codemeta][]
+- [cff][]
 
 not supported yet, but plan to:
 
@@ -127,28 +129,9 @@ reader or writer. They are:
 ```r
 z <- system.file('extdata/bib-many.bib', package = "handlr")
 res2 <- bibtex_reader(x = z)
+#> Error: Please install bibtex
 handl_to_df(res2)
-#>             key                                        id    type bibtex_type
-#> 1    Amano_2016 https://doi.org/10.1093%2fbiosci%2fbiw022 article     article
-#> 2 Bachelot_2016       https://doi.org/10.1890%2f15-1397.1 article     article
-#>     citeproc_type ris_type resource_type_general additional_type
-#> 1 article-journal     JOUR                  <NA>  JournalArticle
-#> 2 article-journal     JOUR                  <NA>  JournalArticle
-#>                     doi                                   b_url
-#> 1 10.1093/biosci/biw022 http://dx.doi.org/10.1093/biosci/biw022
-#> 2     10.1890/15-1397.1     http://dx.doi.org/10.1890/15-1397.1
-#>                                                                                                        title
-#> 1                            Spatial Gaps in Global Biodiversity Information and the Role of Citizen Science
-#> 2 Long-lasting effects of land use history on soil fungal communities in second-growth tropical rain forests
-#>                                                                                           author
-#> 1                                                            Amano T., Lamming J., Sutherland W.
-#> 2 Bachelot B., Uriarte M., Zimmerman J., Thompson J., Leff J., Asiaii A., Koshner J., McGuire K.
-#>                         publisher                         is_part_of
-#> 1 Oxford University Press ({OUP})            Periodical;{BioScience}
-#> 2                 Wiley-Blackwell Periodical;Ecological Applications
-#>   date_published volume first_page last_page    state
-#> 1           <NA>     66        393       400 findable
-#> 2           <NA>   <NA>       <NA>      <NA> findable
+#> Error in assert(x, "handl"): object 'res2' not found
 ```
 
 ## Meta
@@ -168,3 +151,4 @@ handl_to_df(res2)
 [bibtex]: http://www.bibtex.org/
 [schema.org]: https://schema.org/
 [rdfxml]: https://en.wikipedia.org/wiki/RDF/XML
+[cff]: https://citation-file-format.github.io/

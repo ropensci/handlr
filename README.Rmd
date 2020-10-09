@@ -25,8 +25,9 @@ supported readers:
 
 - [citeproc][]
 - [ris][]
-- [bibtex][]
+- [bibtex][] (requires suggested package `bibtex`)
 - [codemeta][]
+- [cff][]
 
 supported writers:
 
@@ -36,6 +37,7 @@ supported writers:
 - [schema.org][]
 - [rdfxml][] (requires suggested package [jsonld][])
 - [codemeta][]
+- [cff][]
 
 not supported yet, but plan to:
 
@@ -124,3 +126,4 @@ handl_to_df(res2)
 [bibtex]: http://www.bibtex.org/
 [schema.org]: https://schema.org/
 [rdfxml]: https://en.wikipedia.org/wiki/RDF/XML
+[cff]: https://citation-file-format.github.io/

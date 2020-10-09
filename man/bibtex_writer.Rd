@@ -30,7 +30,7 @@ cat(bibtex_writer(z = tmp), sep = "\n")
 cat(bibtex_writer(tmp, "foobar89"), sep = "\n")
 
 # many at once
-if (require("bibtex")) {
+if (requireNamespace("bibtex", quietly=TRUE)) {
 (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 out <- bibtex_reader(x = z)
 bibtex_writer(out)

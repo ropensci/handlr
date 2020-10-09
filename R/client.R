@@ -77,13 +77,15 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' (x <- HandlrClient$new(x = z))
 #' x$path
 #' x$format_guessed
+#' if (requireNamespace("bibtex", quietly = TRUE)) {
 #' x$read("bibtex")
 #' x$parsed
 #' x$write("ris")
 #' cat(x$write("ris"))
+#' }
 #'
 #' # read in bibtex, write out RDF XML
-#' if (interactive()) {
+#' if (requireNamespace("bibtex", quietly = TRUE) && interactive()) {
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #'   (x <- HandlrClient$new(x = z))
 #'   x$path

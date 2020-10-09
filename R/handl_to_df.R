@@ -15,7 +15,7 @@
 #' x$read()
 #' x$as_df() # data.frame with citation data
 #' 
-#' if (require("bibtex")) {
+#' if (requireNamespace("bibtex", quietly=TRUE)) {
 #' (z <- system.file('extdata/bib-many.bib', package = "handlr"))
 #' res2 <- bibtex_reader(x = z)
 #' handl_to_df(res2)

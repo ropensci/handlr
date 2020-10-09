@@ -40,7 +40,7 @@
 #' c(cr, prj)
 #'
 #' # many bibtex to ris via c method
-#' if (require("bibtex")) {
+#' if (requireNamespace("bibtex", quietly=TRUE)) {
 #' a <- system.file('extdata/bibtex.bib', package = "handlr")
 #' b <- system.file('extdata/crossref.bib', package = "handlr")
 #' aa <- bibtex_reader(a)

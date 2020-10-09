@@ -13,7 +13,7 @@
 #'   z <- system.file('extdata/citeproc.json', package = "handlr")
 #'   (tmp <- citeproc_reader(z))
 #'  
-#'   if (require("bibtex")) {
+#'   if (requireNamespace("bibtex", quietly=TRUE)) {
 #'   (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 #'   (tmp <- bibtex_reader(z))
 #'   rdf_xml_writer(z = tmp)

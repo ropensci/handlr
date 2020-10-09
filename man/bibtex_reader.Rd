@@ -19,7 +19,7 @@ bibtex reader
 requires package \code{bibtex}, an optional package for handlr
 }
 \examples{
-if (require("bibtex")) {
+if (requireNamespace("bibtex", quietly=TRUE)) {
 (z <- system.file('extdata/crossref.bib', package = "handlr"))
 bibtex_reader(x = z)
 (z <- system.file('extdata/bibtex.bib', package = "handlr"))

@@ -24,7 +24,7 @@ an object of class \code{json}
 Schema org writer
 }
 \examples{
-if (require("bibtex")) {
+if (requireNamespace("bibtex", quietly=TRUE)) {
 (z <- system.file('extdata/bibtex.bib', package = "handlr"))
 (tmp <- bibtex_reader(z))
 schema_org_writer(tmp)

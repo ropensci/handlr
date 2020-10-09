@@ -11,7 +11,7 @@
 #' @family writers
 #' @family codemeta
 #' @examples
-#' if (require("bibtex")) {
+#' if (requireNamespace("bibtex", quietly=TRUE)) {
 #' (x <- system.file('extdata/crossref.bib', package = "handlr"))
 #' (z <- bibtex_reader(x))
 #' codemeta_writer(z)

@@ -20,7 +20,7 @@
 #' 
 #' The `handl` object follows <https://github.com/datacite/bolognese>, which
 #' uses the Crosscite format as its internal representation. Note that we 
-#' don't currently supporting writing to or reading from Crosscite.
+#' don't currently support writing to or reading from Crosscite.
 #'
 #' Details on each entry are stored in the named attributes:
 #'

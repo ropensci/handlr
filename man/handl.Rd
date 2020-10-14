@@ -74,4 +74,6 @@ named list with:
 \item state: (string) the state of the list
 \item software_version: (string) software version
 }
+
+Citeproc formats may have extra fields that begin with \code{csl_}
 }

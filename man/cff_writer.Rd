@@ -21,6 +21,23 @@ Citation File Format (cff) writer
 uses \code{yaml::write_yaml} to write to yaml format that
 CFF uses
 }
+\section{Converting to CFF from other formats}{
+
+CFF has required fields that can't be missing. This means that
+converting from other citation types to CFF will likely require
+adding the required CFF fields manually. Adding fields to a
+\code{handl} object is easy: it's really just an R list so add
+named elements to it. The required CFF fields are:
+\itemize{
+\item cff-version: add \code{cff_version}
+\item message: add \code{message}
+\item version: add \code{software_version}
+\item title: add \code{title}
+\item authors: add \code{author}
+\item date-released: add \code{date_published}
+}
+}
+
 \examples{
 (z <- system.file('extdata/citation.cff', package = "handlr"))
 res <- cff_reader(x = z)
@@ -32,6 +49,19 @@ f <- tempfile()
 cff_writer(res, f)
 readLines(f)
 unlink(f)
+
+# convert from a different citation format
+## see "Converting to CFF from other formats" above
+z <- system.file('extdata/citeproc.json', package = "handlr")
+w <- citeproc_reader(x = z)
+# cff_writer(w) # fails unless we add required fields
+w$cff_version <- "1.1.0"
+w$message <- "Please cite the following works when using this software."
+w$software_version <- "2.5"
+w$title <- "A cool library"
+w$date_published <- "2017-12-18"
+cff_writer(w)
+cat(cff_writer(w))
 }
 \references{
 CFF format:

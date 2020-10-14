@@ -1,6 +1,6 @@
 handlr_readers <- c('citeproc', 'ris', 'bibtex', 'codemeta', 'cff')
 handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
-  'rdfxml', 'codemeta')
+  'rdfxml', 'codemeta', 'cff')
 
 #' @title HandlrClient
 #' @description handlr client, read and write to and from all citation formats 
@@ -105,7 +105,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$parsed
 #' x$write("codemeta")
 #' 
-#' # cff
+#' # cff: Citation File Format
 #' (z <- system.file('extdata/citation.cff', package = "handlr"))
 #' (x <- HandlrClient$new(x = z))
 #' x$path
@@ -114,7 +114,7 @@ handlr_writers <- c('citeproc', 'ris', 'bibtex', 'schema_org',
 #' x$parsed
 #' x$write("codemeta")
 #'
-#' # > 1
+#' # > 1 citation
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
 #' (x <- HandlrClient$new(x = z))
 #' x$parsed

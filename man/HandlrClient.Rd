@@ -112,7 +112,7 @@ x$read("codemeta")
 x$parsed
 x$write("codemeta")
 
-# cff
+# cff: Citation File Format
 (z <- system.file('extdata/citation.cff', package = "handlr"))
 (x <- HandlrClient$new(x = z))
 x$path
@@ -121,7 +121,7 @@ x$read("cff")
 x$parsed
 x$write("codemeta")
 
-# > 1
+# > 1 citation
 z <- system.file('extdata/citeproc-many.json', package = "handlr")
 (x <- HandlrClient$new(x = z))
 x$parsed

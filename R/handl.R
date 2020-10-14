@@ -66,6 +66,8 @@
 #' - license: (string) license of the work, a named list
 #' - state: (string) the state of the list
 #' - software_version: (string) software version
+#' 
+#' Citeproc formats may have extra fields that begin with `csl_`
 NULL
 
 #' @export

@@ -33,25 +33,31 @@ citeproc_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
 }
 
 citeproc_write_one <- function(z) {
-  list(
-    type = z$citeproc_type %||% NULL,
-    id = z$id,
-    categories = lapply(z$keywords, function(k) 
-      parse_attributes(k, content = "text", first = TRUE)),
-    language = z$language %||% NULL,
-    author = to_citeproc(z$author),
-    editor = to_citeproc(z$editor),
-    issued = get_date_parts(z$date_published) %||% NULL,
-    submitted = get_date_parts(z$date_submitted) %||% NULL,
-    abstract = parse_attributes(z$description, content = "text", first = TRUE),
-    'container-title' = z$container_title,
-    DOI = z$doi %||% NULL,
-    issue = z$issue %||% NULL,
-    page = paste0(z$first_page, z$last_page, collapse = "-"),
-    publisher = z$publisher %||% NULL,
-    title = parse_attributes(z$title, content = "text", first = TRUE),
-    URL = z$b_url %||% NULL,
-    version = z$software_version %||% NULL,
-    volume = z$volume %||% NULL
+  extra_csl <- z[grep("csl_", names(z))]
+  names(extra_csl) <- gsub("csl_", "", names(extra_csl))
+  extra_csl <- unslugify(extra_csl)
+  c(
+    list(
+      type = z$citeproc_type %||% NULL,
+      id = z$id,
+      categories = lapply(z$keywords, function(k) 
+        parse_attributes(k, content = "text", first = TRUE)),
+      language = z$language %||% NULL,
+      author = to_citeproc(z$author),
+      editor = to_citeproc(z$editor),
+      issued = get_date_parts(z$date_published) %||% NULL,
+      submitted = get_date_parts(z$date_submitted) %||% NULL,
+      abstract = parse_attributes(z$description, content = "text", first = TRUE),
+      'container-title' = z$container_title,
+      DOI = z$doi %||% NULL,
+      issue = z$issue %||% NULL,
+      page = paste(z$first_page, z$last_page, sep = "-"),
+      publisher = z$publisher %||% NULL,
+      title = parse_attributes(z$title, content = "text", first = TRUE),
+      URL = z$url %||% NULL,
+      version = z$software_version %||% NULL,
+      volume = z$volume %||% NULL
+    ),
+    extra_csl
   )
 }

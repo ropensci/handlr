@@ -9,6 +9,8 @@
 #' # single
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
 #' citeproc_reader(x = z)
+#' w <- system.file('extdata/citeproc2.json', package = "handlr")
+#' citeproc_reader(x = w)
 #' 
 #' # many
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
@@ -28,14 +30,8 @@ citeproc_reader <- function(x) {
 citeproc_read_one <- function(meta) {
   citeproc_type <- meta$type %||% NULL
   type <- CP_TO_SO_TRANSLATIONS[[citeproc_type]] %||% "CreativeWork"
-  # FIXME: doi = normalize_doi(meta.fetch("DOI", nil))
   doi <- meta$DOI %||% NULL
-  # FIXME: get_authors(from_citeproc(Array.wrap(meta.fetch("author", nil))))
-  # get_authors(from_citeproc(meta$author %||% NULL))
   author <- from_citeproc(meta$author %||% NULL)
-  # author = meta$author %||% NULL
-  # FIXME: get_authors(from_citeproc(Array.wrap(meta.fetch("editor", nil))))
-  # get_authors(from_citeproc(meta$editor %||% NULL))
   editor <- from_citeproc(meta$editor %||% NULL)
   # editor = meta$editor %||% NULL
   date_published <- get_date_from_date_parts(meta$issued %||% NULL)
@@ -47,20 +43,34 @@ citeproc_read_one <- function(meta) {
   } else {
     NULL
   }
-  # FIXME: id = normalize_id(meta.fetch("id", nil))
   id <- meta$id %||% NULL
   state <- if (!is.null(id)) "findable" else "not_found"
-  list(
+
+  first_page <- last_page <- NULL
+  if (!is.null(meta$page)) {
+    pp <- strsplit(meta$page, "-")[[1]]
+    first_page <- try_with_warn(pp[1], as.numeric)
+    last_page <- try_with_warn(pp[2], as.numeric)
+  }
+
+  csl_extras <- unname(unlist(csl_vars))
+  csl_extras_remain <- csl_extras[!csl_extras %in% names(meta)]
+  others <- meta[names(meta) %in% csl_extras_remain]
+  if (length(others)) {
+    others <- stats::setNames(others,
+      gsub("-", "_", paste0("csl_", names(others)))
+    )
+  }
+
+  c(list(
     id = id,
     type = type,
     additional_type = meta$additionalType %||% NULL,
     citeproc_type = citeproc_type,
     bibtex_type = SO_TO_BIB_TRANSLATIONS[[type]] %||% "misc",
     ris_type = CP_TO_RIS_TRANSLATIONS[[type]] %||% "GEN",
-    # "resource_type_general" = Bolognese::Utils::SO_TO_DC_TRANSLATIONS[type],
-    # "doi" = doi_from_url(doi),
     doi = doi,
-    # b_url = normalize_id(meta.fetch("URL", nil)),
+    url = normalize_id(meta$URL) %||% NULL,
     title = meta$title %||% NULL,
     author = author,
     container_title = container_title,
@@ -68,12 +78,14 @@ citeproc_read_one <- function(meta) {
     is_part_of = is_part_of,
     date_published = date_published,
     volume = meta$volume %||% NULL,
+    issue = meta$issue %||% NULL,
     description = meta$abstract %||% NULL,
-    # "description" = meta.fetch("abstract", nil).present? ? { "text" = sanitize(meta.fetch("abstract")) } : nil,
     software_version = meta$version %||% NULL,
     keywords = meta$categories %||% NULL,
-    state = state
-  )
+    state = state,
+    first_page = first_page,
+    last_page = last_page
+  ), others)
 }
 
 CP_TO_SO_TRANSLATIONS <- list(
@@ -97,4 +109,3 @@ CP_TO_RIS_TRANSLATIONS <- list(
   "broadcast" = "MPCT",
   "webpage" = "ELEC"
 )
-

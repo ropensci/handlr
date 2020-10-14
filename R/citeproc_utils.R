@@ -48,3 +48,87 @@ to_citeproc <- function(element) {
     ccp(a[c("type", "@type", "id", "@id", "name", "familyName", "givenName") %in% names(a)])
   })
 }
+
+# from https://docs.citationstyles.org/en/1.0.1/specification.html#appendix-iv-variables
+csl_vars <- list(
+  standard = c(
+    "abstract",
+    "annote",
+    "archive",
+    "archive_location",
+    "archive-place",
+    "authority",
+    "call-number",
+    "citation-label",
+    "citation-number",
+    "collection-title",
+    "container-title",
+    "container-title-short",
+    "dimensions",
+    "DOI",
+    "event",
+    "event-place",
+    "first-reference-note-number",
+    "genre",
+    "ISBN",
+    "ISSN",
+    "jurisdiction",
+    "keyword",
+    "locator",
+    "medium",
+    "note",
+    "original-publisher",
+    "original-publisher-place",
+    "original-title",
+    "page",
+    "page-first",
+    "PMCID",
+    "PMID",
+    "publisher",
+    "publisher-place",
+    "references",
+    "reviewed-title",
+    "scale",
+    "section",
+    "source",
+    "status",
+    "title",
+    "title-short",
+    "URL",
+    "version",
+    "year-suffix"
+  ),
+  number = c(
+    "chapter-number",
+    "collection-number",
+    "edition",
+    "issue",
+    "number",
+    "number-of-pages",
+    "number-of-volumes",
+    "volume"
+  ),
+  date = c(
+    "accessed",
+    "container",
+    "event-date",
+    "issued",
+    "original-date",
+    "submitted"
+  ),
+  name = c(
+    "author",
+    "collection-editor",
+    "composer",
+    "container-author",
+    "director",
+    "editor",
+    "editorial-director",
+    "illustrator",
+    "interviewer",
+    "original-author",
+    "recipient",
+    "reviewed-author",
+    "translator"
+  )
+)

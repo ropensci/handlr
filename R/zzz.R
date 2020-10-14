@@ -78,3 +78,10 @@ handlr_ua <- function() {
 bind_rows <- function(x) {
   (data.table::setDF(data.table::rbindlist(x, fill = TRUE, use.names = TRUE)))
 }
+
+unslugify <- function(x) {
+  nmz <- unname(vapply(names(x), function(w) {
+    if (w != "archive_location") gsub("_", "-", w) else w
+  }, character(1)))
+  stats::setNames(x, nmz)
+}

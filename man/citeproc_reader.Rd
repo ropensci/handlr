@@ -19,6 +19,8 @@ citeproc reader
 # single
 z <- system.file('extdata/citeproc.json', package = "handlr")
 citeproc_reader(x = z)
+z <- system.file('extdata/citeproc2.json', package = "handlr")
+citeproc_reader(x = z)
 
 # many
 z <- system.file('extdata/citeproc-many.json', package = "handlr")

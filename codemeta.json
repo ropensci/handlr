@@ -5,19 +5,18 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "handlr",
-  "description": "Converts among many citation formats, including 'BibTeX',\n    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', and 'Schema.org'. A low\n    level 'R6' class is provided, as well as stand-alone functions\n    for each citation format for both read and write.",
+  "description": "Converts among many citation formats, including 'BibTeX',\n    'Citeproc', 'Codemeta', 'RDF XML', 'RIS', 'Schema.org', and\n    'Citation File Format'. A low level 'R6' class is provided, as well\n    as stand-alone functions for each citation format for both read\n    and write.",
   "name": "handlr: Convert Among Citation Formats",
   "codeRepository": "https://github.com/ropensci/handlr",
   "issueTracker": "https://github.com/ropensci/handlr/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1.91",
+  "version": "0.3.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 Patched (2019-12-12 r77564)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -81,6 +80,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=data.table"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "bibtex",
+      "name": "bibtex",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=bibtex"
     }
   ],
   "softwareRequirements": [
@@ -122,18 +133,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "RefManageR",
-      "name": "RefManageR",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=RefManageR"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "urltools",
       "name": "urltools",
       "provider": {
@@ -155,6 +154,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=mime"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "yaml",
+      "name": "yaml",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=yaml"
     }
   ],
   "applicationCategory": "Metadata",
@@ -162,8 +173,8 @@
   "keywords": ["doi", "metadata", "citation", "bibtex", "Crossref", "Crosscite", "Codemeta", "RIS", "Citeproc", "RDF", "XML", "JSON", "citations", "digital-object-identifier", "citeproc", "crosscite", "ris", "r", "r-package", "rstats"],
   "releaseNotes": "https://github.com/ropensci/handlr/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/handlr/blob/master/README.md",
-  "fileSize": "38.207KB",
-  "contIntegration": ["https://travis-ci.com/ropensci/handlr", "https://ci.appveyor.com/project/sckott/handlr", "https://codecov.io/github/ropensci/handlr?branch=master"],
-  "developmentStatus": "https://www.repostatus.org/#wip",
-  "relatedLink": "https://docs.ropensci.org/handlr"
+  "fileSize": "0KB",
+  "contIntegration": "https://codecov.io/github/ropensci/handlr?branch=master",
+  "developmentStatus": "https://www.repostatus.org/#active",
+  "relatedLink": ["https://docs.ropensci.org/handlr", "https://docs.ropensci.org/handlr/"]
 }

@@ -205,7 +205,7 @@ print method for \code{HandlrClient} objects
 \subsection{Method \code{new()}}{
 Create a new \code{HandlrClient} object
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{HandlrClient$new(x, ...)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{HandlrClient$new(x, format = NULL, ...)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -214,6 +214,10 @@ Create a new \code{HandlrClient} object
 \item{\code{x}}{(character) a file path (the file must exist), a string
 containing contents of the citation, a DOI, or a DOI as a URL.
 See Details.}
+
+\item{\code{format}}{(character) one of citeproc, ris, bibtex, codemeta, cff,
+or \code{NULL}. If \code{NULL}, we attempt to guess the format, and error if we
+can not guess}
 
 \item{\code{...}}{curl options passed on to \link[crul:verb-GET]{crul::verb-GET}}
 }

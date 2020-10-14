@@ -178,9 +178,12 @@ HandlrClient <- R6::R6Class(
     #' @param x (character) a file path (the file must exist), a string
     #' containing contents of the citation, a DOI, or a DOI as a URL.
     #' See Details.
+    #' @param format (character) one of citeproc, ris, bibtex, codemeta, cff,
+    #' or `NULL`. If `NULL`, we attempt to guess the format, and error if we
+    #' can not guess
     #' @param ... curl options passed on to [crul::verb-GET]
     #' @return A new `HandlrClient` object
-    initialize = function(x, ...) {
+    initialize = function(x, format = NULL, ...) {
       assert(x, "character")
       if (is_url_doi(x) || is_doi(x)) {
         self$doi <- urltools::url_decode(doi_from_url(normalize_doi(x)))
@@ -196,7 +199,14 @@ HandlrClient <- R6::R6Class(
         private$substring <- substring(x, 1, 80)
       }
       self$ext <- private$find_ext(x)
-      self$format_guessed <- private$guess_format(x)
+      self$format_guessed <- if (!is.null(format)) {
+        mssg <- sprintf("'format' not in allowed set: %s",
+          paste(handlr_readers, collapse=","))
+        stopifnot(exprs = stats::setNames(format %in% handlr_readers, mssg))
+        format
+      }
+      else 
+        private$guess_format(x)
     },
 
     #' @description read input

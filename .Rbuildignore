@@ -16,3 +16,4 @@ references.bib
 citeproc_json_from_rorcid.json
 appveyor.yml
 ^LICENSE\.md$
+vignettes/handlr.Rmd

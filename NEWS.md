@@ -1,3 +1,20 @@
+handlr 0.3.0
+============
+
+### DEPENDENCIES
+
+* drop `RefManageR` from package Imports as it will likely be archived soon - add package `bibtex` to Suggests for reading/writing bibtex (can't be in Imports because it's Orphaned on CRAN) (#22)
+
+### NEW FEATURES
+
+* handlr gains support for Citation File Format (CFF), "plain text files with human- and machine-readable citation information for software". See https://citation-file-format.github.io/ for more info - new functions: `cff_reader()` and `cff_writer()` and associated changes in `HandlrClient`. Associated with CFF support, handlr gains new Import package `yaml`  (#16)
+
+### MINOR IMPROVEMENTS
+
+* improvements to Citeproc parsing: previously dropped many fields that we didn't support; now including all Citeproc fields that we don't specifically parse into extra fields prefixed with `csl_`  (#20)
+* nothing changed, but see discussion of bibtex errors in case you run into them (#9)
+
+
 handlr 0.2.0
 ============
 

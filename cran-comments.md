@@ -1,7 +1,7 @@
 ## Test environments
 
-* local OS X install, R 3.6.1 patched
-* ubuntu 14.04 (on travis-ci), R 3.6.1
+* local OS X install, R 4.0.3 patched
+* ubuntu 16.04 (on travis-ci), R 4.0.3
 * win-builder (devel and release)
 
 ## R CMD check results
@@ -14,7 +14,7 @@
 
 ---
 
-This version includes a new function, exports a method forgot to export last version, and more documentation.
+This version includes dropping RefManageR package, scheduled to be archived soon, along with fixes and some new functions.
 
 Thanks!
 Scott Chamberlain

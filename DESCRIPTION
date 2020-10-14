@@ -5,7 +5,7 @@ Description: Converts among many citation formats, including 'BibTeX',
     'Citation File Format'. A low level 'R6' class is provided, as well
     as stand-alone functions for each citation format for both read
     and write.
-Version: 0.2.4.91
+Version: 0.3.0
 License: MIT + file LICENSE
 Authors@R: c(
     person("Scott", "Chamberlain", role = c("aut", "cre"),

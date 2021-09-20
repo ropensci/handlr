@@ -19,8 +19,14 @@ Citation File Format (cff) reader
 CFF only supports one citation, so \code{many} will always be
 \code{FALSE}.
 
-Required fields: \code{cff-version}, \code{version}, \code{message}, \code{date-released},
-\code{title}, \code{authors}. We'll stop with error if any of these are missing
+Required fields:
+\itemize{
+\item CFF \strong{v1.1.0}: \code{cff-version}, \code{version}, \code{message}, \code{date-released},
+\code{title}, \code{authors}.
+\item CFF \strong{v1.2.0}: \code{cff-version}, \code{message}, \code{title}, \code{authors}.
+}
+
+We'll stop with error if any of these are missing.
 
 You can though have many references in your CFF file
 associated with the citation. \code{references} is an optional component in
@@ -58,13 +64,13 @@ CFF format:
 https://github.com/citation-file-format/citation-file-format
 }
 \seealso{
-Other readers: 
+Other readers:
 \code{\link{bibtex_reader}()},
 \code{\link{citeproc_reader}()},
 \code{\link{codemeta_reader}()},
 \code{\link{ris_reader}()}
 
-Other cff: 
+Other cff:
 \code{\link{cff_writer}()}
 }
 \concept{cff}

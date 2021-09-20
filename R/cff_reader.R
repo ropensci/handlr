@@ -27,7 +27,7 @@
 #' https://github.com/citation-file-format/citation-file-format#person-objects
 #' - title must be a string
 #' @examples
-#' (z <- system.file('extdata/citation.cff', package = "handlr"))
+#' (z <- system.file("extdata/citation.cff", package = "handlr"))
 #' res <- cff_reader(x = z)
 #' res
 #' res$cff_version
@@ -40,7 +40,7 @@
 #' res$references
 #'
 #' # no references
-#' (z <- system.file('extdata/citation-norefs.cff', package = "handlr"))
+#' (z <- system.file("extdata/citation-norefs.cff", package = "handlr"))
 #' out <- cff_reader(x = z)
 #' out
 #' out$references
@@ -50,19 +50,22 @@ cff_reader <- function(x) {
   structure(cff_read_one(txt),
     class = "handl", from = "cff",
     source_type = if (is_file(x)) "file" else "string",
-    file = if (is_file(x)) x else "", many = FALSE)
+    file = if (is_file(x)) x else "", many = FALSE
+  )
 }
 
 cff_read_one <- function(x) {
   doi <- x$doi
   author <- lapply(req(x$authors, "authors"), function(z) {
-    list(
+    l <- list(
       type = "Person",
       name = pcsp(pcsp(z$`given-names`), pcsp(z$`family-names`)),
       givenName = pcsp(z$`given-names`),
       familyName = pcsp(z$`family-names`),
       orcid = pcsp(z$orcid)
     )
+    # Clean keys with no value
+    l[unlist(lapply(l, function(x) x != ""))]
   })
   state <- if (!is.null(doi)) "findable" else "not_found"
   type <- "SoftwareSourceCode"
@@ -109,16 +112,20 @@ cff_read_one <- function(x) {
 }
 
 process_refs <- function(w) {
-  if (is.null(w)) return(NULL)
+  if (is.null(w)) {
+    return(NULL)
+  }
 
   # check that required fields are given
-  cff_required_nms <- c('type', 'authors', 'title')
+  cff_required_nms <- c("type", "authors", "title")
   cff_required_nms_c <- paste0(cff_required_nms, collapse = ", ")
   for (i in seq_along(w)) {
     mtch <- all(cff_required_nms %in% names(w[[i]]))
     if (!mtch) {
-      stop("reference ", i, " malformed; must have required fields: ",
-        cff_required_nms_c)
+      stop(
+        "reference ", i, " malformed; must have required fields: ",
+        cff_required_nms_c
+      )
     }
   }
 
@@ -131,15 +138,20 @@ process_refs <- function(w) {
   if (!all(mtch_type)) {
     stop("these reference types not in allowed set: ",
       paste0(types[!mtch_type], collapse = ", "),
-      " (see ?cff_reader)", call. = FALSE)
+      " (see ?cff_reader)",
+      call. = FALSE
+    )
   }
 
   # check that authors is a list of type entity's or person's
   auths <- unlist(lapply(w, "[[", "authors"), FALSE)
   for (i in auths) {
-    if (!is_cff_entity(i) && !is_cff_person(i))
+    if (!is_cff_entity(i) && !is_cff_person(i)) {
       stop("each element in 'authors' must be of type entity or person\n",
-        "  see ?cff_reader Details", call. = FALSE)
+        "  see ?cff_reader Details",
+        call. = FALSE
+      )
+    }
   }
 
   return(w)
@@ -152,8 +164,8 @@ is_cff_entity <- function(x) {
 }
 is_cff_person <- function(x) {
   is.list(x) &&
-  is_named(x) &&
-  all(c("family-names", "given-names") %in% names(x))
+    is_named(x) &&
+    all(c("family-names", "given-names") %in% names(x))
 }
 
 # CFF_TO_CP_TRANSLATIONS <- list(

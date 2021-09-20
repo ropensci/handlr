@@ -41,7 +41,7 @@ https://github.com/citation-file-format/citation-file-format#person-objects
 }
 }
 \examples{
-(z <- system.file('extdata/citation.cff', package = "handlr"))
+(z <- system.file("extdata/citation.cff", package = "handlr"))
 res <- cff_reader(x = z)
 res
 res$cff_version
@@ -54,7 +54,7 @@ res$author
 res$references
 
 # no references
-(z <- system.file('extdata/citation-norefs.cff', package = "handlr"))
+(z <- system.file("extdata/citation-norefs.cff", package = "handlr"))
 out <- cff_reader(x = z)
 out
 out$references
@@ -64,13 +64,13 @@ CFF format:
 https://github.com/citation-file-format/citation-file-format
 }
 \seealso{
-Other readers:
+Other readers: 
 \code{\link{bibtex_reader}()},
 \code{\link{citeproc_reader}()},
 \code{\link{codemeta_reader}()},
 \code{\link{ris_reader}()}
 
-Other cff:
+Other cff: 
 \code{\link{cff_writer}()}
 }
 \concept{cff}

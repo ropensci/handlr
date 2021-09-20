@@ -17,12 +17,18 @@
 #' `handl` object is easy: it's really just an R list so add
 #' named elements to it. The required CFF fields are:
 #'
-#' - cff-version: add `cff_version`
-#' - message: add `message`
-#' - version: add `software_version`
-#' - title: add `title`
-#' - authors: add `author`
-#' - date-released: add `date_published`
+#' - CFF **v1.1.0**:
+#'   - cff-version: add `cff_version`
+#'   - message: add `message`
+#'   - version: add `software_version`
+#'   - title: add `title`
+#'   - authors: add `author`
+#'   - date-released: add `date_published`
+#' - CFF **v1.2.0**:
+#'   - Only fields `cff-version`, `message`, `title` and `authors` are
+#'   required.
+#'
+#' If `cff_version` is not provided, the value by default is "1.2.0".
 #'
 #' @examples
 #' (z <- system.file('extdata/citation.cff', package = "handlr"))
@@ -55,15 +61,26 @@ cff_writer <- function(z, path = NULL) {
 }
 
 cff_write_one <- function(z, path) {
+
+  cff_v <- req(z$cff_version %||% cff_version, "cff_version")
+
   zz <- ccp(list(
-    'cff-version' = req(z$cff_version %||% cff_version, "cff-version"),
+    'cff-version' = cff_v,
     message = req(z$message, "message"),
-    version = req(z$software_version, "version"),
+    version = if (cff_v == "1.2.0") {
+      z$software_version
+    } else {
+      req(z$software_version, "date-released")
+    },
     title = req(
       parse_attributes(z$title, content = "text", first = TRUE), "title"),
     authors = req(cff_auths(z$author), "authors"),
     doi = z$doi,
-    'date-released' = req(z$date_published, "date-released"),
+    'date-released' = if (cff_v == "1.2.0") {
+      z$date_published
+    } else {
+      req(z$date_published, "date-released")
+    },
     url = z$b_url,
     keywords = z$keywords,
     references = z$references
@@ -95,7 +112,7 @@ req <- function(x, var) {
   return(x)
 }
 
-cff_version <- "1.1.0"
+cff_version <- "1.2.0"
 
 cff_person_fields <- c(
   "family-names",

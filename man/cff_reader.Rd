@@ -19,8 +19,14 @@ Citation File Format (cff) reader
 CFF only supports one citation, so \code{many} will always be
 \code{FALSE}.
 
-Required fields: \code{cff-version}, \code{version}, \code{message}, \code{date-released},
-\code{title}, \code{authors}. We'll stop with error if any of these are missing
+Required fields:
+\itemize{
+\item CFF \strong{v1.1.0}: \code{cff-version}, \code{version}, \code{message}, \code{date-released},
+\code{title}, \code{authors}.
+\item CFF \strong{v1.2.0}: \code{cff-version}, \code{message}, \code{title}, \code{authors}.
+}
+
+We'll stop with error if any of these are missing.
 
 You can though have many references in your CFF file
 associated with the citation. \code{references} is an optional component in
@@ -35,7 +41,7 @@ https://github.com/citation-file-format/citation-file-format#person-objects
 }
 }
 \examples{
-(z <- system.file('extdata/citation.cff', package = "handlr"))
+(z <- system.file("extdata/citation.cff", package = "handlr"))
 res <- cff_reader(x = z)
 res
 res$cff_version
@@ -48,7 +54,7 @@ res$author
 res$references
 
 # no references
-(z <- system.file('extdata/citation-norefs.cff', package = "handlr"))
+(z <- system.file("extdata/citation-norefs.cff", package = "handlr"))
 out <- cff_reader(x = z)
 out
 out$references

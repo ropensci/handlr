@@ -29,6 +29,8 @@ adding the required CFF fields manually. Adding fields to a
 \code{handl} object is easy: it's really just an R list so add
 named elements to it. The required CFF fields are:
 \itemize{
+\item CFF \strong{v1.1.0}:
+\itemize{
 \item cff-version: add \code{cff_version}
 \item message: add \code{message}
 \item version: add \code{software_version}
@@ -36,6 +38,14 @@ named elements to it. The required CFF fields are:
 \item authors: add \code{author}
 \item date-released: add \code{date_published}
 }
+\item CFF \strong{v1.2.0}:
+\itemize{
+\item Only fields \code{cff-version}, \code{message}, \code{title} and \code{authors} are
+required.
+}
+}
+
+If \code{cff_version} is not provided, the value by default is "1.2.0".
 }
 
 \examples{

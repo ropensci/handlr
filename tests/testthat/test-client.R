@@ -70,9 +70,8 @@ test_that("HandlrClient class: works with DOIs", {
 
   # result from DOI and DOI as url the same
   expect_identical(a$parsed, b$parsed)
-
   # can convert to bibtex
-  expect_true(any(grepl("\\@article", a$write('bibtex'))))
+  expect_true(any(grepl("journal = \\{eLife\\}", a$write('bibtex'))))
 
   # fails as expected
   expect_error(

@@ -8,22 +8,22 @@
 #' @family cff
 #' @references CFF format:
 #' https://github.com/citation-file-format/citation-file-format
-#' @details uses `yaml::write_yaml` to write to yaml format that 
+#' @details uses `yaml::write_yaml` to write to yaml format that
 #' CFF uses
 #' @section Converting to CFF from other formats:
 #' CFF has required fields that can't be missing. This means that
 #' converting from other citation types to CFF will likely require
-#' adding the required CFF fields manually. Adding fields to a 
+#' adding the required CFF fields manually. Adding fields to a
 #' `handl` object is easy: it's really just an R list so add
 #' named elements to it. The required CFF fields are:
-#' 
+#'
 #' - cff-version: add `cff_version`
 #' - message: add `message`
 #' - version: add `software_version`
 #' - title: add `title`
 #' - authors: add `author`
 #' - date-released: add `date_published`
-#' 
+#'
 #' @examples
 #' (z <- system.file('extdata/citation.cff', package = "handlr"))
 #' res <- cff_reader(x = z)
@@ -35,7 +35,7 @@
 #' cff_writer(res, f)
 #' readLines(f)
 #' unlink(f)
-#' 
+#'
 #' # convert from a different citation format
 #' ## see "Converting to CFF from other formats" above
 #' z <- system.file('extdata/citeproc.json', package = "handlr")
@@ -89,7 +89,7 @@ cff_auths <- function(e) {
 
 # check for required variables for CFF
 req <- function(x, var) {
-  if (is.null(x) || length(x) == 0 || !nzchar(x)) {
+  if (is.null(x) || length(x) == 0 || any(!nzchar(x))) {
     stop("'", var, "' is required", call. = FALSE)
   }
   return(x)

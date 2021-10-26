@@ -3,6 +3,8 @@
 #' @export
 #' @param z an object of class `handl`; see [handl] for more
 #' @param path a file path or connection; default: `stdout()`
+#' @param message a message to display.
+#' Defaults to `"Please cite the following works when using this software."`
 #' @return text if one cff citation or list of many
 #' @family writers
 #' @family cff
@@ -48,25 +50,27 @@
 #' w <- citeproc_reader(x = z)
 #' # cff_writer(w) # fails unless we add required fields
 #' w$cff_version <- "1.1.0"
-#' w$message <- "Please cite the following works when using this software."
 #' w$software_version <- "2.5"
 #' w$title <- "A cool library"
 #' w$date_published <- "2017-12-18"
 #' cff_writer(w)
 #' cat(cff_writer(w))
-cff_writer <- function(z, path = NULL) {
+cff_writer <- function(
+    z, path = NULL,
+    message = "Please cite the following works when using this software."
+) {
   assert(z, "handl")
   stopifnot(length(z) > 0)
-  cff_write_one(z, path)
+  cff_write_one(z, path, message = message)
 }
 
-cff_write_one <- function(z, path) {
+cff_write_one <- function(z, path, message) {
 
   cff_v <- req(z$cff_version %||% cff_version, "cff_version")
 
   zz <- ccp(list(
     'cff-version' = cff_v,
-    message = req(z$message, "message"),
+    message = z$message %||% message,
     version = if (cff_v == "1.2.0") {
       z$software_version
     } else {

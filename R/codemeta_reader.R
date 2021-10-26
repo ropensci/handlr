@@ -48,7 +48,7 @@ codemeta_read_one <- function(meta) {
     "identifier" = identifier,
     "doi" = validate_doi(id),
     "b_url" = normalize_id(meta$codeRepository %||% NULL),
-    "title" = meta$title %||% NULL,
+    "title" = meta$title %||% meta$name %||% NULL,
     "author" = author,
     "editor" = editor,
     "publisher" = publisher,

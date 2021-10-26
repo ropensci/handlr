@@ -101,6 +101,7 @@ cff_auths <- function(e) {
     # rename some fields
     names(w)[names(w) == "familyName"] <- "family-names"
     names(w)[names(w) == "givenName"] <- "given-names"
+    names(w)[names(w) == "id"] <- "orcid"
     # drop unsupported fields
     w <- w[names(w) %in% cff_person_fields]
     # sort fields

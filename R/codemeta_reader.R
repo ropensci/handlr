@@ -1,5 +1,5 @@
 #' codemeta reader
-#' 
+#'
 #' @export
 #' @param x (character) a file path or string (character or json)
 #' @return an object of class `handl`; see [handl] for more
@@ -9,7 +9,7 @@
 #' # single
 #' (z <- system.file('extdata/codemeta.json', package = "handlr"))
 #' codemeta_reader(x = z)
-#' 
+#'
 #' # many
 #' (z <- system.file('extdata/codemeta-many.json', package = "handlr"))
 #' codemeta_reader(x = z)
@@ -21,7 +21,7 @@ codemeta_reader <- function(x) {
   many <- length(meta) > 1
   structure(if (many) tmp else tmp[[1]],
     class = "handl", from = "codemeta",
-    source_type = if (is_file(x)) "file" else "string", 
+    source_type = if (is_file(x)) "file" else "string",
     file = if (is_file(x)) x else "", many = many)
 }
 
@@ -30,7 +30,7 @@ codemeta_read_one <- function(meta) {
   id <- normalize_id(meta$`@id` %||% meta$identifier)
   type <- meta$`@type` %||% NULL
   # author <- get_authors(from_schema_org(meta$agents %||% NULL))
-  author <- from_schema_org(meta$agents %||% NULL)
+  author <- from_schema_org(meta$author %||% NULL)
   # editor <- get_authors(from_schema_org(meta$editor %||% NULL))
   editor <- from_schema_org(meta$editor %||% NULL)
   date_published <- meta$datePublished %||% NULL
@@ -48,7 +48,7 @@ codemeta_read_one <- function(meta) {
     "identifier" = identifier,
     "doi" = validate_doi(id),
     "b_url" = normalize_id(meta$codeRepository %||% NULL),
-    "title" = meta$title %||% NULL,
+    "title" = meta$title %||% meta$name %||% NULL,
     "author" = author,
     "editor" = editor,
     "publisher" = publisher,
@@ -57,7 +57,7 @@ codemeta_read_one <- function(meta) {
     "date_published" = date_published,
     "date_modified" = meta$dateModified %||% NULL,
     "description" = if (!is.null(meta$description)) {
-      # list(text = sanitize(meta$description)) 
+      # list(text = sanitize(meta$description))
       list(text = meta$description)
     } else {
       NULL

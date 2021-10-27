@@ -36,7 +36,7 @@ validate_prefix <- function(doi) {
 normalize_doi <- function(doi) {
   doi_str <- validate_doi(doi)
   if (is.null(doi_str)) return(NULL)
-  file.path(doi_resolver, urltools::url_encode(doi_str))
+  file.path(doi_resolver, doi_str)
 }
 
 # is_url_doi("http://doi.org/10.1371/journal.pone.0025995")
@@ -49,7 +49,7 @@ doi_from_url <- function(url) {
 }
 
 # doi_as_url("10.1371/journal.pone.0025995")
-doi_as_url <- function(doi) {  
+doi_as_url <- function(doi) {
   if (!is.null(doi)) file.path(doi_resolver, doi) else NULL
 }
 
@@ -77,10 +77,11 @@ normalize_id <- function(id = NULL) {
     return(NULL)
   }
 
+  return(id)
   # clean up URL
   # FIXME - clean the url
-  res <- tryCatch(urltools::url_encode(id), error = function(e) e)
-  if (inherits(res, "error")) stop("invalid URL") else res
+  # res <- tryCatch(urltools::url_encode(id), error = function(e) e)
+  # if (inherits(res, "error")) stop("invalid URL") else res
   # PostRank::URI.clean(id)
   #   rescue Addressable::URI::InvalidURIError
 }

@@ -4,12 +4,19 @@
 \alias{cff_writer}
 \title{Citation File Format (cff) writer}
 \usage{
-cff_writer(z, path = NULL)
+cff_writer(
+  z,
+  path = NULL,
+  message = "Please cite the following works when using this software."
+)
 }
 \arguments{
 \item{z}{an object of class \code{handl}; see \link{handl} for more}
 
 \item{path}{a file path or connection; default: \code{stdout()}}
+
+\item{message}{a message to display.
+Defaults to \code{"Please cite the following works when using this software."}}
 }
 \value{
 text if one cff citation or list of many
@@ -66,7 +73,6 @@ z <- system.file('extdata/citeproc.json', package = "handlr")
 w <- citeproc_reader(x = z)
 # cff_writer(w) # fails unless we add required fields
 w$cff_version <- "1.1.0"
-w$message <- "Please cite the following works when using this software."
 w$software_version <- "2.5"
 w$title <- "A cool library"
 w$date_published <- "2017-12-18"

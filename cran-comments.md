@@ -1,8 +1,8 @@
 ## Test environments
 
-* local OS X install, R 4.0.3 patched
-* ubuntu 16.04 (on travis-ci), R 4.0.3
-* win-builder (devel and release)
+* local macOS install, R 4.4.1
+* ubuntu, macOS, windows (on GitHub CI) (devel, release, oldrel)
+* macOS, windows (on GitHub CI) (release)
 
 ## R CMD check results
 

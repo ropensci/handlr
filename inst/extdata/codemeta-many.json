@@ -3,7 +3,7 @@
         "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
         "@type": "SoftwareSourceCode",
         "agents": [{
-            "@id": "http://orcid.org/0000-0003-0077-4738",
+            "@id": "https://orcid.org/0000-0003-0077-4738",
             "@type": "person",
             "email": "jones@nceas.ucsb.edu",
             "name": "Matt Jones",
@@ -12,14 +12,14 @@
             "isMaintainer": true,
             "isRightsHolder": true,
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": [
                     "originator",
                     "resourceProvider"
                 ]
             }
         }, {
-            "@id": "http://orcid.org/0000-0002-2192-403X",
+            "@id": "https://orcid.org/0000-0002-2192-403X",
             "@type": "person",
             "email": "slaughter@nceas.ucsb.edu",
             "name": "Peter Slaughter",
@@ -28,7 +28,7 @@
             "isMaintainer": false,
             "isRightsHolder": false,
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": "contributor"
             }
         }, {
@@ -36,7 +36,7 @@
             "email": "info@ucop.edu",
             "name": "University of California, Santa Barbara",
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": "copyrightHolder"
             }
         }],
@@ -44,7 +44,7 @@
             "@type": "URL",
             "@value": "https://github.com/ropensci/datapack"
         },
-        "identifier": "http://dx.doi.org/10.5063/F1M61H5X",
+        "identifier": "https://doi.org/10.5063/F1M61H5X",
         "codeRepository": "https://github.com/DataONEorg/rdataone",
         "controlledTem": "software",
         "datePublished": "2016-05-27",
@@ -65,7 +65,7 @@
         "title": "R Interface to the DataONE REST API",
         "version": "2.0.0",
         "uploadedBy": {
-            "@id": "http://orcid.org/0000-0003-0077-4738",
+            "@id": "https://orcid.org/0000-0003-0077-4738",
             "@type": "person",
             "email": "mbjones@nceas.ucsb.edu",
             "name": "Matt Jones"
@@ -75,21 +75,21 @@
             "version": "> 3.1.1",
             "URL": "https://www.r-project.org"
         },
-        "readme": "https://github.com/DataONEorg/rdataone/README.md",
+        "readme": "https://github.com/DataONEorg/rdataone/blob/main/README.md",
         "relatedPublications": "ISBN:0201703726",
         "relationship": {
             "relationshipType": "isPartOf",
             "relatedIdentifier": "urn:uuid:F1A0A7AF-ECF3-4C7D-B675-7C6949963995",
             "relatedIdentifierType": "UUID"
         },
-        "softwarePaperCitationIdentifiers": "http://doi.org/0000/0000",
+        "softwarePaperCitationIdentifiers": "https://doi.org/10.5063/F1M61H5X",
         "zippedCode": "https://cran.r-project.org/src/contrib/dataone_2.0.0.tar.gz"
     },
     {
         "@context": "https://raw.githubusercontent.com/codemeta/codemeta/master/codemeta.jsonld",
         "@type": "SoftwareSourceCode",
         "agents": [{
-            "@id": "http://orcid.org/0000-0003-0077-4738",
+            "@id": "https://orcid.org/0000-0003-0077-4738",
             "@type": "person",
             "email": "jones@nceas.ucsb.edu",
             "name": "Matt Jones",
@@ -98,14 +98,14 @@
             "isMaintainer": true,
             "isRightsHolder": true,
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": [
                     "originator",
                     "resourceProvider"
                 ]
             }
         }, {
-            "@id": "http://orcid.org/0000-0002-2192-403X",
+            "@id": "https://orcid.org/0000-0002-2192-403X",
             "@type": "person",
             "email": "slaughter@nceas.ucsb.edu",
             "name": "Peter Slaughter",
@@ -114,7 +114,7 @@
             "isMaintainer": false,
             "isRightsHolder": false,
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": "contributor"
             }
         }, {
@@ -122,7 +122,7 @@
             "email": "info@ucop.edu",
             "name": "University of California, Santa Barbara",
             "role": {
-                "namespace": "http://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
+                "namespace": "https://www.ngdc.noaa.gov/metadata/published/xsd/schema/resources/Codelist/gmxCodelists.xml#CI_RoleCode",
                 "roleCode": "copyrightHolder"
             }
         }],
@@ -130,7 +130,7 @@
             "@type": "URL",
             "@value": "https://github.com/ropensci/datapack"
         },
-        "identifier": "http://dx.doi.org/10.5063/F1M61H5X",
+        "identifier": "https://doi.org/10.5063/F1M61H5X",
         "codeRepository": "https://github.com/DataONEorg/rdataone",
         "controlledTem": "software",
         "datePublished": "2016-05-27",
@@ -151,7 +151,7 @@
         "title": "R Interface to the DataONE REST API",
         "version": "2.0.0",
         "uploadedBy": {
-            "@id": "http://orcid.org/0000-0003-0077-4738",
+            "@id": "https://orcid.org/0000-0003-0077-4738",
             "@type": "person",
             "email": "mbjones@nceas.ucsb.edu",
             "name": "Matt Jones"
@@ -161,14 +161,14 @@
             "version": "> 3.1.1",
             "URL": "https://www.r-project.org"
         },
-        "readme": "https://github.com/DataONEorg/rdataone/README.md",
+        "readme": "https://github.com/DataONEorg/rdataone/blob/main/README.md",
         "relatedPublications": "ISBN:0201703726",
         "relationship": {
             "relationshipType": "isPartOf",
             "relatedIdentifier": "urn:uuid:F1A0A7AF-ECF3-4C7D-B675-7C6949963995",
             "relatedIdentifierType": "UUID"
         },
-        "softwarePaperCitationIdentifiers": "http://doi.org/0000/0000",
+        "softwarePaperCitationIdentifiers": "https://doi.org/10.5063/F1M61H5X",
         "zippedCode": "https://cran.r-project.org/src/contrib/dataone_2.0.0.tar.gz"
     }
 ]

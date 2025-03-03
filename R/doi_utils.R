@@ -6,8 +6,8 @@ doi_resolver <- "https://doi.org"
 # validate_doi: should extract DOI if it's in a URL
 # validate_doi(doi = "10.1371/journal.pone.0025995") # valid
 # validate_doi(doi = "10/journal.pone.0025995") # invalid
-# validate_doi(doi = "http://dx.doi.org/10.5063/F1M61H5X") # valid url
-# validate_doi(doi = "http://dx.doi.org/30.5063/F1M61H5X") # invalid url
+# validate_doi(doi = "https://doi.org/10.5063/F1M61H5X") # valid url
+# validate_doi(doi = "https://doi.org/30.5063/F1M61H5X") # invalid url
 validate_doi <- function(doi) {
   # doi <- grep(doi_pattern, doi, perl = TRUE, value = TRUE)
   doi <- regmatches(doi, regexpr(doi_pattern, doi, perl=TRUE))
@@ -39,8 +39,8 @@ normalize_doi <- function(doi) {
   file.path(doi_resolver, doi_str)
 }
 
-# is_url_doi("http://doi.org/10.1371/journal.pone.0025995")
-# doi_from_url(url = "http://doi.org/10.1371/journal.pone.0025995")
+# is_url_doi("https://doi.org/10.1371/journal.pone.0025995")
+# doi_from_url(url = "https://doi.org/10.1371/journal.pone.0025995")
 doi_from_url <- function(url) {
   if (is_url_doi(url)) {
     df <- urltools::url_parse(url)

@@ -1,10 +1,10 @@
 #' Schema org writer
-#' 
+#'
 #' @export
 #' @param z an object of class `handl`; see [handl] for more
-#' @param auto_unbox (logical) automatically "unbox" all atomic 
+#' @param auto_unbox (logical) automatically "unbox" all atomic
 #' vectors of length 1 (default: `TRUE`). passed to [jsonlite::toJSON()]
-#' @param pretty (logical) adds indentation whitespace to JSON output 
+#' @param pretty (logical) adds indentation whitespace to JSON output
 #' (default: `TRUE`), passed to [jsonlite::toJSON()]
 #' @param ... further params passed to [jsonlite::toJSON()]
 #' @return an object of class `json`
@@ -17,8 +17,8 @@
 #' schema_org_writer(tmp)
 #' schema_org_writer(tmp, pretty = FALSE)
 #' }
-#' 
-#' # many citeproc to schema 
+#'
+#' # many citeproc to schema
 #' z <- system.file('extdata/citeproc-many.json', package = "handlr")
 #' w <- citeproc_reader(x = z)
 #' schema_org_writer(w)
@@ -32,23 +32,23 @@ schema_org_writer <- function(z, auto_unbox = TRUE, pretty = TRUE, ...) {
 
 schema_hsh <- function(x) {
   ccp(list(
-    "@context" = if (!is.null(x$id)) "http://schema.org" else NULL,
+    "@context" = if (!is.null(x$id)) "https://schema.org" else NULL,
     "@type" = x$type,
     "@id" = x$id,
-    "identifier" = to_schema_org_identifier(x$id, 
+    "identifier" = to_schema_org_identifier(x$id,
       ccp(list(alternate_identifier = x$alternate_identifier %||% NULL))),
     "url" = x$b_url,
     "additionalType" = x$additional_type,
     "name" = parse_attributes(x$title, content = "text", first = TRUE),
     "author" = to_schema_org(x$author),
     "editor" = to_schema_org(x$editor),
-    "description" = 
+    "description" =
       parse_attributes(x$description, content = "text", first = TRUE),
     "license" = unlist(ccp(lapply(x$license, function(l) l$id))),
     "version" = x$software_version,
-    "keywords" = if (!is.null(x$keywords)) 
-      paste0(lapply(x$keywords, function(k) 
-        parse_attributes(k, content = "text", first = TRUE)), 
+    "keywords" = if (!is.null(x$keywords))
+      paste0(lapply(x$keywords, function(k)
+        parse_attributes(k, content = "text", first = TRUE)),
       collapse = ", ") else NULL,
     "inLanguage" = x$language %||% NULL,
     "contentSize" = x$content_size %||% NULL,
@@ -60,7 +60,7 @@ schema_hsh <- function(x) {
     "pageEnd" = x$last_page %||% NULL,
     "spatialCoverage" = x$spatial_coverage %||% NULL,
     "sameAs" = to_schema_org(x$is_identical_to),
-    "isPartOf" = if (x$type == "Dataset") NULL else 
+    "isPartOf" = if (x$type == "Dataset") NULL else
       to_schema_org_container(x$is_part_of, list(
         container_title = x$container_title, type = x$type)),
     "hasPart" = to_schema_org(x$has_part),
@@ -70,13 +70,13 @@ schema_hsh <- function(x) {
     "@reverse" = x$reverse.presence,
     "contentUrl" = x$content_url %||% NULL,
     "schemaVersion" = x$schema_version %||% NULL,
-    "includedInDataCatalog" = if (x$type == "Dataset") 
-      to_schema_org_container(x$is_part_of, 
+    "includedInDataCatalog" = if (x$type == "Dataset")
+      to_schema_org_container(x$is_part_of,
         list(container_title = x$container_title, type = x$type)) else NULL,
-    "publisher" = if (!is.null(x$publisher)) 
+    "publisher" = if (!is.null(x$publisher))
       list("@type" = "Organization", "name" = x$publisher) else NULL,
     "funding" = to_schema_org(x$funding),
-    "provider" = if (!is.null(x$service_provider)) 
+    "provider" = if (!is.null(x$service_provider))
       list("@type" = "Organization", "name" = x$service_provider) else NULL
   ))
 }
@@ -109,7 +109,7 @@ wrap_list <- function(m) {
 }
 
 to_schema_org_identifier <- function(element, options = list()) {
-  ident <- list( 
+  ident <- list(
     "@type" = "PropertyValue",
     propertyID = if (!is.null(normalize_doi(element))) "doi" else "url",
     value = element

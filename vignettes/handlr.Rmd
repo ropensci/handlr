@@ -144,8 +144,8 @@ handl_to_df(res2)
 #> 1 article-journal     JOUR                  <NA>  JournalArticle
 #> 2 article-journal     JOUR                  <NA>  JournalArticle
 #>                     doi                                   b_url
-#> 1 10.1093/biosci/biw022 http://dx.doi.org/10.1093/biosci/biw022
-#> 2     10.1890/15-1397.1     http://dx.doi.org/10.1890/15-1397.1
+#> 1 10.1093/biosci/biw022 https://doi.org/10.1093/biosci/biw022
+#> 2     10.1890/15-1397.1     https://doi.org/10.1890/15-1397.1
 #>                                                                                                        title
 #> 1                            Spatial Gaps in Global Biodiversity Information and the Role of Citizen Science
 #> 2 Long-lasting effects of land use history on soil fungal communities in second-growth tropical rain forests
@@ -166,7 +166,7 @@ handl_to_df(res2)
 [codemeta]: https://codemeta.github.io/
 [citeproc]: https://en.wikipedia.org/wiki/CiteProc
 [ris]: https://en.wikipedia.org/wiki/RIS_(file_format)
-[bibtex]: http://www.bibtex.org/
+[bibtex]: https://www.bibtex.org/
 [schema.org]: https://schema.org/
 [rdfxml]: https://en.wikipedia.org/wiki/RDF/XML
 [cff]: https://citation-file-format.github.io/

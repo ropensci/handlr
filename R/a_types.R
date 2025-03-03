@@ -1,5 +1,5 @@
 #' cff references types
-#' @references http://bit.ly/2PRK1Vt
+#' @references https://bit.ly/2PRK1Vt
 #' @details cff citation format types for references
 #' @name cff_reference_types
 #' @docType data

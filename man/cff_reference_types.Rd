@@ -17,6 +17,6 @@ cff references types
 cff citation format types for references
 }
 \references{
-http://bit.ly/2PRK1Vt
+https://bit.ly/2PRK1Vt
 }
 \keyword{datasets}

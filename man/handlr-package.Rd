@@ -45,6 +45,16 @@ A tool for converting among citation formats
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/ropensci/handlr (devel)}
+  \item \url{https://docs.ropensci.org/handlr/ (docs)}
+  \item Report bugs at \url{https://github.com/ropensci/handlr/issues}
+}
+
+}
 \author{
 Scott Chamberlain \email{sckott@protonmail.com}
 }
+\keyword{internal}

@@ -172,17 +172,17 @@ cat(x$write("bibtex"), sep = "\n")
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-print}{\code{HandlrClient$print()}}
-\item \href{#method-new}{\code{HandlrClient$new()}}
-\item \href{#method-read}{\code{HandlrClient$read()}}
-\item \href{#method-write}{\code{HandlrClient$write()}}
-\item \href{#method-as_df}{\code{HandlrClient$as_df()}}
-\item \href{#method-clone}{\code{HandlrClient$clone()}}
+\item \href{#method-HandlrClient-print}{\code{HandlrClient$print()}}
+\item \href{#method-HandlrClient-new}{\code{HandlrClient$new()}}
+\item \href{#method-HandlrClient-read}{\code{HandlrClient$read()}}
+\item \href{#method-HandlrClient-write}{\code{HandlrClient$write()}}
+\item \href{#method-HandlrClient-as_df}{\code{HandlrClient$as_df()}}
+\item \href{#method-HandlrClient-clone}{\code{HandlrClient$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-print"></a>}}
-\if{latex}{\out{\hypertarget{method-print}{}}}
+\if{html}{\out{<a id="method-HandlrClient-print"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-print}{}}}
 \subsection{Method \code{print()}}{
 print method for \code{HandlrClient} objects
 \subsection{Usage}{
@@ -200,8 +200,8 @@ print method for \code{HandlrClient} objects
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-HandlrClient-new"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-new}{}}}
 \subsection{Method \code{new()}}{
 Create a new \code{HandlrClient} object
 \subsection{Usage}{
@@ -228,8 +228,8 @@ A new \code{HandlrClient} object
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-read"></a>}}
-\if{latex}{\out{\hypertarget{method-read}{}}}
+\if{html}{\out{<a id="method-HandlrClient-read"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-read}{}}}
 \subsection{Method \code{read()}}{
 read input
 \subsection{Usage}{
@@ -249,8 +249,8 @@ can not guess}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-write"></a>}}
-\if{latex}{\out{\hypertarget{method-write}{}}}
+\if{html}{\out{<a id="method-HandlrClient-write"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-write}{}}}
 \subsection{Method \code{write()}}{
 write to std out or file
 \subsection{Usage}{
@@ -272,8 +272,8 @@ number of files must equal number of ris citations}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-as_df"></a>}}
-\if{latex}{\out{\hypertarget{method-as_df}{}}}
+\if{html}{\out{<a id="method-HandlrClient-as_df"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-as_df}{}}}
 \subsection{Method \code{as_df()}}{
 convert data to a data.frame using \code{\link[=handl_to_df]{handl_to_df()}}
 \subsection{Usage}{
@@ -285,8 +285,8 @@ a data.frame
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-HandlrClient-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-HandlrClient-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

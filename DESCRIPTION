@@ -5,12 +5,15 @@ Description: Converts among many citation formats, including 'BibTeX',
     'Citation File Format'. A low level 'R6' class is provided, as well
     as stand-alone functions for each citation format for both read
     and write.
-Version: 0.3.0
+Version: 0.3.1
 License: MIT + file LICENSE
 Authors@R: c(
-    person("Scott", "Chamberlain", role = c("aut", "cre"),
+    person("Scott", "Chamberlain", role = c("aut"),
     email = "sckott@protonmail.com",
     comment = c(ORCID = "0000-0003-1444-9135")),
+    person("Brenton M.", "Wiernik", role = c("aut", "cre"),
+    email = "brenton@wiernik.org",
+    comment = c(ORCID = "0000-0001-9560-6336")),
     person("Thierry", "Onkelinx", email = "thierry.onkelinx@inbo.be", role = "ctb",
            comment = c(ORCID = "0000-0001-8804-4216"))
     )
@@ -32,7 +35,7 @@ Suggests:
     jsonld,
     data.table,
     bibtex
-RoxygenNote: 7.1.2
+RoxygenNote: 7.3.2
 X-schema.org-applicationCategory: Metadata
 X-schema.org-keywords: doi, metadata, citation, bibtex, Crossref, Crosscite, Codemeta, RIS, Citeproc, RDF, XML, JSON
 X-schema.org-isPartOf: https://ropensci.org

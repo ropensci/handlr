@@ -48,8 +48,8 @@ A tool for converting among citation formats
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ropensci/handlr (devel)}
-  \item \url{https://docs.ropensci.org/handlr/ (docs)}
+  \item \url{https://github.com/ropensci/handlr}
+  \item \url{https://docs.ropensci.org/handlr/}
   \item Report bugs at \url{https://github.com/ropensci/handlr/issues}
 }
 

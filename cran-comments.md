@@ -14,7 +14,8 @@
 
 ---
 
-This version includes dropping RefManageR package, scheduled to be archived soon, along with fixes and some new functions.
+This version changes the maintainer from Scott Chamberlain to Brenton Wiernik.
+Scott no longer has time to maintain the package and has asked Brenton to take over.
 
 Thanks!
-Scott Chamberlain
+Brenton Wiernik

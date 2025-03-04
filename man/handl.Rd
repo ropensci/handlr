@@ -9,14 +9,16 @@ handl object
 \details{
 A \code{handl} object is what's returned from the reader functions,
 and what is passed to the writer functions. The \code{handl} object is a list,
-but using the \code{print.handl} method makes it look something like:\preformatted{<handl>
+but using the \code{print.handl} method makes it look something like:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{<handl>
   from: codemeta
   many: TRUE
   count: 2
   first 10
     id/doi: https://doi.org/10.5063\%2ff1m61h5x
     id/doi: https://doi.org/10.5063\%2ff1m61h5x
-}
+}\if{html}{\out{</div>}}
 
 You can always \code{unclass()} the object to get the list itself.
 

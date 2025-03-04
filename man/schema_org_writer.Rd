@@ -31,7 +31,7 @@ schema_org_writer(tmp)
 schema_org_writer(tmp, pretty = FALSE)
 }
 
-# many citeproc to schema 
+# many citeproc to schema
 z <- system.file('extdata/citeproc-many.json', package = "handlr")
 w <- citeproc_reader(x = z)
 schema_org_writer(w)

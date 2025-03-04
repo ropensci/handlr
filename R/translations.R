@@ -1,17 +1,17 @@
 # from https://github.com/datacite/bolognese/blob/master/lib/bolognese/utils.rb
 
 LICENSE_NAMES <- list(
-  "http://creativecommons.org/publicdomain/zero/1.0/" = 
+  "https://creativecommons.org/publicdomain/zero/1.0/" = 
     "Public Domain (CC0 1.0)",
-  "http://creativecommons.org/licenses/by/3.0/" = 
+  "https://creativecommons.org/licenses/by/3.0/" = 
     "Creative Commons Attribution 3.0 (CC-BY 3.0)",
-  "http://creativecommons.org/licenses/by/4.0/" = 
+  "https://creativecommons.org/licenses/by/4.0/" = 
     "Creative Commons Attribution 4.0 (CC-BY 4.0)",
-  "http://creativecommons.org/licenses/by-nc/4.0/" = 
+  "https://creativecommons.org/licenses/by-nc/4.0/" = 
     "Creative Commons Attribution Noncommercial 4.0 (CC-BY-NC 4.0)",
-  "http://creativecommons.org/licenses/by-sa/4.0/" = 
+  "https://creativecommons.org/licenses/by-sa/4.0/" = 
     "Creative Commons Attribution Share Alike 4.0 (CC-BY-SA 4.0)",
-  "http://creativecommons.org/licenses/by-nc-nd/4.0/" = 
+  "https://creativecommons.org/licenses/by-nc-nd/4.0/" = 
     "Creative Commons Attribution Noncommercial No Derivatives 4.0 (CC-BY-NC-ND 4.0)"
 )
 

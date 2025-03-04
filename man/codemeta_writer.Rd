@@ -30,7 +30,7 @@ if (requireNamespace("bibtex", quietly=TRUE)) {
 codemeta_writer(z)
 }
 
-# many citeproc to schema 
+# many citeproc to schema
 z <- system.file('extdata/citeproc-many.json', package = "handlr")
 w <- citeproc_reader(x = z)
 codemeta_writer(w)

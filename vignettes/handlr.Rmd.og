@@ -97,7 +97,7 @@ cat(x$write("bibtex"), sep = "\n")
 
 ## Choose your own adventure
 
-Instead of using the `HandlrClient`, you can use the regular functions for each 
+Instead of using the `HandlrClient`, you can use the regular functions for each
 reader or writer. They are:
 
 - `citeproc_reader()` / `citeproc_writer()`
@@ -121,7 +121,7 @@ handl_to_df(res2)
 [codemeta]: https://codemeta.github.io/
 [citeproc]: https://en.wikipedia.org/wiki/CiteProc
 [ris]: https://en.wikipedia.org/wiki/RIS_(file_format)
-[bibtex]: http://www.bibtex.org/
+[bibtex]: https://www.bibtex.org/
 [schema.org]: https://schema.org/
 [rdfxml]: https://en.wikipedia.org/wiki/RDF/XML
 [cff]: https://citation-file-format.github.io/

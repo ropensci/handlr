@@ -1,3 +1,12 @@
+handlr 0.3.1
+============
+
+### MINOR IMPROVEMENTS
+
+* Update maintainer to Brenton M. Wiernik.
+* Improved support for Citation File Format (CFF) and codemeta.json
+
+
 handlr 0.3.0
 ============
 
